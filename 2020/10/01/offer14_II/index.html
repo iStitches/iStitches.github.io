@@ -17,7 +17,7 @@
   <meta name="description" content="">
   <meta name="author" content="John Doe">
   <meta name="keywords" content="">
-  <title>Hexo</title>
+  <title>剑指Offer 14.减绳子 - Hexo</title>
 
   <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" />
 
@@ -174,7 +174,7 @@
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
           <div class="page-header text-center fade-in-up">
-            <span class="h2" id="subtitle" title="">
+            <span class="h2" id="subtitle" title="剑指Offer 14.减绳子">
               
             </span>
 
@@ -184,8 +184,8 @@
   
     <span class="post-meta">
       <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-      <time datetime="2021-02-02 21:22" pubdate>
-        2021年2月2日 晚上
+      <time datetime="2020-10-01 18:00" pubdate>
+        2020年10月1日 晚上
       </time>
     </span>
   
@@ -206,7 +206,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      16
+      15
        分钟
     </span>
   
@@ -236,11 +236,10 @@
         <div class="py-5" id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none"></h1>
+            <h1 style="display: none">剑指Offer 14.减绳子</h1>
             
             <div class="markdown-body">
-              <figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs yaml"><span class="hljs-attr">title:</span> <span class="hljs-string">剑指Offer</span> <span class="hljs-number">14</span><span class="hljs-string">.减绳子</span><br><span class="hljs-attr">tags:</span> [<span class="hljs-string">java</span>,<span class="hljs-string">动态规划</span>,<span class="hljs-string">贪心法</span>]<br><span class="hljs-attr">categories:</span> [<span class="hljs-string">剑指Offer</span>]<br><span class="hljs-attr">index_img:</span> <span class="hljs-string">/img/example.jpg</span><br><span class="hljs-attr">date:</span> <span class="hljs-number">2019-10-10 10:00:00</span><br></code></pre></td></tr></table></figure>
-<p><img src="../passageImg/offer14_II.assets/image-20210201112350177.png" srcset="/img/loading.gif" alt="image-20210201112350177"></p>
+              <p><img src="/passageImg/offer14_II.assets/image-20210201112350177.png" srcset="/img/loading.gif"></p>
 <h4 id="1-DP-求解"><a href="#1-DP-求解" class="headerlink" title="1. DP 求解"></a>1. DP 求解</h4><p>假设 res[n] 代表长度为 n 的绳子的最大乘积，那么  res[n] = max(res[n-i] * res[i])，其中(1&lt;=i&lt;n)</p>
 <p>特别的有一些特殊值：  </p>
 <p>​       res[0] = 0;   //不存在</p>
@@ -264,7 +263,7 @@
 <ul>
 <li>推论三：为使乘积最大，只有长度为2和3的绳子不应再切分，切3比2更优</li>
 </ul>
-<p><img src="../passageImg/offer14_II.assets/image-20210201114428581.png" srcset="/img/loading.gif" alt="image-20210201114428581"></p>
+<p><img src="/passageImg/offer14_II.assets/image-20210201114428581.png" srcset="/img/loading.gif"></p>
 <p>代码</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> </span>&#123;<br>	<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">int</span> <span class="hljs-title">cuttingRope</span><span class="hljs-params">(<span class="hljs-keyword">int</span> n)</span> </span>&#123;<br>		<span class="hljs-keyword">if</span>(n==<span class="hljs-number">2</span>)<br>			<span class="hljs-keyword">return</span> <span class="hljs-number">1</span>;<br>		<span class="hljs-keyword">if</span>(n==<span class="hljs-number">3</span>)<br>			<span class="hljs-keyword">return</span> <span class="hljs-number">2</span>;<br>		<span class="hljs-keyword">int</span> count = Math.floor(n/<span class="hljs-number">3</span>);   <span class="hljs-comment">//计算能够划分为长度为3的绳子段数</span><br>		<span class="hljs-keyword">int</span> left = n%<span class="hljs-number">3</span>;   <span class="hljs-comment">//计算余数</span><br>		<span class="hljs-keyword">if</span>(left == <span class="hljs-number">0</span>) <span class="hljs-keyword">return</span> Math.pow(<span class="hljs-number">3</span>,count);     <span class="hljs-comment">//长度是3的整倍数</span><br>		<span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(left == <span class="hljs-number">1</span>) <span class="hljs-keyword">return</span> Math.pow(<span class="hljs-number">3</span>,count-<span class="hljs-number">1</span>)*<span class="hljs-number">4</span>;  <span class="hljs-comment">//长度按3划分后还剩余一段1</span><br>		<span class="hljs-keyword">else</span> <span class="hljs-keyword">return</span> Math.pow(<span class="hljs-number">3</span>,count)*<span class="hljs-number">2</span>;    <span class="hljs-comment">//长度按3划分后还剩余一段2</span><br>	&#125;<br>&#125;<br></code></pre></td></tr></table></figure>
 
@@ -275,7 +274,7 @@
 
 
 
-<p><img src="../passageImg/offer14_II.assets/image-20210201112221941.png" srcset="/img/loading.gif" alt="image-20210201112221941"></p>
+<p><img src="/passageImg/offer14_II.assets/image-20210201112221941.png" srcset="/img/loading.gif"></p>
 <h4 id="1-DP的缺陷-不可用"><a href="#1-DP的缺陷-不可用" class="headerlink" title="1.DP的缺陷(不可用)"></a>1.DP的缺陷(不可用)</h4><p>这个题和剪绳子I一样的描述，就是数据范围变大了。剪绳子可以用动态规划或者贪心做，这道题对于使用DP难度就增大了一些，因为数据范围变得比较大时，long已经不足以去存储中间结果的状态，但是由于DP做法是枚举各种剪的情况然后取最大值，因此只能通过使用BigInteger的方法去做，这点评论区已经有人给出了解答。</p>
 <p>那么这个题范围变大的本意是想让我们使用贪心算法能更好的求解(毕竟BigInteger使用起来麻烦，贪心没有数据溢出的问题，它是找当下的最优解，不需要比较，中间结果可以直接取模)。</p>
 <h4 id="2-贪心法-可用"><a href="#2-贪心法-可用" class="headerlink" title="2. 贪心法(可用)"></a>2. 贪心法(可用)</h4><p>我们首先考虑对于一段长n的绳子，我们可以切出的结果包含什么？</p>
@@ -292,6 +291,24 @@
             <div>
               <div class="post-metas mb-3">
                 
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/%E5%89%91%E6%8C%87Offer/">剑指Offer</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/java/">java</a>
+                    
+                      <a class="hover-with-bg" href="/tags/%E8%B4%AA%E5%BF%83%E6%B3%95/">贪心法</a>
+                    
+                      <a class="hover-with-bg" href="/tags/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/">动态规划</a>
+                    
+                  </div>
                 
               </div>
               
@@ -306,8 +323,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2021/02/02/test/">
-                        <span class="hidden-mobile"></span>
+                      <a href="/2019/10/10/hello-world/">
+                        <span class="hidden-mobile">文章标题</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
