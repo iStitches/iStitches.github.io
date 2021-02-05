@@ -191,6 +191,195 @@
     
     
       <div class="col-12 col-md-4 m-auto index-img">
+        <a href="/2020/10/02/offer17/" target="_self">
+          <img src="/passageImg/offer17_II.assets/header.jpg" srcset="/img/loading.gif" alt="剑指Offer 17.打印从1到最大的n位数">
+        </a>
+      </div>
+    
+    <article class="col-12 col-md-8 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2020/10/02/offer17/">剑指Offer 17.打印从1到最大的n位数</a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2020/10/02/offer17/">
+          
+          
+            
+          
+          
+问题扩展：本题应当考察的是大数问题，当 n较大时，end会超出 int32 整型的范围，超出取值范围的数字无法正常存储。
+大数问题的解决需要考虑三个方面的重点：
+
+1 . 表示大数的变量类型
+无论是 short / int / long … 任意变量类型，数字的取值范围都是有限的。因此，大数的表示应用字符串 String 类型。
+
+2 .数字进位
+
+
+​        比如说从 9进一位到10 
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2020-10-02 21:22" pubdate>
+              2020-10-02
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/%E5%89%91%E6%8C%87Offer/">剑指Offer</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/java/">java</a>
+            
+              <a href="/tags/%E5%A4%A7%E6%95%B0%E9%97%AE%E9%A2%98/">大数问题</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+      <div class="col-12 col-md-4 m-auto index-img">
+        <a href="/2020/10/02/offer16/" target="_self">
+          <img src="/passageImg/offer16_II.assets/header.jpg" srcset="/img/loading.gif" alt="剑指Offer 16.数值的整数次方">
+        </a>
+      </div>
+    
+    <article class="col-12 col-md-8 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2020/10/02/offer16/">剑指Offer 16.数值的整数次方</a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2020/10/02/offer16/">
+          
+          
+            
+          
+          
+扩展算法：
+快速幂算法： 
+快速幂算法能帮我们算出指数非常大的幂，传统的求幂算法之所以时间复杂度非常高（为O(指数n)），就是因为当指数n非常大的时候，需要执行的循环操作次数也非常大。所以我们快速幂算法的核心思想就是每一步都把指数分成两半，而相应的底数做平方运算。这样不仅能把非常大的指数给不断变小，所需要执行的循环次数也变小，而最后表示的结果却一直不会变。
+
+算法讲解：比如说一道ACM算法题： 
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2020-10-02 21:00" pubdate>
+              2020-10-02
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/%E5%89%91%E6%8C%87Offer/">剑指Offer</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/java/">java</a>
+            
+              <a href="/tags/%E5%BF%AB%E9%80%9F%E5%B9%82/">快速幂</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+      <div class="col-12 col-md-4 m-auto index-img">
+        <a href="/2020/10/02/offer15/" target="_self">
+          <img src="/passageImg/offer15_II.assets/header.jpg" srcset="/img/loading.gif" alt="剑指Offer 15.二进制中1的个数">
+        </a>
+      </div>
+    
+    <article class="col-12 col-md-8 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2020/10/02/offer15/">剑指Offer 15.二进制中1的个数</a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2020/10/02/offer15/">
+          
+          
+            
+          
+          
+扩展知识：该题重点考察的是如何将一个十进制整数转化为它的二进制数形式。有以下三种方法：
+
+方法一(除基倒取余法)：
+
+类似于数学求二进制的过程，将原数n 不断除以2求出余数然后把商作为下一次的待除数，直到商为0
+12345678public void binaryToDecimal(int n)&#123;     String str = &quot;&quot;;     while(n!=
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2020-10-02 20:06" pubdate>
+              2020-10-02
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/%E5%89%91%E6%8C%87Offer/">剑指Offer</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/java/">java</a>
+            
+              <a href="/tags/%E4%BA%8C%E8%BF%9B%E5%88%B6/">二进制</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+      <div class="col-12 col-md-4 m-auto index-img">
         <a href="/2020/10/01/offer14_II/" target="_self">
           <img src="/passageImg/offer14_II.assets/header.jpg" srcset="/img/loading.gif" alt="剑指Offer 14.减绳子">
         </a>
