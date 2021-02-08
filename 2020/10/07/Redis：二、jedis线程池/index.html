@@ -196,7 +196,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      48 字
+      721 字
     </span>
   
 
@@ -206,7 +206,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      1
+      9
        分钟
     </span>
   
@@ -239,30 +239,15 @@
             <h1 style="display: none">Redis(2).jedis线程池</h1>
             
             <div class="markdown-body">
-              <h1 id="中间件-—-Redis"><a href="#中间件-—-Redis" class="headerlink" title="中间件 — Redis"></a>中间件 — Redis</h1><hr style=" border:solid; width:100px; height:1px;" color=#000000 size=1">
-
-
-<p>@<a href="%E6%96%87%E7%AB%A0%E7%9B%AE%E5%BD%95">TOC</a></p>
-</font>
-
-<hr style=" border:solid; width:100px; height:1px;" color=#000000 size=1">
-
-<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><hr style=" border:solid; width:100px; height:1px;" color=#000000 size=1">
-
-<h1 id="一、什么是jedis"><a href="#一、什么是jedis" class="headerlink" title="一、什么是jedis"></a>一、什么是jedis</h1><ul>
+              <h1 id="一、什么是jedis"><a href="#一、什么是jedis" class="headerlink" title="一、什么是jedis"></a>一、什么是jedis</h1><ul>
 <li>jedis是 Java语言 连接 redis服务的一个工具，常用的包括 Jedis、SpringData Redis、Lettuce</li>
 <li>java-jedis 操作redis 和 redis自身的命令完全一致。</li>
 </ul>
 <h1 id="二、使用步骤"><a href="#二、使用步骤" class="headerlink" title="二、使用步骤"></a>二、使用步骤</h1><h2 id="1-Jedis-读写redis数据-案例"><a href="#1-Jedis-读写redis数据-案例" class="headerlink" title="1.Jedis 读写redis数据(案例)"></a>1.Jedis 读写redis数据(案例)</h2><p><img src="https://img-blog.csdnimg.cn/20210208153814493.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNjg0OTg1,size_16,color_FFFFFF,t_70" srcset="/img/loading.gif" alt="在这里插入图片描述"><br><img src="https://img-blog.csdnimg.cn/20210208153954922.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNjg0OTg1,size_16,color_FFFFFF,t_70" srcset="/img/loading.gif" alt="在这里插入图片描述"></p>
-<hr style=" border:solid; width:100px; height:1px;" color=#000000 size=1">
-
-
 <h2 id="2-编码"><a href="#2-编码" class="headerlink" title="2. 编码"></a>2. 编码</h2><h5 id="2-1-设定业务方法："><a href="#2-1-设定业务方法：" class="headerlink" title="2.1 设定业务方法："></a>2.1 设定业务方法：</h5><p><img src="https://img-blog.csdnimg.cn/20210208165606684.png" srcset="/img/loading.gif" alt="在这里插入图片描述"></p>
 <h5 id="2-2-设定线程类，模拟用户调用："><a href="#2-2-设定线程类，模拟用户调用：" class="headerlink" title="2.2 设定线程类，模拟用户调用："></a>2.2 设定线程类，模拟用户调用：</h5><p><img src="https://img-blog.csdnimg.cn/20210208165635446.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNjg0OTg1,size_16,color_FFFFFF,t_70" srcset="/img/loading.gif" alt="在这里插入图片描述"></p>
 <h5 id="2-3-设计redis控制方案："><a href="#2-3-设计redis控制方案：" class="headerlink" title="2.3 设计redis控制方案："></a>2.3 设计redis控制方案：</h5><p><img src="https://img-blog.csdnimg.cn/20210208165655454.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNjg0OTg1,size_16,color_FFFFFF,t_70" srcset="/img/loading.gif" alt="在这里插入图片描述"></p>
 <h5 id="2-4-设计启动主程序"><a href="#2-4-设计启动主程序" class="headerlink" title="2.4 设计启动主程序:"></a>2.4 设计启动主程序:</h5><p><img src="https://img-blog.csdnimg.cn/20210208165724783.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNjg0OTg1,size_16,color_FFFFFF,t_70" srcset="/img/loading.gif" alt="在这里插入图片描述"></p>
-<hr style=" border:solid; width:100px; height:1px;" color=#000000 size=1">
-
 <h2 id="3-Jedis-工具类配置"><a href="#3-Jedis-工具类配置" class="headerlink" title="3. Jedis 工具类配置"></a>3. Jedis 工具类配置</h2><p>如果每次使用redis 都通过创建一个连接然后关闭的方式来进行会导致效率非常低。因此往往采用 jedis连接池的方式进行操作。</p>
 <h5 id="3-1-配置文件"><a href="#3-1-配置文件" class="headerlink" title="3.1 配置文件"></a>3.1 配置文件</h5><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><code class="hljs java"># 最大可用连接数<br>redis.maxTotal=<span class="hljs-number">1000</span><br># 最大空闲连接数<br>redis.maxIdle=<span class="hljs-number">100</span><br># 最小空闲连接数<br>redis.minIdle=<span class="hljs-number">50</span><br># 当池内没有返回对象时，最大等待时间<br>redis.maxWaitMillis=<span class="hljs-number">10000</span><br># 当调用borrow Object方法时，是否进行有效性检查<br>redis.testOnBorrow=<span class="hljs-keyword">true</span><br># 当调用return Object方法时，是否进行有效性检查<br>redis.testOnReturn=<span class="hljs-keyword">true</span><br># 空闲连接检测线程，检测的周期，毫秒数。如果为负值，则表示不运行”检测线程“，默认为-1<br>redis.timeBetweenEvictionRunsMills=<span class="hljs-number">30000</span><br># 向调用者输出”连接“对象时，是否检测它的空闲超时<br>redis.testWhileIdle=<span class="hljs-keyword">true</span><br># 对于”空闲连接“检测线程而言，每次检测的连接资源的个数，默认为3<br>redis.numTestsPerEvictionRun=<span class="hljs-number">50</span><br># 服务器IP<br>redis.ip=xxxx<br># 服务器端口<br>redis.port=xxxx<br></code></pre></td></tr></table></figure>
 <h5 id="3-2-代码编写"><a href="#3-2-代码编写" class="headerlink" title="3.2 代码编写"></a>3.2 代码编写</h5><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> JedisPool jp;<br><span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> String host;<br><span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> Integer port;<br><span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> Integer maxTotal;     <span class="hljs-comment">//最大连接数</span><br><span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> Integer maxIdle;      <span class="hljs-comment">//最大空闲连接数</span><br><br><span class="hljs-keyword">static</span>&#123;<br>    <span class="hljs-comment">//获取xxx.properties文件内容</span><br>    ResourceBundle rb = ResourceBundle.getBundle(<span class="hljs-string">&quot;redis&quot;</span>);<br>    host = rb.getString(<span class="hljs-string">&quot;redis.host&quot;</span>);<br>    port = Integer.parseInt(rb.getString(<span class="hljs-string">&quot;redis.port&quot;</span>));<br>    maxTotal = Integer.parseInt(rb.getString(<span class="hljs-string">&quot;redis.maxTotal&quot;</span>));<br>    maxIdle = Integer.parseInt(rb.getString(<span class="hljs-string">&quot;redis.maxIdle&quot;</span>));<br><br>    <span class="hljs-comment">//生成jedis连接池配置</span><br>    JedisPoolConfig jpc = <span class="hljs-keyword">new</span> JedisPoolConfig();<br>    jpc.setMaxTotal(maxTotal);<br>    jpc.setMaxIdle(maxIdle);<br>    jp = <span class="hljs-keyword">new</span> JedisPool(jpc,host,port);<br>&#125;<br>    <span class="hljs-comment">// 获取 redis连接</span><br><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> Jedis <span class="hljs-title">getJedis</span><span class="hljs-params">()</span></span>&#123;<br>    <span class="hljs-keyword">return</span> jp.getResource();<br>&#125;<br></code></pre></td></tr></table></figure>

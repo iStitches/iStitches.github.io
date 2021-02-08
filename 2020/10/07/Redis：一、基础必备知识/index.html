@@ -196,7 +196,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      8 字
+      1.8k 字
     </span>
   
 
@@ -206,7 +206,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      1
+      20
        分钟
     </span>
   
@@ -239,13 +239,7 @@
             <h1 style="display: none">Redis(1).基础必备知识</h1>
             
             <div class="markdown-body">
-              <h1 id="Redis-系列文章目录"><a href="#Redis-系列文章目录" class="headerlink" title="Redis 系列文章目录"></a>Redis 系列文章目录</h1><p>@<a href="%E6%96%87%E7%AB%A0%E7%9B%AE%E5%BD%95">TOC</a></p>
-</font>
-
-<hr style=" border:solid; width:100px; height:1px;" color=#000000 size=1">
-
-
-<h1 id="一、什么是NoSQL"><a href="#一、什么是NoSQL" class="headerlink" title="一、什么是NoSQL?"></a>一、什么是NoSQL?</h1><p>时代演进，网页开发可以概述为以下过程：</p>
+              <h1 id="一、什么是NoSQL"><a href="#一、什么是NoSQL" class="headerlink" title="一、什么是NoSQL?"></a>一、什么是NoSQL?</h1><p>时代演进，网页开发可以概述为以下过程：</p>
 <h3 id="1、单机Mysql的引进："><a href="#1、单机Mysql的引进：" class="headerlink" title="1、单机Mysql的引进："></a>1、单机Mysql的引进：</h3><p>初始时都是三层访问方式：   (DAL数据库访问层)</p>
 <p>这种情况下，整个网站的瓶颈存在：<br>(1)、数据量太大，一个机器放不下；<br>(2)、访问量太多—-读写混合，一个服务器受不了；<br>(3)、数据的索引—-B+ Tree，一个机器放不了；<br><img src="https://img-blog.csdnimg.cn/2020111310532315.png#pic_center" srcset="/img/loading.gif" alt="在这里插入图片描述"></p>
 <h3 id="2、Memcached-缓存-Mysql-垂直拆分"><a href="#2、Memcached-缓存-Mysql-垂直拆分" class="headerlink" title="2、Memcached(缓存)+Mysql+垂直拆分:"></a>2、Memcached(缓存)+Mysql+垂直拆分:</h3><p><img src="https://img-blog.csdnimg.cn/2020111312283523.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNjg0OTg1,size_16,color_FFFFFF,t_70#pic_center" srcset="/img/loading.gif" alt="在这里插入图片描述"><br>网站80%的时间都是在读数据，那么每次都去查询数据就很麻烦，因此使用缓存将每次读的数据存起来就可以减少服务器的压力！————-解决了大数据时代的读操作</p>
