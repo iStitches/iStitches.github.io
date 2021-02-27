@@ -1,0 +1,544 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=&#34;auto&#34;>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" type="image/png" href="/img/favicon.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="">
+  <meta name="author" content="John Doe">
+  <meta name="keywords" content="">
+  <title>Hexo</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10.4.0/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+  
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.8.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"⚡","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"onlypost":false},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null}}};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.3.0"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>~码先生</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                友链
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;</a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" href="javascript:">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/bg/passage.jpg') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2021-02-27 23:50" pubdate>
+        2021年2月27日 晚上
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      1 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      1
+       分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none"></h1>
+            
+            <div class="markdown-body">
+              <p>@<a href="%E6%96%87%E7%AB%A0%E7%9B%AE%E5%BD%95">TOC</a></p>
+</font>
+
+<hr style=" border:solid; width:100px; height:1px;" color=#000000 size=1">
+
+<h1 id="一、主从复制的概念"><a href="#一、主从复制的概念" class="headerlink" title="一、主从复制的概念"></a>一、主从复制的概念</h1><p>为什么需要主从复制，因为单机Redis会存在以下问题： ①机器故障，那么原本机器中的业务数据会损害造成不可挽回的损失；②容量瓶颈，单继Redis的内存有限，硬件条件拉跨无法存储巨额数据；为了避免这些问题保证数据的安全性和服务器的高可用性出现了主从复制。<br>主从复制是指，主机数据更新后根据配置和策略，自动同步到备机的master/slaver 机制，Master以写为主，Slave 以读为主。<br><img src="https://img-blog.csdnimg.cn/20210226201122660.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNjg0OTg1,size_16,color_FFFFFF,t_70" srcset="/img/loading.gif" alt="在这里插入图片描述"></p>
+<h1 id="二、主从复制基础用法"><a href="#二、主从复制基础用法" class="headerlink" title="二、主从复制基础用法"></a>二、主从复制基础用法</h1><p><strong>简介：</strong><br><img src="https://img-blog.csdnimg.cn/20210226203013450.png" srcset="/img/loading.gif" alt="在这里插入图片描述"></p>
+<h3 id="2-1-工作流程（1）建立连接"><a href="#2-1-工作流程（1）建立连接" class="headerlink" title="2.1  工作流程（1）建立连接"></a>2.1  工作流程（1）建立连接</h3><p><img src="https://img-blog.csdnimg.cn/20210226203639557.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNjg0OTg1,size_16,color_FFFFFF,t_70" srcset="/img/loading.gif" alt="在这里插入图片描述"></p>
+<ul>
+<li>首先由 slave(从服务器)向 master(主服务器) 发送 <code>slaveof ip port</code> 指令申明称为 master的从机。紧接着slave 会保存master的地址(<code>masterhost</code>)和端口(<code>masterport</code>)以保存master的信息，然后根据保存的信息建立起与主机间的<code>socket</code>连接。为了保证连接的不中断同时slave会不断发送<code>ping</code>命令来测试连接是否联通。如果主机设置了密码，此时还需要从机进行身份验证<code>auth password</code>来向主机核验自己的身份，如果验证授权通过从机才可以发送指令<code>replconf listening-port &lt;port-number&gt;</code>来向master发送自己的端口信息。最终主从连接成功。</li>
+<li>最终的状态是master保存了slave的端口信息；slave保存了master的地址和端口；总体二者之间建立了socket连接。</li>
+</ul>
+<p><strong>建立连接的方法：</strong></p>
+<ul>
+<li><p>启动方式1、客户端发送命令：<br><code>slaveof &lt;masterip&gt; &lt;masterport&gt;</code><br><img src="https://img-blog.csdnimg.cn/20210226205113739.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNjg0OTg1,size_16,color_FFFFFF,t_70" srcset="/img/loading.gif" alt="在这里插入图片描述"><br><img src="https://img-blog.csdnimg.cn/20210226205156210.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNjg0OTg1,size_16,color_FFFFFF,t_70" srcset="/img/loading.gif" alt="在这里插入图片描述"><br><img src="https://img-blog.csdnimg.cn/20210226205229470.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNjg0OTg1,size_16,color_FFFFFF,t_70" srcset="/img/loading.gif" alt="在这里插入图片描述"></p>
+</li>
+<li><p>启动方式2、启动服务器参数：<br><code>redis-server  xxxxx.conf --slaveof host port</code><br><img src="https://img-blog.csdnimg.cn/2021022620545830.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNjg0OTg1,size_16,color_FFFFFF,t_70" srcset="/img/loading.gif" alt="在这里插入图片描述"></p>
+</li>
+<li><p>启动方式3、服务器配置：<br><code>slaveof  &lt;masterip&gt;  &lt;masterport&gt;</code><br><img src="https://img-blog.csdnimg.cn/20210226205925136.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNjg0OTg1,size_16,color_FFFFFF,t_70" srcset="/img/loading.gif" alt="在这里插入图片描述"></p>
+</li>
+<li><p>授权访问需要从机提供主机设置好的密码：<br><img src="https://img-blog.csdnimg.cn/20210226210545482.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNjg0OTg1,size_16,color_FFFFFF,t_70" srcset="/img/loading.gif" alt="在这里插入图片描述"></p>
+</li>
+</ul>
+<h3 id="2-2-工作流程（2）数据同步"><a href="#2-2-工作流程（2）数据同步" class="headerlink" title="2.2  工作流程（2）数据同步"></a>2.2  工作流程（2）数据同步</h3><p><img src="https://img-blog.csdnimg.cn/20210227155930331.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNjg0OTg1,size_16,color_FFFFFF,t_70" srcset="/img/loading.gif" alt="在这里插入图片描述"></p>
+<p>Redis数据同步可以分为全量复制和增量复制(部分复制)。<br><strong>全量复制：</strong> 由slave发起 psyhc2指令给master，master会执行    <code>bgsave</code> (rdb方式的手动持久化)来生成当前的rdb数据文件。但是在rdb持久化过程中新增的数据也需要记录，因此在第一个slave连接的时候master就创建了一个复制缓冲区来记录这一过程新增的指令。等到master持久化完成就会通过socket将rdb数据文件发送给slave，slave接收到RDB然后清空数据执行RDB文件恢复数据。</p>
+<p><strong>增量复制：</strong> 恢复完成后slave发送命令告知master已经恢复完成，master在这一阶段会发送复制缓冲区中的指令给slave，slave接收到这些指令执行 <code>bgrewriteaof</code>    来恢复数据(这是以aof的方式，因为复制缓冲区中存储的是指令而不是rdb文件类型的数据)。</p>
+<p><strong>需要注意的问题：</strong> </p>
+<ul>
+<li>master方面：</li>
+</ul>
+<ol>
+<li>如果master数据量巨大，数据同步阶段应当避开流量高峰阶段，避免造成master阻塞，影响业务的正常进行；</li>
+<li>复制缓冲区的大小必须设置合理，否则会导致数据溢出。比如全量复制时间太久，进行部分复制时发现数据已经存在丢失的情况，必须进行二次全量复制，可能导致slave陷入死循环。<br>可以通过修改 <code>repl-backlog-size</code> 来修改复制缓冲区大小，默认是1MB</li>
+<li>master单机内存占用主内存的比例不应太大，建议使用 50%~70%的内存，留下30%-50%的内存用于执行bgsave命令和创建复制缓冲区。</li>
+</ol>
+<ul>
+<li>slave方面：</li>
+</ul>
+<ol>
+<li>为避免slave进行全量复制、部分复制时服务器响应阻塞或者数据不同步，建议关闭对外服务。<br><code>slave-serve-stale-data yes|no</code> </li>
+<li>数据同步阶段，master会向slave发送ping命令来测试连接。</li>
+<li>多个salve向master请求数据同步，master发送的RDB文件过多，会对带宽造成巨大冲击，造成master的带宽不足。因此数据同步需要错峰进行。</li>
+<li>slave过多时建议调整拓扑结构，由一主多从调整为树状结构，中间的结点既是master，也是上一层的slave。但是需要注意树状结构的深度，如果深度过深，深度高的master和底层的slave之间数据同步延迟较大，数据一致性不高。</li>
+</ol>
+<p><strong>总结：</strong> 全量复制获取的是获取从发指令那一刻开始之前的所有数据；增量复制是获取rdb过程中的所有数据；<br>最终的状态为：slave持有master的全部数据，包含RDB过程中接收的数据；master持有slave当前数据同步的位置。</p>
+<h3 id="2-3-工作流程（3）命令传播"><a href="#2-3-工作流程（3）命令传播" class="headerlink" title="2.3  工作流程（3）命令传播"></a>2.3  工作流程（3）命令传播</h3><p>命令传播阶段就是对全量复制和增量复制的不断重复进行保证数据的实时一致性。<br><img src="https://img-blog.csdnimg.cn/20210227155251564.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNjg0OTg1,size_16,color_FFFFFF,t_70" srcset="/img/loading.gif" alt="在这里插入图片描述"></p>
+<ul>
+<li><strong>服务器的运行 id</strong><br><img src="https://img-blog.csdnimg.cn/20210227160418102.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNjg0OTg1,size_16,color_FFFFFF,t_70" srcset="/img/loading.gif" alt="在这里插入图片描述"></li>
+<li><strong>复制缓冲区</strong><br><img src="https://img-blog.csdnimg.cn/20210227161323492.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNjg0OTg1,size_16,color_FFFFFF,t_70" srcset="/img/loading.gif" alt="在这里插入图片描述"><br><img src="https://img-blog.csdnimg.cn/20210227161545189.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNjg0OTg1,size_16,color_FFFFFF,t_70" srcset="/img/loading.gif" alt="在这里插入图片描述"><br>工作原理： 当一条命令进来后master会将该命令拆解为单个字节值，复制缓冲区包括偏移量和字节值两部分，被拆解的字节值会分别存储到复制缓冲区中同时标记上偏移量。由于不同的slave之间存在数据传播的差异，因此master和slave都需要记录这个偏移量。</li>
+</ul>
+<p><img src="https://img-blog.csdnimg.cn/20210227163938541.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNjg0OTg1,size_16,color_FFFFFF,t_70" srcset="/img/loading.gif" alt="在这里插入图片描述"></p>
+<ul>
+<li><strong>复制偏移量</strong><br><img src="https://img-blog.csdnimg.cn/20210227161220452.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNjg0OTg1,size_16,color_FFFFFF,t_70" srcset="/img/loading.gif" alt="在这里插入图片描述"></li>
+<li><strong>数据同步与命令传播阶段工作流程：</strong><br><img src="https://img-blog.csdnimg.cn/20210227165159404.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNjg0OTg1,size_16,color_FFFFFF,t_70" srcset="/img/loading.gif" alt="在这里插入图片描述"><ul>
+<li>全量复制详解：<br>首先slave发送 <code>psync2 &lt;runid&gt; &lt;offset&gt;</code> 指令给master(此时slave还不知道master的服务器运行id，因此runid初始为?,offset初始为-1)，接着master进行rdb持久化并协同 <code>+FULLRESYNC runid offset</code> 一起发送给slave。在这期间master可能会接受客户端命令，offset进行移动变化。slave接收到了 <code>+FULLRESYNC</code> 会保存master的runid和offset参数，同时清空全部数据恢复RDB 数据。</li>
+<li>增量复制详解：<br>当slave再次发送 <code>psync2 runid offset</code> 指令给master时，master会核对 runid和offset参数是否匹配。如果runid不满足或者offset溢出就执行全量复制；如果runid满足但是offset不相同(比方说slave突然掉线，而master端仍有命令进入，会造成master端的offset不断增长而slave端不变)，master则会发送 <code>+CONTINUE offset</code> 和复制缓冲区中相差的那段指令数据给slave。 slave接收到 <code>+CONTINUE</code> 指令后保存新的 offset 然后执行 <code>bgrewriteaof</code> 恢复数据。</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><strong>心跳机制：</strong><br>心跳机制是为了保证master和slave之间的连接能够不中断，方便数据稳定传输的。(注意它并没有包含在数据同步阶段中，而是在命令传播阶段)<img src="https://img-blog.csdnimg.cn/20210227174229763.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNjg0OTg1,size_16,color_FFFFFF,t_70" srcset="/img/loading.gif" alt="在这里插入图片描述"><br><img src="https://img-blog.csdnimg.cn/20210227174948351.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNjg0OTg1,size_16,color_FFFFFF,t_70" srcset="/img/loading.gif" alt="在这里插入图片描述"></li>
+</ul>
+<p>slave 会发送 <code>replconf ack offset</code> 命令给master 来检测offset是否合理，接下来的操作和数据同步阶段相同。<br>为了保证命令传播阶段数据的高一致性，slave会不断发送 <code>replconf ack offset</code> 命令给master，同时master也会不断发送    <code>ping</code> 命令给slave来保证连接。</p>
+<h1 id="三、主从复制实例"><a href="#三、主从复制实例" class="headerlink" title="三、主从复制实例"></a>三、主从复制实例</h1><p><strong>实例：</strong></p>
+<p>   复制三份配置文件，分别占用6379、6380、6381三个端口。<br>   命令：<br>   <code>info  replication  ：查询当前机器的身份状态</code><br>   <code>slaveof  主机ip   主机端口port   ：成为某台机器的从机</code></p>
+<ul>
+<li><p>一主二仆：</p>
+<pre><code>·info replication：查看当前机器的角色·
+![在这里插入图片描述](https://img-blog.csdnimg.cn/20201116144820162.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNjg0OTg1,size_16,color_FFFFFF,t_70#pic_center)
+* 如果主机宕机后，从机的身份不会改变，依旧原地待命。
+* 如果主机回来后，主机依旧为主机，从机依旧为从机。
+* 如果从机宕机后回来，从机的身份就变为了master，每次与master断开后，都需要重新连接，除非配置进redis.conf 文件
+* 只有主机可以进行写，从机只能进行读
+</code></pre>
+<p><img src="https://img-blog.csdnimg.cn/20201116145112564.png#pic_center" srcset="/img/loading.gif" alt="在这里插入图片描述"></p>
+<br>
+</li>
+<li><p>薪火相传(slave与master是相对的概念)<img src="https://img-blog.csdnimg.cn/20201116150650607.png#pic_center" srcset="/img/loading.gif" alt="在这里插入图片描述"></p>
+</li>
+<li><p>反客为主<br><code>slaveof  no  one ：使当前数据库停止与其它数据库的同步，转换为主数据库</code></p>
+</li>
+<li><p>复制原理：<br><img src="https://img-blog.csdnimg.cn/20201116151252927.png#pic_center" srcset="/img/loading.gif" alt="在这里插入图片描述"></p>
+</li>
+<li><p>哨兵模式：<br>能够后台监控主机是否故障，如果故障了根据投票数自动将从库转化为主库。简单地说反客为主的自动版。</p>
+<ol>
+<li>如何配置：首先创建一个<code>sentinel.conf</code> 文件，在该文件里面进行主机宕机后的配置<code>sentinel monitor  被监控的主机数据库名字(自己起)  127.0.0.1  6379 1 </code> 。最后的一个1表示主机宕机后从机谁的票数多谁就成为主机。</li>
+<li>哨兵启动： <code>redis-sentinel   xxx.sentinel.conf</code></li>
+<li>此时如果主机宕机回来后，就自动变为了从机。</li>
+<li>一组sentinel能够同时监控多个Master<br>
+
+</li>
+</ol>
+</li>
+</ul>
+<h1 id="四、主从复制常见问题"><a href="#四、主从复制常见问题" class="headerlink" title="四、主从复制常见问题"></a>四、主从复制常见问题</h1><ol>
+<li>频繁的全量复制（1）<br><img src="https://img-blog.csdnimg.cn/20210227180648608.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNjg0OTg1,size_16,color_FFFFFF,t_70" srcset="/img/loading.gif" alt="在这里插入图片描述"></li>
+<li>频繁的全量复制（2）<br><img src="https://img-blog.csdnimg.cn/2021022718093055.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNjg0OTg1,size_16,color_FFFFFF,t_70" srcset="/img/loading.gif" alt="在这里插入图片描述"></li>
+<li>频繁的网络中断（1）<br><img src="https://img-blog.csdnimg.cn/20210227191903167.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNjg0OTg1,size_16,color_FFFFFF,t_70" srcset="/img/loading.gif" alt="在这里插入图片描述"></li>
+<li>频繁的网络中断（2）<br><img src="https://img-blog.csdnimg.cn/2021022719194084.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNjg0OTg1,size_16,color_FFFFFF,t_70" srcset="/img/loading.gif" alt="在这里插入图片描述"></li>
+<li>数据不一致<br><img src="https://img-blog.csdnimg.cn/20210227192118650.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNjg0OTg1,size_16,color_FFFFFF,t_70" srcset="/img/loading.gif" alt="在这里插入图片描述"></li>
+</ol>
+<h1 id="五、主从复制的作用"><a href="#五、主从复制的作用" class="headerlink" title="五、主从复制的作用"></a>五、主从复制的作用</h1><ul>
+<li><strong>读写分离</strong>： master写，slave读，提高服务器的读写负载能力；</li>
+<li><strong>负载均衡</strong>： 基于主从结构，配合读写分离，由slave分担master负载，并根据需求的变化，改变slave的数量，通过多个从节点分担数据读取负载，大大提高Redis服务器并发量与吞吐量；</li>
+<li><strong>故障恢复</strong>：当master出现问题时，由slave来提供服务实现快速的故障恢复；</li>
+<li><strong>数据冗余</strong>：实现数据热备份，是持久化之外的一种数据冗余方式；</li>
+<li><strong>高可用基石</strong>：基于主从复制，构建哨兵模式与集群，实现Redis的高可用方案；</li>
+</ul>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                
+              </div>
+              
+                <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！</p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2021/02/27/Redis%EF%BC%9A%E5%9B%9B%E3%80%81%E4%BA%8B%E5%8A%A1/">
+                        <span class="hidden-mobile"></span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+  </div>
+  
+
+  
+
+  
+</footer>
+
+<!-- SCRIPTS -->
+
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/debouncer.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/js/lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/tocbot@4.12.0/dist/tocbot.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4.3.0/anchor.min.js" ></script>
+
+
+
+  <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js" ></script>
+
+
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
+  </script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+  <script>
+    (function () {
+      var path = "/local-search.xml";
+      var inputArea = document.querySelector("#local-search-input");
+      inputArea.onclick = function () {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+        this.onclick = null
+      }
+    })()
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+
+</body>
+</html>

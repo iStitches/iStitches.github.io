@@ -1,0 +1,613 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=&#34;auto&#34;>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" type="image/png" href="/img/favicon.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="">
+  <meta name="author" content="John Doe">
+  <meta name="keywords" content="">
+  <title>Hexo</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10.4.0/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+  
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.8.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"⚡","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"onlypost":false},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null}}};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.3.0"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>~码先生</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                友链
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;</a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" href="javascript:">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/bg/passage.jpg') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2021-02-27 23:49" pubdate>
+        2021年2月27日 晚上
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      8 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      1
+       分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none"></h1>
+            
+            <div class="markdown-body">
+              <h1 id="Redis系列文章目录"><a href="#Redis系列文章目录" class="headerlink" title="Redis系列文章目录"></a>Redis系列文章目录</h1><p>@<a href="%E6%96%87%E7%AB%A0%E7%9B%AE%E5%BD%95">TOC</a></p>
+<hr style=" border:solid; width:100px; height:1px;" color=#000000 size=1">
+
+<h1 id="一、Redis配置文件解析"><a href="#一、Redis配置文件解析" class="headerlink" title="一、Redis配置文件解析"></a>一、Redis配置文件解析</h1><p><img src="https://img-blog.csdnimg.cn/20201113213952611.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNjg0OTg1,size_16,color_FFFFFF,t_70#pic_center" srcset="/img/loading.gif" alt="在这里插入图片描述"></p>
+<h3 id="INCLUDES-包含"><a href="#INCLUDES-包含" class="headerlink" title="INCLUDES 包含"></a>INCLUDES 包含</h3><ul>
+<li>作用：类似于Struct2 配置文件，可以通过 INCLUDES来包含其它配置文件，redis.conf 可以作为总闸。<br><img src="https://img-blog.csdnimg.cn/20201113214257494.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNjg0OTg1,size_16,color_FFFFFF,t_70#pic_center" srcset="/img/loading.gif" alt="在这里插入图片描述"><br>
+
+</li>
+</ul>
+<h3 id="GENERAL-通用"><a href="#GENERAL-通用" class="headerlink" title="GENERAL 通用"></a>GENERAL 通用</h3><p><img src="https://img-blog.csdnimg.cn/20201113214519893.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNjg0OTg1,size_16,color_FFFFFF,t_70#pic_center" srcset="/img/loading.gif" alt="在这里插入图片描述"></p>
+<ul>
+<li>Daemonize：是否作为守护线程运行，如果开启则开机自启</li>
+<li>Pidfile： 进程管道pid文件</li>
+<li>Port：redis运行的端口</li>
+<li>Tcp-backlog：backlog其实是一个连接队列，用来避免慢客户端连接问题。<br><img src="https://img-blog.csdnimg.cn/20201114162005950.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNjg0OTg1,size_16,color_FFFFFF,t_70#pic_center" srcset="/img/loading.gif" alt="在这里插入图片描述"></li>
+<li>Timeout：在多长的空闲时间后会关闭连接，默认值为0，表示不关闭</li>
+<li>Bind： 绑定的ip地址</li>
+<li>Tcp-Keepalive：用于定时检测连接是否正常，单位为秒，如果设置为0，则不会进行Keepalive检测，建议设置为60</li>
+<li>Loglevel：日志级别，redis默认有4种日志级别  debug、verbose、notice、warning，日志级别由低到高主键上升。<br><img src="https://img-blog.csdnimg.cn/20201114162719671.png#pic_center" srcset="/img/loading.gif" alt="在这里插入图片描述"></li>
+<li>logfile：日志保存的路径；默认为标准输出，如果Redis设置为守护进程方式运行，而这里又配置为标准输出，则日志会发送给 /dev/null</li>
+<li>sys-log-enabled： 是否允许记录系统日志</li>
+<li>databases：redis含有的数据库，使用select xxx 来切换数据库</li>
+</ul>
+<h3 id="SECURITY"><a href="#SECURITY" class="headerlink" title="SECURITY"></a>SECURITY</h3><figure class="highlight arduino"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs arduino">命令行语句：<br><span class="hljs-built_in">config</span> <span class="hljs-built_in">get</span> dir   <span class="hljs-comment">//获取当前的工作目录</span><br>conifg  <span class="hljs-built_in">get</span> requirepass   <span class="hljs-comment">//获取登录密码</span><br><span class="hljs-built_in">config</span>  <span class="hljs-built_in">set</span>  requirepass    <span class="hljs-comment">//设置登录密码</span><br>auth   密码           <span class="hljs-comment">//使用密码登录 </span><br><br>配置文件中：<br>requirepass  xxxxx    <span class="hljs-comment">//设置登录密码</span><br></code></pre></td></tr></table></figure>
+<p><img src="https://img-blog.csdnimg.cn/20201114173100555.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNjg0OTg1,size_16,color_FFFFFF,t_70#pic_center" srcset="/img/loading.gif" alt="在这里插入图片描述"></p>
+<h3 id="LIMITS-限制"><a href="#LIMITS-限制" class="headerlink" title="LIMITS 限制"></a>LIMITS 限制</h3><ul>
+<li>Maxclients：同一时间最大的用户连接数量，默认1</li>
+<li>Maxmemory：最大的缓存空间</li>
+<li>Maxmemory-samples ：设置样本数量，LRU算法和最小TTL算法都不是精确的算法，而是估算值。redis默认会检查这么多个key并选择其中LRU的那个。</li>
+<li>Maxmemory-policy：清除缓存策略(当数据库存储的数据过多时)<br><img src="https://img-blog.csdnimg.cn/20201114173610463.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNjg0OTg1,size_16,color_FFFFFF,t_70#pic_center" srcset="/img/loading.gif" alt="在这里插入图片描述"></li>
+</ul>
+<p>Volatile-lru ：最近最少算法移除key，只对设置了过期时间的键<br>Allkeys-lru ：最近最少使用算法移除key<br>Volatile-lfu ：使用频率最少算法移除key，只对设置了过期时间的键<br>Allkeys-lfu ：使用频率最少使用算法移除key<br>Volatile-random ：在过期集合中随机移除key，只对设置了过期时间的<br>Allkeys-random ：随机移除的key<br>Volatile-ttl ：移除最近将要过期的(TTL最小的)<br>Noeviction：永不移除（实际不会使用）</p>
+<br>
+
+<p><strong><font color=red>常用配置redis.conf 说明：</font></strong><br><img src="https://img-blog.csdnimg.cn/20201114173901915.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNjg0OTg1,size_16,color_FFFFFF,t_70#pic_center" srcset="/img/loading.gif" alt="在这里插入图片描述"><br><img src="https://img-blog.csdnimg.cn/20201114174725834.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNjg0OTg1,size_16,color_FFFFFF,t_70#pic_center" srcset="/img/loading.gif" alt="在这里插入图片描述"><br><img src="https://img-blog.csdnimg.cn/20201114174802512.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNjg0OTg1,size_16,color_FFFFFF,t_70#pic_center" srcset="/img/loading.gif" alt="在这里插入图片描述"><br><img src="https://img-blog.csdnimg.cn/20201114174938967.png#pic_center" srcset="/img/loading.gif" alt="在这里插入图片描述"><br><img src="https://img-blog.csdnimg.cn/20201114175026168.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNjg0OTg1,size_16,color_FFFFFF,t_70#pic_center" srcset="/img/loading.gif" alt="在这里插入图片描述"><br><img src="https://img-blog.csdnimg.cn/20201114175045448.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNjg0OTg1,size_16,color_FFFFFF,t_70#pic_center" srcset="/img/loading.gif" alt="在这里插入图片描述"><br><br></p>
+<h2 id="二、Redis持久化—-RDB方式"><a href="#二、Redis持久化—-RDB方式" class="headerlink" title="二、Redis持久化— RDB方式"></a>二、Redis持久化— RDB方式</h2><h3 id="2-1-RDB-Redis-DataBase"><a href="#2-1-RDB-Redis-DataBase" class="headerlink" title="2.1 RDB(Redis DataBase):"></a>2.1 RDB(Redis DataBase):</h3><ul>
+<li><p>概念：<code>在指定的时间间隔内将内存中的数据集快照写入磁盘，也就是Snapshot快照，他恢复时是将快照文件直接读入到内存里。</code></p>
+</li>
+<li><p>执行特点：Redis会单独创建(fork) 一个子进程来进行持久化，会先将数据写入到一个临时文件中(dump.rdb)，等到持久化操作结束后再用这个临时文件去替换上次持久化好的文件。整个过程中主进程是不进行任何IO操作的，这就确保了极高的性能，如果需要进行大规模的数据恢复，且对于数据的完整性要求不高，那么RDB方式要比AOF方式更加的高效，缺点是最后一次持久化后的数据可能会丢失。</p>
+</li>
+<li><p>Fork：作用是复制一个与当前进程一样的进程。新进程的所有数据等和原进程一样，但是是一个全新的进程，并作为原进程的子进程。</p>
+</li>
+<li><p>dump.rdb的恢复策略：</p>
+</li>
+</ul>
+<ol>
+<li>在操作满足对应持久化触发条件或者关闭Redis服务时，都会将内存数据写入磁盘(dump.rdb文件)，最后替换上一次的持久化好的文件。<font color=red> 注意当关闭redis时会最后进行一次RDB持久化操作</font></li>
+<li>最好的策略是主机和备份机分为2台机器，这样可以保障数据的安全，采用冷拷贝后重新使用的方式[<code>cp dump.rdb dump_new rdb</code>]</li>
+<li>save和bgsave都是主动对数据进行备份。 Save时只管保存，其它不管，全部阻塞；BGSAVE时Redis会在后台异步进行快照操作，快照同时还可以响应客户端请求。可以通过lastsave命令获取最后一次成功执行快照的时间。</li>
+<li>Redis适合于大规模数据的恢复，对于数据一致性要求不高；</li>
+<li>Fork的时候，内存中数据被克隆了一份，大致2被的膨胀性需要考虑；</li>
+</ol>
+<p><img src="https://img-blog.csdnimg.cn/20201114195020841.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNjg0OTg1,size_16,color_FFFFFF,t_70#pic_center" srcset="/img/loading.gif" alt="在这里插入图片描述"></p>
+<br>
+
+<h3 id="2-2-配置文件解读-SNAPSHOTTING-快照："><a href="#2-2-配置文件解读-SNAPSHOTTING-快照：" class="headerlink" title="2.2 配置文件解读 (SNAPSHOTTING) 快照："></a>2.2 配置文件解读 (SNAPSHOTTING) 快照：</h3><ul>
+<li><p>dir：指定本地数据库的存放目录</p>
+</li>
+<li><p>save <seconds>  <changes>   //触发持久化的条件<br><img src="https://img-blog.csdnimg.cn/20201114181529428.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNjg0OTg1,size_16,color_FFFFFF,t_70#pic_center" srcset="/img/loading.gif" alt="在这里插入图片描述"><br><img src="https://img-blog.csdnimg.cn/20210208180036422.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNjg0OTg1,size_16,color_FFFFFF,t_70" srcset="/img/loading.gif" alt="在这里插入图片描述"></p>
+</li>
+<li><p>Stop-writes-on-bgsave-error：出现异常后立刻停止存储数据。如果配置成no，表示你不在乎数据不一致或者有其它的手段发现和控制。</p>
+</li>
+<li><p>rdbcompression xxx ：对于存储到磁盘中的快照，可以设置是否进行压缩存储。如果的话，redis会采用LZF算法进行压缩。如果你不想消耗CPU来进行压缩的话，可以设置为关闭次功能。</p>
+</li>
+<li><p>rdbchecksum：在存储快照后，还可以让redis使用CRC64算法来进行数据校验。    </p>
+</li>
+<li><p>dbfilename： RDB持久化后生成的持久化文件名</p>
+</li>
+<li><p>rdb文件异常恢复操作：  <code>Redis-check-rdb --fix   rdb文件名</code></p>
+</li>
+<li><p>dir：指定本地数据库存放的目录</p>
+</li>
+</ul>
+<br>
+
+<h3 id="2-3-save指令、bgsave指令、save配置："><a href="#2-3-save指令、bgsave指令、save配置：" class="headerlink" title="2.3 save指令、bgsave指令、save配置："></a>2.3 save指令、bgsave指令、save配置：</h3><ul>
+<li><p>save指令工作原理：<br><img src="https://img-blog.csdnimg.cn/20210208180442258.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNjg0OTg1,size_16,color_FFFFFF,t_70" srcset="/img/loading.gif" alt="在这里插入图片描述"><br>当同时有多个客户端向服务器发送请求时，由于Redis是单线程的，因此不同指令到达Redis内部是有一个执行顺序的，假设如下。<br><img src="https://img-blog.csdnimg.cn/20210208180623475.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNjg0OTg1,size_16,color_FFFFFF,t_70" srcset="/img/loading.gif" alt="在这里插入图片描述"><br>save指令的执行会阻塞当前的Redis服务器，直到当前RDB过程完成为止，有可能会造成长时间阻塞，线上环境不建议使用。</p>
+<br></li>
+<li><p>bgsave指令工作原理：<br><img src="https://img-blog.csdnimg.cn/20210208222957681.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNjg0OTg1,size_16,color_FFFFFF,t_70" srcset="/img/loading.gif" alt="在这里插入图片描述"><br>对于客户端发送的请求，服务器端不直接进行处理，而是通过Linux的fork函数来生成一个子进程来创建rdb文件同时返回消息。<br>bgsave命令是针对save阻塞问题做的优化。Redis内部所涉及到的RDB操作都采用bgsave方式，save命令可以放弃使用。</p>
+<br></li>
+<li><p>save配置：<br><img src="https://img-blog.csdnimg.cn/20210208225244375.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNjg0OTg1,size_16,color_FFFFFF,t_70" srcset="/img/loading.gif" alt="在这里插入图片描述"><br>save配置后台其实走的还是 bgsave指令的方式。</p>
+</li>
+<li><p>三种方式对比比较：<br><img src="https://img-blog.csdnimg.cn/20210208225431821.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNjg0OTg1,size_16,color_FFFFFF,t_70" srcset="/img/loading.gif" alt="在这里插入图片描述"></p>
+</li>
+</ul>
+<h3 id="2-4-RDB总结："><a href="#2-4-RDB总结：" class="headerlink" title="2.4 RDB总结："></a>2.4 RDB总结：</h3><p><img src="https://img-blog.csdnimg.cn/20210208225625918.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNjg0OTg1,size_16,color_FFFFFF,t_70" srcset="/img/loading.gif" alt="在这里插入图片描述"></p>
+<p><img src="https://img-blog.csdnimg.cn/20201114200718359.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNjg0OTg1,size_16,color_FFFFFF,t_70#pic_center" srcset="/img/loading.gif" alt="在这里插入图片描述"></p>
+<h5 id="（1）RDB优点："><a href="#（1）RDB优点：" class="headerlink" title="（1）RDB优点："></a>（1）RDB优点：</h5><ul>
+<li>RDB是一个紧凑压缩的二进制文件，存储效率较高；</li>
+<li>RDB内部存储的是redis在某个时间点的数据快照(全部数据)，非常适合用于数据备份，全量复制等场景；</li>
+<li>RDB恢复数据的速度比AOF快很多；</li>
+<li>应用：服务器中每X小时执行bgsave备份，并将RDB 文件拷贝到远程机器中，用于灾难恢复；<h5 id="（2）RDB缺点："><a href="#（2）RDB缺点：" class="headerlink" title="（2）RDB缺点："></a>（2）RDB缺点：</h5></li>
+<li>RDB方式无论是执行指令还是利用配置，无法做到实时持久化，具有较大可能性丢失数据；</li>
+<li>bgsave指令每次运行要执行fork操作创建子进程，要牺牲掉一些性能；</li>
+<li>Redis的众多版本中未进行RDB文件格式的版本统一，有可能出现各版本服务之间数据格式无法兼容现象；</li>
+</ul>
+<br>
+<br>
+
+<h2 id="三、Redis持久化—-AOF方式"><a href="#三、Redis持久化—-AOF方式" class="headerlink" title="三、Redis持久化— AOF方式"></a>三、Redis持久化— AOF方式</h2><p>鉴于RDB方式的弊端如下：</p>
+<ul>
+<li>存储数据量较大，效率较低：基于快照思想，每次读写都是全部数据，当数据量巨大时，效率非常低；</li>
+<li>大数据量下IO性能较低；</li>
+<li>基于fork创建子进程，内存产生额外消耗；</li>
+<li>宕机带来的数据丢失风险；</li>
+</ul>
+<br>
+
+<p>解决思路：</p>
+<ul>
+<li>不写全部数据，仅记录部分数据；</li>
+<li>改记录数据为记录操作过程；</li>
+<li>对所有操作均进行记录，排除丢失数据的风险；<h3 id="3-1-AOF-Append-Only-File"><a href="#3-1-AOF-Append-Only-File" class="headerlink" title="3.1 AOF(Append Only File):"></a>3.1 AOF(Append Only File):</h3></li>
+<li>概念：<code>以日志的形式来记录每个写操作，将Redis执行过的所有写指令记录下来(读操作不记录)，只许追加文件但不可以改写文件，redis启动之初会读取该文件重新构建数据，换言之，redis重启的话就根据日志文件内容将所有写指令从前到后执行一次来完成数据的恢复操作。</code></li>
+<li>执行特点：    </li>
+</ul>
+<ol>
+<li>当AOF和RDB两种持久化方式都存在时优先执行AOF持久化方式，恢复数据也是一样的。</li>
+<li>AOF会记录所有的写操作，这也包括FLUSHDB、FLUSHALL等操作。</li>
+<li><code>redis-check-aof  --fix  xxxx.aof</code> 命令会对xxxx.aof文件进行修复操作。</li>
+<li>AOF和RDB两种持久化操作可以同时执行，没有问题。</li>
+</ol>
+<ul>
+<li>Fork：作用是复制一个与当前进程一样的进程。新进程的所有数据等和原进程一样，但是是一个全新的进程，并作为原进程的子进程。</li>
+<li>AOF 写数据的三种策略：<br><img src="https://img-blog.csdnimg.cn/20210215093041871.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNjg0OTg1,size_16,color_FFFFFF,t_70" srcset="/img/loading.gif" alt="在这里插入图片描述"></li>
+</ul>
+<h3 id="3-2-配置文件解读-APPEND-ONLY-MODE-："><a href="#3-2-配置文件解读-APPEND-ONLY-MODE-：" class="headerlink" title="3.2 配置文件解读 (APPEND ONLY MODE) ："></a>3.2 配置文件解读 (APPEND ONLY MODE) ：</h3><p><img src="https://img-blog.csdnimg.cn/2021021509371354.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNjg0OTg1,size_16,color_FFFFFF,t_70" srcset="/img/loading.gif" alt="在这里插入图片描述"></p>
+<p><img src="https://img-blog.csdnimg.cn/20201114203537260.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNjg0OTg1,size_16,color_FFFFFF,t_70#pic_center" srcset="/img/loading.gif" alt="在这里插入图片描述"></p>
+<ul>
+<li>appendonly ： 是否开启AOF持久化</li>
+<li>appendfilename ： 持久化后的文件名</li>
+<li>Appendsync ：持久化的频率，包括 Always：同步持久化，每次发生数据变更会立刻被记录到磁盘上，性能较差但是数据完整性较好；Everysec：出厂默认推荐，异步操作，每秒记录，如果一秒宕机有数据丢失。no：不同步，性能最好，但是持久化没有保证。<br><img src="https://img-blog.csdnimg.cn/20201114203934523.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNjg0OTg1,size_16,color_FFFFFF,t_70#pic_center" srcset="/img/loading.gif" alt="在这里插入图片描述"></li>
+<li>AOF异常恢复命令：     <code>Redis-check-aof  --fix  aof文件名</code>    </li>
+<li>Rewrite：命令：<code>redis-cli -h ip  -p port  bgrewriteaof</code>      AOF采用文件追加方式，文件会越来越大为了避免此种情况，新增了重写机制，在当前的快照保存工作结束后，fork一个子进程，将AOF文件进行重写，合并set命令等操作到一个临时文件，达到缩小文件大小的目的。重写结束后后将临时文件替换为新的AOF文件（重写过程中如果有新的redis操作命令，会提交到缓存中，重写结束后追加到AOF文件内）。</li>
+<li>Rewrite触发机制：Redis会记录上一次重写的AOF大小，默认配置是当AOF文件大小是上次rewrite后大小的一倍且文件大于64M时触发。<br><img src="https://img-blog.csdnimg.cn/20201114212703795.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNjg0OTg1,size_16,color_FFFFFF,t_70#pic_center" srcset="/img/loading.gif" alt="在这里插入图片描述"></li>
+<li><code>auto-aof-rewrite-pericentage  xxx</code>：当目前的AOF文件大小超过上一次重写文件大小的百分之几时进行重写，如果没有重启过，则以启动时的AOF文件大小为依据</li>
+<li><code>auto-aof-rewrite-min-size</code> ：允许重写的最小AOF文件大小</li>
+<li><code>No-appendsync-on-rewrite</code> ：重写时是否可以运用 Appendsync，用默认no即可。保证数据的完整性。</li>
+</ul>
+<h3 id="3-3-AOF重写："><a href="#3-3-AOF重写：" class="headerlink" title="3.3 AOF重写："></a>3.3 AOF重写：</h3><ul>
+<li>AOF重写的作用及介绍：<br><img src="https://img-blog.csdnimg.cn/20210215093939991.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNjg0OTg1,size_16,color_FFFFFF,t_70" srcset="/img/loading.gif" alt="在这里插入图片描述"></li>
+<li>AOF重写的规则：<br><img src="https://img-blog.csdnimg.cn/20210215094045900.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNjg0OTg1,size_16,color_FFFFFF,t_70" srcset="/img/loading.gif" alt="在这里插入图片描述"></li>
+<li>AOF的重写方式：<br>手动重写  ————————   <code>bgrewriteaof</code><br>自动重写  ————————   <code>auto-aof-rewrite-min-size   size</code><pre><code>                                          `auto-aof-rewrite-percentage  percentage`   
+                                          
+</code></pre>
+</li>
+<li>AOF手动重写原理：<blockquote>
+<p>当输入bgrewriteaof指令时会直接触发AOF重写<br><img src="https://img-blog.csdnimg.cn/20210215094826601.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNjg0OTg1,size_16,color_FFFFFF,t_70" srcset="/img/loading.gif" alt="在这里插入图片描述"></p>
+</blockquote>
+</li>
+<li>AOF自动重写原理：<blockquote>
+<p>自动重写需要满足两个触发条件之一<br><img src="https://img-blog.csdnimg.cn/20210215095131758.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNjg0OTg1,size_16,color_FFFFFF,t_70" srcset="/img/loading.gif" alt="在这里插入图片描述"></p>
+</blockquote>
+</li>
+<li>AOF重写流程：<br><img src="https://img-blog.csdnimg.cn/20210215095947260.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNjg0OTg1,size_16,color_FFFFFF,t_70" srcset="/img/loading.gif" alt="在这里插入图片描述"><br><img src="https://img-blog.csdnimg.cn/20210215100449865.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNjg0OTg1,size_16,color_FFFFFF,t_70" srcset="/img/loading.gif" alt="在这里插入图片描述"></li>
+</ul>
+<blockquote>
+<ol>
+<li>always是直接fork一个子进程进行aof文件的写入；</li>
+<li>everysec 在 always的基础上使用了aof缓存区，使用fork出一个子进程将数据缓存到aof缓存区然后对于满足条件的数据写入到aof文件；</li>
+<li>everysec开启重写操作后会同时将数据缓存到 aof缓存区和aof重写缓存区，如果此时执行了 bgrewriteaof则会从该重写缓存区中拿数据然后fork出子进程进行重写。</li>
+<li>如果是通过配置激活aof重写，那么bgrewriteaof指令的执行是通过配置的方式触发而不是手动触发的。</li>
+</ol>
+</blockquote>
+<h3 id="3-4-AOF总结："><a href="#3-4-AOF总结：" class="headerlink" title="3.4 AOF总结："></a>3.4 AOF总结：</h3><p><img src="https://img-blog.csdnimg.cn/20201114211834800.png#pic_center" srcset="/img/loading.gif" alt="在这里插入图片描述"><br><img src="https://img-blog.csdnimg.cn/20201114212747941.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNjg0OTg1,size_16,color_FFFFFF,t_70#pic_center" srcset="/img/loading.gif" alt="在这里插入图片描述"></p>
+<br>
+<br>
+
+<h2 id="四、AOF与RDB性能建议："><a href="#四、AOF与RDB性能建议：" class="headerlink" title="四、AOF与RDB性能建议："></a>四、AOF与RDB性能建议：</h2><p><img src="https://img-blog.csdnimg.cn/20201114213009195.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNjg0OTg1,size_16,color_FFFFFF,t_70#pic_center" srcset="/img/loading.gif" alt="在这里插入图片描述"></p>
+<p><img src="https://img-blog.csdnimg.cn/20201114213234707.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNjg0OTg1,size_16,color_FFFFFF,t_70#pic_center" srcset="/img/loading.gif" alt="在这里插入图片描述"></p>
+<p>参考：<a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_42683679/article/details/81092985">https://blog.csdn.net/weixin_42683679/article/details/81092985</a></p>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                
+              </div>
+              
+                <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！</p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2021/02/27/Redis%EF%BC%9A%E5%9B%9B%E3%80%81%E4%BA%8B%E5%8A%A1/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile"></span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2020/10/07/Redis%EF%BC%9A%E4%BA%8C%E3%80%81jedis%E7%BA%BF%E7%A8%8B%E6%B1%A0/">
+                        <span class="hidden-mobile">Redis(2).jedis线程池</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+  </div>
+  
+
+  
+
+  
+</footer>
+
+<!-- SCRIPTS -->
+
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/debouncer.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/js/lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/tocbot@4.12.0/dist/tocbot.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4.3.0/anchor.min.js" ></script>
+
+
+
+  <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js" ></script>
+
+
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
+  </script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+  <script>
+    (function () {
+      var path = "/local-search.xml";
+      var inputArea = document.querySelector("#local-search-input");
+      inputArea.onclick = function () {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+        this.onclick = null
+      }
+    })()
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+
+</body>
+</html>
