@@ -190,22 +190,25 @@
   <div class="row mx-auto index-card">
     
     
-    <article class="col-12 col-md-12 mx-auto index-info">
+      <div class="col-12 col-md-4 m-auto index-img">
+        <a href="/2020/10/11/Redis%EF%BC%9A%E4%BA%94%E3%80%81%E4%B8%BB%E4%BB%8E%E5%A4%8D%E5%88%B6/" target="_self">
+          <img src="/passageImg/Redis/header.jpg" srcset="/img/loading.gif" alt="Redis(5).主从复制">
+        </a>
+      </div>
+    
+    <article class="col-12 col-md-8 mx-auto index-info">
       <h1 class="index-header">
         
-        <a href="/2021/02/27/Redis%EF%BC%9A%E4%BA%94%E3%80%81%E4%B8%BB%E4%BB%8E%E5%A4%8D%E5%88%B6/"></a>
+        <a href="/2020/10/11/Redis%EF%BC%9A%E4%BA%94%E3%80%81%E4%B8%BB%E4%BB%8E%E5%A4%8D%E5%88%B6/">Redis(5).主从复制</a>
       </h1>
 
       <p class="index-excerpt">
-        <a href="/2021/02/27/Redis%EF%BC%9A%E4%BA%94%E3%80%81%E4%B8%BB%E4%BB%8E%E5%A4%8D%E5%88%B6/">
+        <a href="/2020/10/11/Redis%EF%BC%9A%E4%BA%94%E3%80%81%E4%B8%BB%E4%BB%8E%E5%A4%8D%E5%88%B6/">
           
           
             
           
-          @TOC
-
-
-
+          一、主从复制的概念为什么需要主从复制，因为单机Redis会存在以下问题： ①机器故障，那么原本机器中的业务数据会损害造成不可挽回的损失；②容量瓶颈，单继Redis的内存有限，硬件条件拉跨无法存储巨额数据；为了避免这些问题保证数据的安全性和服务器的高可用性出现了主从复制。主从复制是指，主机数据更新后根据配置和策略，自动同步到备机的master/slaver 机制，Master以写为主，Slave 以
         </a>
       </p>
 
@@ -213,12 +216,26 @@
         
           <div class="post-meta mr-3">
             <i class="iconfont icon-date"></i>
-            <time datetime="2021-02-27 23:50" pubdate>
-              2021-02-27
+            <time datetime="2020-10-11 20:12" pubdate>
+              2020-10-11
             </time>
           </div>
         
         
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/%E4%B8%AD%E9%97%B4%E4%BB%B6/">中间件</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/Redis/">Redis</a>
+            
+          </div>
         
       </div>
     </article>
@@ -227,22 +244,32 @@
   <div class="row mx-auto index-card">
     
     
-    <article class="col-12 col-md-12 mx-auto index-info">
+      <div class="col-12 col-md-4 m-auto index-img">
+        <a href="/2020/10/10/Redis%EF%BC%9A%E5%9B%9B%E3%80%81%E4%BA%8B%E5%8A%A1/" target="_self">
+          <img src="/passageImg/Redis/header.jpg" srcset="/img/loading.gif" alt="Redis(4).事务">
+        </a>
+      </div>
+    
+    <article class="col-12 col-md-8 mx-auto index-info">
       <h1 class="index-header">
         
-        <a href="/2021/02/27/Redis%EF%BC%9A%E5%9B%9B%E3%80%81%E4%BA%8B%E5%8A%A1/"></a>
+        <a href="/2020/10/10/Redis%EF%BC%9A%E5%9B%9B%E3%80%81%E4%BA%8B%E5%8A%A1/">Redis(4).事务</a>
       </h1>
 
       <p class="index-excerpt">
-        <a href="/2021/02/27/Redis%EF%BC%9A%E5%9B%9B%E3%80%81%E4%BA%8B%E5%8A%A1/">
+        <a href="/2020/10/10/Redis%EF%BC%9A%E5%9B%9B%E3%80%81%E4%BA%8B%E5%8A%A1/">
           
           
             
           
-          Redis系列文章目录@TOC
+          一、Redis事务是什么？概念：
+可以一次执行多个命令，本质是一组命令的集合。一个事务中所有命令都会序列化，按顺序地串行化执行而不会被其它命令插入，不允许阻塞。
 
 
 
+如何使用？
+
+事务相关命令：(1) DISCARD   取消事务，放弃执行事务块内地所有命令；(2) EXEC  执行所有事务块内的命令；(3) MULTI  标记一个事务块的开始；(4) UNWATCH 取消WATC命令对所有ke
         </a>
       </p>
 
@@ -250,12 +277,26 @@
         
           <div class="post-meta mr-3">
             <i class="iconfont icon-date"></i>
-            <time datetime="2021-02-27 23:50" pubdate>
-              2021-02-27
+            <time datetime="2020-10-10 21:10" pubdate>
+              2020-10-10
             </time>
           </div>
         
         
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/%E4%B8%AD%E9%97%B4%E4%BB%B6/">中间件</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/Redis/">Redis</a>
+            
+          </div>
         
       </div>
     </article>
@@ -264,20 +305,36 @@
   <div class="row mx-auto index-card">
     
     
-    <article class="col-12 col-md-12 mx-auto index-info">
+      <div class="col-12 col-md-4 m-auto index-img">
+        <a href="/2020/10/10/Redis%EF%BC%9A%E4%B8%89%E3%80%81%E6%8C%81%E4%B9%85%E5%8C%96%E6%93%8D%E4%BD%9C/" target="_self">
+          <img src="/passageImg/Redis/header.jpg" srcset="/img/loading.gif" alt="Redis(3).持久化操作">
+        </a>
+      </div>
+    
+    <article class="col-12 col-md-8 mx-auto index-info">
       <h1 class="index-header">
         
-        <a href="/2021/02/27/Redis%EF%BC%9A%E4%B8%89%E3%80%81%E6%8C%81%E4%B9%85%E5%8C%96%E6%93%8D%E4%BD%9C/"></a>
+        <a href="/2020/10/10/Redis%EF%BC%9A%E4%B8%89%E3%80%81%E6%8C%81%E4%B9%85%E5%8C%96%E6%93%8D%E4%BD%9C/">Redis(3).持久化操作</a>
       </h1>
 
       <p class="index-excerpt">
-        <a href="/2021/02/27/Redis%EF%BC%9A%E4%B8%89%E3%80%81%E6%8C%81%E4%B9%85%E5%8C%96%E6%93%8D%E4%BD%9C/">
+        <a href="/2020/10/10/Redis%EF%BC%9A%E4%B8%89%E3%80%81%E6%8C%81%E4%B9%85%E5%8C%96%E6%93%8D%E4%BD%9C/">
           
           
             
           
-          Redis系列文章目录@TOC
+          一、Redis配置文件解析
+INCLUDES 包含
+作用：类似于Struct2 配置文件，可以通过 INCLUDES来包含其它配置文件，redis.conf 可以作为总闸。
 
+
+
+GENERAL 通用
+
+Daemonize：是否作为守护线程运行，如果开启则开机自启
+Pidfile： 进程管道pid文件
+Port：redis运行的端口
+Tcp-backlog：backlog其实是一个连接队列，用来避
         </a>
       </p>
 
@@ -285,12 +342,26 @@
         
           <div class="post-meta mr-3">
             <i class="iconfont icon-date"></i>
-            <time datetime="2021-02-27 23:49" pubdate>
-              2021-02-27
+            <time datetime="2020-10-10 21:06" pubdate>
+              2020-10-10
             </time>
           </div>
         
         
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/%E4%B8%AD%E9%97%B4%E4%BB%B6/">中间件</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/Redis/">Redis</a>
+            
+          </div>
         
       </div>
     </article>

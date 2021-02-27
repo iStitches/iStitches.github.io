@@ -17,7 +17,7 @@
   <meta name="description" content="">
   <meta name="author" content="John Doe">
   <meta name="keywords" content="">
-  <title>Hexo</title>
+  <title>Redis(5).主从复制 - Hexo</title>
 
   <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" />
 
@@ -174,7 +174,7 @@
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
           <div class="page-header text-center fade-in-up">
-            <span class="h2" id="subtitle" title="">
+            <span class="h2" id="subtitle" title="Redis(5).主从复制">
               
             </span>
 
@@ -184,8 +184,8 @@
   
     <span class="post-meta">
       <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-      <time datetime="2021-02-27 23:50" pubdate>
-        2021年2月27日 晚上
+      <time datetime="2020-10-11 20:12" pubdate>
+        2020年10月11日 晚上
       </time>
     </span>
   
@@ -196,7 +196,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      1 字
+      2.4k 字
     </span>
   
 
@@ -206,7 +206,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      1
+      26
        分钟
     </span>
   
@@ -236,15 +236,10 @@
         <div class="py-5" id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none"></h1>
+            <h1 style="display: none">Redis(5).主从复制</h1>
             
             <div class="markdown-body">
-              <p>@<a href="%E6%96%87%E7%AB%A0%E7%9B%AE%E5%BD%95">TOC</a></p>
-</font>
-
-<hr style=" border:solid; width:100px; height:1px;" color=#000000 size=1">
-
-<h1 id="一、主从复制的概念"><a href="#一、主从复制的概念" class="headerlink" title="一、主从复制的概念"></a>一、主从复制的概念</h1><p>为什么需要主从复制，因为单机Redis会存在以下问题： ①机器故障，那么原本机器中的业务数据会损害造成不可挽回的损失；②容量瓶颈，单继Redis的内存有限，硬件条件拉跨无法存储巨额数据；为了避免这些问题保证数据的安全性和服务器的高可用性出现了主从复制。<br>主从复制是指，主机数据更新后根据配置和策略，自动同步到备机的master/slaver 机制，Master以写为主，Slave 以读为主。<br><img src="https://img-blog.csdnimg.cn/20210226201122660.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNjg0OTg1,size_16,color_FFFFFF,t_70" srcset="/img/loading.gif" alt="在这里插入图片描述"></p>
+              <h1 id="一、主从复制的概念"><a href="#一、主从复制的概念" class="headerlink" title="一、主从复制的概念"></a>一、主从复制的概念</h1><p>为什么需要主从复制，因为单机Redis会存在以下问题： ①机器故障，那么原本机器中的业务数据会损害造成不可挽回的损失；②容量瓶颈，单继Redis的内存有限，硬件条件拉跨无法存储巨额数据；为了避免这些问题保证数据的安全性和服务器的高可用性出现了主从复制。<br>主从复制是指，主机数据更新后根据配置和策略，自动同步到备机的master/slaver 机制，Master以写为主，Slave 以读为主。<br><img src="https://img-blog.csdnimg.cn/20210226201122660.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNjg0OTg1,size_16,color_FFFFFF,t_70" srcset="/img/loading.gif" alt="在这里插入图片描述"></p>
 <h1 id="二、主从复制基础用法"><a href="#二、主从复制基础用法" class="headerlink" title="二、主从复制基础用法"></a>二、主从复制基础用法</h1><p><strong>简介：</strong><br><img src="https://img-blog.csdnimg.cn/20210226203013450.png" srcset="/img/loading.gif" alt="在这里插入图片描述"></p>
 <h3 id="2-1-工作流程（1）建立连接"><a href="#2-1-工作流程（1）建立连接" class="headerlink" title="2.1  工作流程（1）建立连接"></a>2.1  工作流程（1）建立连接</h3><p><img src="https://img-blog.csdnimg.cn/20210226203639557.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNjg0OTg1,size_16,color_FFFFFF,t_70" srcset="/img/loading.gif" alt="在这里插入图片描述"></p>
 <ul>
@@ -353,6 +348,20 @@
             <div>
               <div class="post-metas mb-3">
                 
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/%E4%B8%AD%E9%97%B4%E4%BB%B6/">中间件</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/Redis/">Redis</a>
+                    
+                  </div>
                 
               </div>
               
@@ -367,8 +376,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2021/02/27/Redis%EF%BC%9A%E5%9B%9B%E3%80%81%E4%BA%8B%E5%8A%A1/">
-                        <span class="hidden-mobile"></span>
+                      <a href="/2020/10/10/Redis%EF%BC%9A%E5%9B%9B%E3%80%81%E4%BA%8B%E5%8A%A1/">
+                        <span class="hidden-mobile">Redis(4).事务</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
