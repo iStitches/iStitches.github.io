@@ -17,9 +17,25 @@
   <meta name="description" content="">
   <meta name="author" content="John Doe">
   <meta name="keywords" content="">
-  <title>归档 - Hexo</title>
+  <title>JVM、(三)垃圾回收机制 - Hexo</title>
 
   <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10.4.0/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+  
 
 
 
@@ -47,7 +63,7 @@
 
 
 <body>
-  <header style="height: 60vh;">
+  <header style="height: 70vh;">
     <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
     <a class="navbar-brand"
@@ -153,14 +169,51 @@
 </nav>
 
     <div class="banner" id="banner" parallax=true
-         style="background: url('/img/bg/archive.jpg') no-repeat center center;
+         style="background: url('/img/bg/passage.jpg') no-repeat center center;
            background-size: cover;">
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
           <div class="page-header text-center fade-in-up">
-            <span class="h2" id="subtitle" title="归档">
+            <span class="h2" id="subtitle" title="JVM、(三)垃圾回收机制">
               
             </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2020-10-15 20:13" pubdate>
+        2020年10月15日 晚上
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      129 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      1
+       分钟
+    </span>
+  
+
+  
+  
+</div>
 
             
           </div>
@@ -173,88 +226,93 @@
 
   <main>
     
-      <div class="container nopadding-x-md">
-        <div class="py-5" id="board"
-          >
-          
-          <div class="container">
-            <div class="row">
-              <div class="col-12 col-md-10 m-auto">
-                
-
-<div class="list-group">
-  <p class="h4">共计 18 篇文章</p>
-  <hr>
-  
-  
-    
       
-      <p class="h5">2020</p>
-    
-    <a href="/2020/10/10/Redis%EF%BC%9A%E4%B8%89%E3%80%81%E6%8C%81%E4%B9%85%E5%8C%96%E6%93%8D%E4%BD%9C/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">Redis(3).持久化操作</span>
-      <time style="float: right;">10-10</time>
-    </a>
-  
-    
-    <a href="/2020/10/07/Redis%EF%BC%9A%E4%BA%8C%E3%80%81jedis%E7%BA%BF%E7%A8%8B%E6%B1%A0/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">Redis(2).jedis线程池</span>
-      <time style="float: right;">10-07</time>
-    </a>
-  
-    
-    <a href="/2020/10/07/Redis%EF%BC%9A%E4%B8%80%E3%80%81%E5%9F%BA%E7%A1%80%E5%BF%85%E5%A4%87%E7%9F%A5%E8%AF%86/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">Redis(1).基础必备知识</span>
-      <time style="float: right;">10-07</time>
-    </a>
-  
-    
-    <a href="/2020/10/02/offer17/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">剑指Offer 17.打印从1到最大的n位数</span>
-      <time style="float: right;">10-02</time>
-    </a>
-  
-    
-    <a href="/2020/10/02/offer16/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">剑指Offer 16.数值的整数次方</span>
-      <time style="float: right;">10-02</time>
-    </a>
-  
-    
-    <a href="/2020/10/02/offer15/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">剑指Offer 15.二进制中1的个数</span>
-      <time style="float: right;">10-02</time>
-    </a>
-  
-    
-    <a href="/2020/10/01/offer14_II/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">剑指Offer 14.减绳子</span>
-      <time style="float: right;">10-01</time>
-    </a>
-  
-</div>
 
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">JVM、(三)垃圾回收机制</h1>
+            
+            <div class="markdown-body">
+              <h1 id="一、如何判断对象可以回收"><a href="#一、如何判断对象可以回收" class="headerlink" title="一、如何判断对象可以回收"></a>一、如何判断对象可以回收</h1><p><strong>1. 引用计数法</strong><br>每引用一次，就计数一次，当某个对象的引用计数为0时进行回收。<br>弊端：循环引用的两个对象永远得不到回收。<br><img src="https://img-blog.csdnimg.cn/20210302140852489.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNjg0OTg1,size_16,color_FFFFFF,t_70" srcset="/img/loading.gif" alt="在这里插入图片描述"><br><strong>2. 可达性分析算法</strong><br>扫描堆中的对象，看能否沿着 <code>GC Root</code> 对象为起点的引用链找到该对象，找不到表示可以回收。</p>
+<p><strong>3. 四种引用</strong></p>
+<ul>
+<li>强引用</li>
+<li>软引用</li>
+<li>弱引用</li>
+<li>虚引用</li>
+<li>终结器引用</li>
+</ul>
 
-  <nav aria-label="navigation">
-    <span class="pagination" id="pagination">
-      <a class="extend prev" rel="prev" href="/archives/2020/"><i class="iconfont icon-arrowleft"></i></a><a class="page-number" href="/archives/2020/">1</a><span class="page-number current">2</span>
-    </span>
-  </nav>
-  
-  <script>
-    for (ele of document.getElementById("pagination").getElementsByTagName("a")) {
-      ele.href += '#board';
-    }
-  </script>
-
-
-
-
-              </div>
             </div>
-          </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/JAVA%E8%99%9A%E6%8B%9F%E6%9C%BA/">JAVA虚拟机</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/JVM/">JVM</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！</p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2020/10/15/Mysql%E3%80%81(%E4%B8%80)Linux%E4%B8%8BMysql%20%E5%9F%BA%E7%A1%80%E6%93%8D%E4%BD%9C/">
+                        <span class="hidden-mobile">MySQL、(一) Linux下的基础操作</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
         </div>
       </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
     
 
     
@@ -334,9 +392,15 @@
 
 
 
+  <script  src="https://cdn.jsdelivr.net/npm/tocbot@4.12.0/dist/tocbot.min.js" ></script>
 
 
 
+  <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4.3.0/anchor.min.js" ></script>
 
 
 
