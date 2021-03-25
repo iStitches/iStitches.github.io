@@ -17,7 +17,7 @@
   <meta name="description" content="">
   <meta name="author" content="John Doe">
   <meta name="keywords" content="">
-  <title>牛客剑指offer(1~20题总结) - Hexo</title>
+  <title>牛客剑指offer(20~30题总结) - Hexo</title>
 
   <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" />
 
@@ -174,7 +174,7 @@
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
           <div class="page-header text-center fade-in-up">
-            <span class="h2" id="subtitle" title="牛客剑指offer(1~20题总结)">
+            <span class="h2" id="subtitle" title="牛客剑指offer(20~30题总结)">
               
             </span>
 
@@ -236,7 +236,7 @@
         <div class="py-5" id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">牛客剑指offer(1~20题总结)</h1>
+            <h1 style="display: none">牛客剑指offer(20~30题总结)</h1>
             
             <div class="markdown-body">
               <p><img src="/passageImg/t20~t30.assets/image-20210325083059996.png" srcset="/img/loading.gif"></p>
@@ -268,15 +268,15 @@
 <li>这里举例计算 数字 2304中十位出现1的次数</li>
 </ol>
 <p>① 当 <code>cur=0</code> 时</p>
-<img src="t20~t30.assets/78e60b6c2ada7434ba69643047758e113fa732815f7c53791271c5e0f123687c-Picture1.png" srcset="/img/loading.gif" alt="Picture1.png" style="zoom:67%;" />
+<img src="/passageImg/t20~t30.assets/78e60b6c2ada7434ba69643047758e113fa732815f7c53791271c5e0f123687c-Picture1.png" srcset="/img/loading.gif" alt="Picture1.png" style="zoom:67%;" />
 
 <p>可以发现此时出现1的次数只与高位有关系， 个数为 <code>high×digit</code></p>
 <p>② 当<code>cur=1</code>时</p>
-<img src="t20~t30.assets/58c7e6472155b49923b48daac10bd438b68e9504690cf45d5e739f3a8cb9cee1-Picture2.png" srcset="/img/loading.gif" alt="Picture2.png" style="zoom:67%;" />
+<img src="/passageImg/t20~t30.assets/58c7e6472155b49923b48daac10bd438b68e9504690cf45d5e739f3a8cb9cee1-Picture2.png" srcset="/img/loading.gif" alt="Picture2.png" style="zoom:67%;" />
 
 <p>可以发现此时1的出现与高位和低位都有关系，个数为 <code>high×digit+low+1</code></p>
 <p>③当<code>cur=2,3....9</code>时</p>
-<img src="t20~t30.assets/0e51d37b434ef0ad93882cdcb832f867e18b872833c0c360ad4580eb9ed4aeda-Picture3.png" srcset="/img/loading.gif" alt="Picture3.png" style="zoom:67%;" />
+<img src="/passageImg/t20~t30.assets/0e51d37b434ef0ad93882cdcb832f867e18b872833c0c360ad4580eb9ed4aeda-Picture3.png" srcset="/img/loading.gif" alt="Picture3.png" style="zoom:67%;" />
 
 <p>此时1的出现只与高位有关系，个数为 <code>(high+1)×digit</code></p>
 <p>因此可以总结归纳为：</p>
