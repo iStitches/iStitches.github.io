@@ -1,0 +1,537 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=&#34;auto&#34;>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" type="image/png" href="/img/favicon.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="">
+  <meta name="author" content="John Doe">
+  <meta name="keywords" content="">
+  <title>操作系统（五）、虚拟内存 - Hexo</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10.4.0/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+  
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.8.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"⚡","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"onlypost":false},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null}}};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.3.0"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>~码先生</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                友链
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;</a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" href="javascript:">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/bg/passage.jpg') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="操作系统（五）、虚拟内存">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2020-11-13 21:11" pubdate>
+        2020年11月13日 晚上
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      1.7k 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      18
+       分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">操作系统（五）、虚拟内存</h1>
+            
+            <div class="markdown-body">
+              <h1 id="虚拟内存："><a href="#虚拟内存：" class="headerlink" title="虚拟内存："></a>虚拟内存：</h1><h2 id="1-覆盖技术："><a href="#1-覆盖技术：" class="headerlink" title="1. 覆盖技术："></a>1. 覆盖技术：</h2><h3 id="1-1-目标："><a href="#1-1-目标：" class="headerlink" title="1.1 目标："></a>1.1 目标：</h3><pre><code>* 在较小的可用内存中运行较大的程序。常用于多道程序系统，与分区存储管理配合使用。
+</code></pre>
+<h3 id="1-2-原理："><a href="#1-2-原理：" class="headerlink" title="1.2 原理："></a>1.2 原理：</h3><ul>
+<li>把程序按照其自身的逻辑结构，划分为若干个功能上相对独立的程序模块，那些不会同时执行的模块共享同一块内存区域，按照时间先后来执行。</li>
+<li>必要部分（常用功能） 的代码和数据常驻内存；</li>
+<li>可选部分（不常用功能）在其他程序模块中实现，平时存放在外存中，在需要用到时才装入内存；</li>
+<li>不存在调用关系的模块不必同时装入内存，从而可以相互覆盖，即这些模块公用一个分区。</li>
+</ul>
+<h3 id="1-3-实例："><a href="#1-3-实例：" class="headerlink" title="1.3 实例："></a>1.3 实例：</h3><p><img src="/passageImg/%E7%AC%AC%E4%BA%94%E7%AB%A0%E3%80%81%E8%99%9A%E6%8B%9F%E5%86%85%E5%AD%98.assets/image-20200923201026627.png" srcset="/img/loading.gif"></p>
+<blockquote>
+<p>覆盖方法一：</p>
+<p>​     由于A会调用B、C、D、E、F，那么A就必须作为常驻内存；</p>
+<p>​     当A调用B的时候不会调用C，此时就可以将C存放在硬盘中，A调用完B后返回去调用C，此时会释放B的内存空间，将C从硬盘调入内存；</p>
+<p>​      同理当C调用E时，D和F不会运行，那么可以将D、F放入硬盘。</p>
+</blockquote>
+<p><img src="/passageImg/%E7%AC%AC%E4%BA%94%E7%AB%A0%E3%80%81%E8%99%9A%E6%8B%9F%E5%86%85%E5%AD%98.assets/image-20200923201426445.png" srcset="/img/loading.gif"></p>
+<blockquote>
+<p>覆盖方法二：</p>
+<p>​         B、E、F共享一块内存； C、D共享一块内存。</p>
+</blockquote>
+<h3 id="1-4-覆盖技术的缺点："><a href="#1-4-覆盖技术的缺点：" class="headerlink" title="1.4 覆盖技术的缺点："></a>1.4 覆盖技术的缺点：</h3><ul>
+<li>由人来讲一个大的程序划分为若干个小的功能模块，并确定各个模块之间的覆盖关系，费时费力，增加了编程的复杂度；</li>
+<li>覆盖模块从外存装入内存，实际上是以时间延长来换取空间节省。</li>
+</ul>
+<h2 id="2-交换技术"><a href="#2-交换技术" class="headerlink" title="2. 交换技术"></a>2. 交换技术</h2><h3 id="2-1-目标："><a href="#2-1-目标：" class="headerlink" title="2.1 目标："></a>2.1 目标：</h3><ul>
+<li>多道程序在内存中时，让正在运行的程序或需要运行的程序获得更多的内存资源。</li>
+</ul>
+<h3 id="2-2-方法："><a href="#2-2-方法：" class="headerlink" title="2.2 方法："></a>2.2 方法：</h3><ul>
+<li>将暂时不能运行的程序送到外存，而从获得空闲内存空间。</li>
+<li>操作系统把一个进程的整个地址空间的内容保存到外存中（换出 swap out），而将外存中的某个进程的地址空间读入到内存中（换入 swap in）。换入换出内容的大小为整个程序的地址空间。导入导出的力度会比较大，通常大于一个页。</li>
+</ul>
+<h3 id="2-3-交换技术实现的几个问题："><a href="#2-3-交换技术实现的几个问题：" class="headerlink" title="2.3 交换技术实现的几个问题："></a>2.3 交换技术实现的几个问题：</h3><p> <img src="/passageImg/%E7%AC%AC%E4%BA%94%E7%AB%A0%E3%80%81%E8%99%9A%E6%8B%9F%E5%86%85%E5%AD%98.assets/image-20200923203226069.png" srcset="/img/loading.gif" alt="image-20200923203226069"></p>
+<h3 id="2-4-覆盖与交换的比较："><a href="#2-4-覆盖与交换的比较：" class="headerlink" title="2.4 覆盖与交换的比较："></a>2.4 覆盖与交换的比较：</h3><ul>
+<li>覆盖只能发生在那些相互之间没有调用关系的程序模块之间，它发生在一个程序内，需要程序员给出程序内各个模块之间的逻辑覆盖结构。</li>
+<li>交换技术是以在内存中的程序大小为单位来进行，它不需要程序员给出各个模块之间的逻辑覆盖结构。换言之，交换发生在内存中程序与管理程序或操作系统之间，是由操作系统来操作的，而覆盖则发生在运行程序的内部。</li>
+</ul>
+<h2 id="3-虚存技术"><a href="#3-虚存技术" class="headerlink" title="3. 虚存技术"></a>3. 虚存技术</h2><h3 id="3-1-覆盖技术和交换技术的缺点："><a href="#3-1-覆盖技术和交换技术的缺点：" class="headerlink" title="3.1 覆盖技术和交换技术的缺点："></a>3.1 覆盖技术和交换技术的缺点：</h3><p><img src="/passageImg/%E7%AC%AC%E4%BA%94%E7%AB%A0%E3%80%81%E8%99%9A%E6%8B%9F%E5%86%85%E5%AD%98.assets/image-20200923204308227.png" srcset="/img/loading.gif" alt="image-20200923204308227"></p>
+<h3 id="3-2-虚存技术的目标："><a href="#3-2-虚存技术的目标：" class="headerlink" title="3.2 虚存技术的目标："></a>3.2 虚存技术的目标：</h3><ul>
+<li>像覆盖技术那样，不是把程序的所有内容都放在内存中，因而能够运行比当前的空闲内存还要大的程序。但做的更好，由操作系统自动完成，无须程序员的干涉；</li>
+<li>像交换技术那样，能够实现进程在内存与外存之间的交换，因而能够获得更多的空闲内存空间。但做的更好，只对进程的部分内容在内存和外存之间进行交换。</li>
+</ul>
+<p><img src="/passageImg/%E7%AC%AC%E4%BA%94%E7%AB%A0%E3%80%81%E8%99%9A%E6%8B%9F%E5%86%85%E5%AD%98.assets/image-20200923204926982.png" srcset="/img/loading.gif" alt="image-20200923204926982"></p>
+<h3 id="3-3-程序的局部性原理—-对虚存技术的支持"><a href="#3-3-程序的局部性原理—-对虚存技术的支持" class="headerlink" title="3.3 程序的局部性原理—-对虚存技术的支持"></a>3.3 程序的局部性原理—-对虚存技术的支持</h3><p><img src="/passageImg/%E7%AC%AC%E4%BA%94%E7%AB%A0%E3%80%81%E8%99%9A%E6%8B%9F%E5%86%85%E5%AD%98.assets/image-20200923205148386.png" srcset="/img/loading.gif" alt="image-20200923205148386"></p>
+<p><img src="/passageImg/%E7%AC%AC%E4%BA%94%E7%AB%A0%E3%80%81%E8%99%9A%E6%8B%9F%E5%86%85%E5%AD%98.assets/image-20200923205812094.png" srcset="/img/loading.gif" alt="image-20200923205812094"></p>
+<p><img src="/passageImg/%E7%AC%AC%E4%BA%94%E7%AB%A0%E3%80%81%E8%99%9A%E6%8B%9F%E5%86%85%E5%AD%98.assets/image-20200923210006178.png" srcset="/img/loading.gif" alt="image-20200923210006178"></p>
+<blockquote>
+<p>程序编写方法一：</p>
+<p>​            由于数组的一行放在一个页面中，而每次只能分配给每个进程一页数据。当开始访问 a(0,0)时由于数据还在磁盘中，需要调到内存中，因此发生了一次缺页异常。</p>
+<p>​             当a(0,0)访问完成后访问a(1,0)，它在另外一页，此时又要到磁盘中调出该页到内存中，又发生了一次缺页异常。</p>
+<p>程序编写方法二：</p>
+<p>​               当访问完a(0,0)后会继续访问a(0,1)，都在同一页面中，因此不会发生缺页中断。总的来说只会发生1024次。</p>
+</blockquote>
+<h3 id="3-4-虚存技术—–基本概念："><a href="#3-4-虚存技术—–基本概念：" class="headerlink" title="3.4 虚存技术—–基本概念："></a>3.4 虚存技术—–基本概念：</h3><p><img src="/passageImg/%E7%AC%AC%E4%BA%94%E7%AB%A0%E3%80%81%E8%99%9A%E6%8B%9F%E5%86%85%E5%AD%98.assets/image-20200923211210592.png" srcset="/img/loading.gif" alt="image-20200923211210592"></p>
+<h3 id="3-5-虚存技术—–基本特征："><a href="#3-5-虚存技术—–基本特征：" class="headerlink" title="3.5 虚存技术—–基本特征："></a>3.5 虚存技术—–基本特征：</h3><ul>
+<li>大的用户空间：通过把物理内存与外存相结合，提供给用户的虚拟内存空间通常大于实际的物理内存，即实现了这两者的分离。如32位的虚拟地址理论上可以访问4GB，而部分计算机上仅有256M的物理内存，但硬盘容量大于4GB；</li>
+<li>部分交换：与交换技术相比较，虚拟存储的调入和调出是对部分虚拟地址空间进行的；</li>
+<li>不连续性：物理内存分配的不连续，虚拟地址空间使用的不连续性；</li>
+</ul>
+<h3 id="3-6-虚存技术—-虚拟页式内存管理："><a href="#3-6-虚存技术—-虚拟页式内存管理：" class="headerlink" title="3.6 虚存技术—-虚拟页式内存管理："></a>3.6 虚存技术—-虚拟页式内存管理：</h3><p>  <img src="/passageImg/%E7%AC%AC%E4%BA%94%E7%AB%A0%E3%80%81%E8%99%9A%E6%8B%9F%E5%86%85%E5%AD%98.assets/image-20200924155939695.png" srcset="/img/loading.gif" alt="image-20200924155939695"></p>
+<p><img src="/passageImg/%E7%AC%AC%E4%BA%94%E7%AB%A0%E3%80%81%E8%99%9A%E6%8B%9F%E5%86%85%E5%AD%98.assets/image-20200924160619388.png" srcset="/img/loading.gif" alt="image-20200924160619388"></p>
+<p><strong>3.6.1 虚拟页式内存管理的实例：</strong></p>
+<p><img src="/passageImg/%E7%AC%AC%E4%BA%94%E7%AB%A0%E3%80%81%E8%99%9A%E6%8B%9F%E5%86%85%E5%AD%98.assets/image-20200924161218927.png" srcset="/img/loading.gif" alt="image-20200924161218927"></p>
+<blockquote>
+<p>如果，驻留位为X代表没有对应的页X帧，该页还处在外存中；驻留位为其它数字则代表内存中有对应页帧。</p>
+</blockquote>
+<p><strong>3.6.2 缺页中断异常的处理过程：</strong></p>
+<p><img src="/passageImg/%E7%AC%AC%E4%BA%94%E7%AB%A0%E3%80%81%E8%99%9A%E6%8B%9F%E5%86%85%E5%AD%98.assets/image-20200924162307430.png" srcset="/img/loading.gif" alt="image-20200924162307430"></p>
+<blockquote>
+<ul>
+<li>第一种是：当发生缺页中断异常时，操作系统会检查在内存中是否有空闲的物理页面，然后从外存中将对应的页面调入到物理内存，同时还需要修改该页对应的页表项(包括页帧号、驻留位)。修改好后就会重新执行发生异常的指令。</li>
+<li>第二种是：内存中没有空闲的物理页面，此时就需要根据页面置换算法来选择一个被替换的页帧，此时可能会将处于使用状态的物理页面置于空闲状态，如果该物理页中的数据被修改过，那么要先将数据写回外存中；如果没有被修改过，就直接释放。</li>
+</ul>
+</blockquote>
+<h3 id="3-7-后备存储："><a href="#3-7-后备存储：" class="headerlink" title="3.7 后备存储："></a>3.7 后备存储：</h3><p><img src="/passageImg/%E7%AC%AC%E4%BA%94%E7%AB%A0%E3%80%81%E8%99%9A%E6%8B%9F%E5%86%85%E5%AD%98.assets/image-20200924163258434.png" srcset="/img/loading.gif" alt="image-20200924163258434"></p>
+<h3 id="3-8-虚存管理性能："><a href="#3-8-虚存管理性能：" class="headerlink" title="3.8 虚存管理性能："></a>3.8 虚存管理性能：</h3><p><img src="/passageImg/%E7%AC%AC%E4%BA%94%E7%AB%A0%E3%80%81%E8%99%9A%E6%8B%9F%E5%86%85%E5%AD%98.assets/image-20200924163621987.png" srcset="/img/loading.gif" alt="image-20200924163621987"></p>
+<blockquote>
+<p>当没有发生缺页异常时，操作系统会直接读取内存中的物理页，此时访时：10(1-p)</p>
+<p>当发生了缺页异常时，操作系统需要到外存中去调用相应的物理页进入内存，但是如果内存容量不够就还需要采用页面置换算法进行页面置换，这就关系到当前正在执行页面的数据保存与统一，如果页面中的数据发生了改变就需要写回外存保证数据统一，这就又进行了一次磁盘访问。因此此时的访时：5000000p(1+q)</p>
+</blockquote>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/408/">408</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E9%87%8D%E7%82%B9%E7%9F%A5%E8%AF%86/">计算机重点知识</a>
+                    
+                      <a class="hover-with-bg" href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">操作系统</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！</p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2020/11/13/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E2%80%94%E2%80%94%E7%AC%AC%E4%B8%80%E7%AB%A0%E3%80%81%E6%A6%82%E8%BF%B0/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">操作系统（一）、概述</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2020/11/13/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E2%80%94%E2%80%94%E7%AC%AC%E5%85%AD%E7%AB%A0%E3%80%81%E9%A1%B5%E9%9D%A2%E7%BD%AE%E6%8D%A2%E7%AE%97%E6%B3%95/">
+                        <span class="hidden-mobile">操作系统（六）、页面置换算法</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+  </div>
+  
+
+  
+
+  
+</footer>
+
+<!-- SCRIPTS -->
+
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/debouncer.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/js/lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/tocbot@4.12.0/dist/tocbot.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4.3.0/anchor.min.js" ></script>
+
+
+
+  <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js" ></script>
+
+
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
+  </script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+  <script>
+    (function () {
+      var path = "/local-search.xml";
+      var inputArea = document.querySelector("#local-search-input");
+      inputArea.onclick = function () {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+        this.onclick = null
+      }
+    })()
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+
+</body>
+</html>

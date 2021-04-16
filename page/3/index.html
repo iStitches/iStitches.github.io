@@ -191,6 +191,473 @@
     
     
       <div class="col-12 col-md-4 m-auto index-img">
+        <a href="/2020/10/14/JVM%E3%80%81(%E4%BA%8C)JVM%E5%86%85%E5%AD%98%E7%BB%93%E6%9E%84/" target="_self">
+          <img src="/passageImg/JVM/header.jpg" srcset="/img/loading.gif" alt="JVM、(二)JVM的内存结构">
+        </a>
+      </div>
+    
+    <article class="col-12 col-md-8 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2020/10/14/JVM%E3%80%81(%E4%BA%8C)JVM%E5%86%85%E5%AD%98%E7%BB%93%E6%9E%84/">JVM、(二)JVM的内存结构</a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2020/10/14/JVM%E3%80%81(%E4%BA%8C)JVM%E5%86%85%E5%AD%98%E7%BB%93%E6%9E%84/">
+          
+          
+            
+          
+          一、程序计数器(PC)定义：  Program counter Register作用：记住下一条JVM指令的执行地址。(通过寄存器来实现的) 二进制字节码通过解释器被解释为机器码，然后机器码才能够交给CPU去执行。当第1条JVM指令被解释翻译执行后 程序计数器会去记录下一条JVM指令的执行地址然后接着执行。
+特点：* **线程私有的**。程序运行时会开启多个线程，CPU会对这些线程进行调度，每个线
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2020-10-14 20:13" pubdate>
+              2020-10-14
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/JAVA%E8%99%9A%E6%8B%9F%E6%9C%BA/">JAVA虚拟机</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/JVM/">JVM</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+      <div class="col-12 col-md-4 m-auto index-img">
+        <a href="/2020/10/14/JVM%E3%80%81(%E4%B8%80)JVM%E5%BC%80%E7%AF%87/" target="_self">
+          <img src="/passageImg/JVM/header.jpg" srcset="/img/loading.gif" alt="JVM、(一)JVM开篇">
+        </a>
+      </div>
+    
+    <article class="col-12 col-md-8 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2020/10/14/JVM%E3%80%81(%E4%B8%80)JVM%E5%BC%80%E7%AF%87/">JVM、(一)JVM开篇</a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2020/10/14/JVM%E3%80%81(%E4%B8%80)JVM%E5%BC%80%E7%AF%87/">
+          
+          
+            
+          
+          一、JVM是什么？
+定义：Java Virtual Machine - java程序的运行环境 （Java 二进制字节码的运行环境）比如  Helloworld.java  程序通过javac编译成了 class字节码然后被加载到java虚拟机中运行。
+好处：
+跨平台实现的基石。  Java程序一次编译，到处运行，JVM屏蔽了字节码和底层操作系统之间的差异，使得编译后的二进制字节码文件能够运行在不
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2020-10-14 20:12" pubdate>
+              2020-10-14
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/JAVA%E8%99%9A%E6%8B%9F%E6%9C%BA/">JAVA虚拟机</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/JVM/">JVM</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+      <div class="col-12 col-md-4 m-auto index-img">
+        <a href="/2020/10/14/leetcode_304/" target="_self">
+          <img src="/passageImg/%E5%8A%9B%E6%89%A3/%E5%8A%9B%E6%89%A3.jpg" srcset="/img/loading.gif" alt="力扣 303.区域和检索">
+        </a>
+      </div>
+    
+    <article class="col-12 col-md-8 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2020/10/14/leetcode_304/">力扣 303.区域和检索</a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2020/10/14/leetcode_304/">
+          
+          
+            
+          
+          303. 区域和检索 - 数组不变
+想法：
+直接循环计算从i 到 j 两个区域中的所有数值和。但是由于每次检索都需要计算一遍，这样会造成多次计算已有的数值。
+注意到当 i≤j 时，sumRange(i,j) 可以写为如下形式：  sumRange(i,j) = 到下标j所有数值和 - 到i-1下标所有数值和。  假设数组 nums 的长度为 n，创建长度为 n+1 的前缀和数组 sums，对于 0
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2020-10-14 20:06" pubdate>
+              2020-10-14
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/%E5%BF%85%E4%BC%9A%E7%AE%97%E6%B3%95/">必会算法</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/java/">java</a>
+            
+              <a href="/tags/%E5%89%8D%E7%BC%80%E5%92%8C/">前缀和</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+      <div class="col-12 col-md-4 m-auto index-img">
+        <a href="/2020/10/12/Redis%EF%BC%9A%E4%B8%83%E3%80%81%E9%9B%86%E7%BE%A4/" target="_self">
+          <img src="/passageImg/Redis/header.jpg" srcset="/img/loading.gif" alt="Redis(7).集群">
+        </a>
+      </div>
+    
+    <article class="col-12 col-md-8 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2020/10/12/Redis%EF%BC%9A%E4%B8%83%E3%80%81%E9%9B%86%E7%BE%A4/">Redis(7).集群</a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2020/10/12/Redis%EF%BC%9A%E4%B8%83%E3%80%81%E9%9B%86%E7%BE%A4/">
+          
+          
+            
+          
+          一、集群是什么？集群：集群就是使用网络将若干台计算机联通起来，并提供统一的管理方式，使其对外呈现单机的服务效果。
+集群的作用：
+
+分散单台服务器的访问压力，实现负载均衡；
+分散单台服务器的存储压力，实现可扩展性；
+降低单台服务器宕机带来的业务灾难。
+
+二、集群的存储结构设计对于输入的一个key，不是直接将其存储到某台服务器中，而是通过算法设计计算出应该存放的位置，之后再存储。
+
+如果此时集群中加入
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2020-10-12 20:12" pubdate>
+              2020-10-12
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/%E4%B8%AD%E9%97%B4%E4%BB%B6/">中间件</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/Redis/">Redis</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+      <div class="col-12 col-md-4 m-auto index-img">
+        <a href="/2020/10/12/Redis%EF%BC%9A%E5%85%AB%E3%80%81%E4%BC%81%E4%B8%9A%E7%BA%A7%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88(%E9%87%8D%E7%82%B9)/" target="_self">
+          <img src="/passageImg/Redis/header.jpg" srcset="/img/loading.gif" alt="Redis(8).企业级解决方案(重点)">
+        </a>
+      </div>
+    
+    <article class="col-12 col-md-8 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2020/10/12/Redis%EF%BC%9A%E5%85%AB%E3%80%81%E4%BC%81%E4%B8%9A%E7%BA%A7%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88(%E9%87%8D%E7%82%B9)/">Redis(8).企业级解决方案(重点)</a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2020/10/12/Redis%EF%BC%9A%E5%85%AB%E3%80%81%E4%BC%81%E4%B8%9A%E7%BA%A7%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88(%E9%87%8D%E7%82%B9)/">
+          
+          
+            
+          
+          一、缓存预热
+概念： 缓存预热就是在系统启动前，提前将相关的缓存数据加载到缓存系统。避免在用户请求的时候，先查询数据库，然后再将数据缓存的问题！用户直接查询实现被预热的缓存数据！
+
+解决方案：
+
+
+二、缓存雪崩
+概念：缓存雪崩可以理解为原有缓存失效，新缓存还未到期间(例如：我们设置的缓存过期时间相同，统一时间大面积的缓存过期)，所有原本应该访问缓存的请求都去查询数据库了，而对数据库和CPU和内存产
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2020-10-12 20:12" pubdate>
+              2020-10-12
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/%E4%B8%AD%E9%97%B4%E4%BB%B6/">中间件</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/Redis/">Redis</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+      <div class="col-12 col-md-4 m-auto index-img">
+        <a href="/2020/10/12/Redis%EF%BC%9A%E5%85%AD%E3%80%81%E5%93%A8%E5%85%B5%E6%A8%A1%E5%BC%8F/" target="_self">
+          <img src="/passageImg/Redis/header.jpg" srcset="/img/loading.gif" alt="Redis(6).哨兵模式">
+        </a>
+      </div>
+    
+    <article class="col-12 col-md-8 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2020/10/12/Redis%EF%BC%9A%E5%85%AD%E3%80%81%E5%93%A8%E5%85%B5%E6%A8%A1%E5%BC%8F/">Redis(6).哨兵模式</a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2020/10/12/Redis%EF%BC%9A%E5%85%AD%E3%80%81%E5%93%A8%E5%85%B5%E6%A8%A1%E5%BC%8F/">
+          
+          
+            
+          
+          一、哨兵模式简介哨兵(Sentinel) 是一个分布式系统，用于对主从结构中的每台服务器进行监控，当出现故障时通过投票机制来选举出新的master并将所有的slave连接到新的master。哨兵也是一台redis服务器，只不过不提供数据服务。哨兵通常配置为单数。
+二、哨兵的搭建
+
+sentinel.conf 配置文件解读123456789101112131415161718192021222324
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2020-10-12 18:12" pubdate>
+              2020-10-12
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/%E4%B8%AD%E9%97%B4%E4%BB%B6/">中间件</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/Redis/">Redis</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+      <div class="col-12 col-md-4 m-auto index-img">
+        <a href="/2020/10/11/Redis%EF%BC%9A%E4%BA%94%E3%80%81%E4%B8%BB%E4%BB%8E%E5%A4%8D%E5%88%B6/" target="_self">
+          <img src="/passageImg/Redis/header.jpg" srcset="/img/loading.gif" alt="Redis(5).主从复制">
+        </a>
+      </div>
+    
+    <article class="col-12 col-md-8 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2020/10/11/Redis%EF%BC%9A%E4%BA%94%E3%80%81%E4%B8%BB%E4%BB%8E%E5%A4%8D%E5%88%B6/">Redis(5).主从复制</a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2020/10/11/Redis%EF%BC%9A%E4%BA%94%E3%80%81%E4%B8%BB%E4%BB%8E%E5%A4%8D%E5%88%B6/">
+          
+          
+            
+          
+          一、主从复制的概念为什么需要主从复制，因为单机Redis会存在以下问题： ①机器故障，那么原本机器中的业务数据会损害造成不可挽回的损失；②容量瓶颈，单继Redis的内存有限，硬件条件拉跨无法存储巨额数据；为了避免这些问题保证数据的安全性和服务器的高可用性出现了主从复制。主从复制是指，主机数据更新后根据配置和策略，自动同步到备机的master/slaver 机制，Master以写为主，Slave 以
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2020-10-11 20:12" pubdate>
+              2020-10-11
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/%E4%B8%AD%E9%97%B4%E4%BB%B6/">中间件</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/Redis/">Redis</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+      <div class="col-12 col-md-4 m-auto index-img">
+        <a href="/2020/10/10/Redis%EF%BC%9A%E5%9B%9B%E3%80%81%E4%BA%8B%E5%8A%A1/" target="_self">
+          <img src="/passageImg/Redis/header.jpg" srcset="/img/loading.gif" alt="Redis(4).事务">
+        </a>
+      </div>
+    
+    <article class="col-12 col-md-8 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2020/10/10/Redis%EF%BC%9A%E5%9B%9B%E3%80%81%E4%BA%8B%E5%8A%A1/">Redis(4).事务</a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2020/10/10/Redis%EF%BC%9A%E5%9B%9B%E3%80%81%E4%BA%8B%E5%8A%A1/">
+          
+          
+            
+          
+          一、Redis事务是什么？概念：
+可以一次执行多个命令，本质是一组命令的集合。一个事务中所有命令都会序列化，按顺序地串行化执行而不会被其它命令插入，不允许阻塞。
+
+
+
+如何使用？
+
+事务相关命令：(1) DISCARD   取消事务，放弃执行事务块内地所有命令；(2) EXEC  执行所有事务块内的命令；(3) MULTI  标记一个事务块的开始；(4) UNWATCH 取消WATC命令对所有ke
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2020-10-10 21:10" pubdate>
+              2020-10-10
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/%E4%B8%AD%E9%97%B4%E4%BB%B6/">中间件</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/Redis/">Redis</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+      <div class="col-12 col-md-4 m-auto index-img">
         <a href="/2020/10/10/Redis%EF%BC%9A%E4%B8%89%E3%80%81%E6%8C%81%E4%B9%85%E5%8C%96%E6%93%8D%E4%BD%9C/" target="_self">
           <img src="/passageImg/Redis/header.jpg" srcset="/img/loading.gif" alt="Redis(3).持久化操作">
         </a>
@@ -252,440 +719,11 @@ Tcp-backlog：backlog其实是一个连接队列，用来避
     </article>
   </div>
 
-  <div class="row mx-auto index-card">
-    
-    
-      <div class="col-12 col-md-4 m-auto index-img">
-        <a href="/2020/10/07/Redis%EF%BC%9A%E4%BA%8C%E3%80%81jedis%E7%BA%BF%E7%A8%8B%E6%B1%A0/" target="_self">
-          <img src="/passageImg/Redis/header.jpg" srcset="/img/loading.gif" alt="Redis(2).jedis线程池">
-        </a>
-      </div>
-    
-    <article class="col-12 col-md-8 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2020/10/07/Redis%EF%BC%9A%E4%BA%8C%E3%80%81jedis%E7%BA%BF%E7%A8%8B%E6%B1%A0/">Redis(2).jedis线程池</a>
-      </h1>
-
-      <p class="index-excerpt">
-        <a href="/2020/10/07/Redis%EF%BC%9A%E4%BA%8C%E3%80%81jedis%E7%BA%BF%E7%A8%8B%E6%B1%A0/">
-          
-          
-            
-          
-          一、什么是jedis
-jedis是 Java语言 连接 redis服务的一个工具，常用的包括 Jedis、SpringData Redis、Lettuce
-java-jedis 操作redis 和 redis自身的命令完全一致。
-
-二、使用步骤1.Jedis 读写redis数据(案例)
-2. 编码2.1 设定业务方法：
-2.2 设定线程类，模拟用户调用：
-2.3 设计redis控制方案：
-2.4 
-        </a>
-      </p>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2020-10-07 22:06" pubdate>
-              2020-10-07
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-category"></i>
-            
-              <a href="/categories/%E4%B8%AD%E9%97%B4%E4%BB%B6/">中间件</a>
-            
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/Redis/">Redis</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-      <div class="col-12 col-md-4 m-auto index-img">
-        <a href="/2020/10/07/Redis%EF%BC%9A%E4%B8%80%E3%80%81%E5%9F%BA%E7%A1%80%E5%BF%85%E5%A4%87%E7%9F%A5%E8%AF%86/" target="_self">
-          <img src="/passageImg/Redis/header.jpg" srcset="/img/loading.gif" alt="Redis(1).基础必备知识">
-        </a>
-      </div>
-    
-    <article class="col-12 col-md-8 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2020/10/07/Redis%EF%BC%9A%E4%B8%80%E3%80%81%E5%9F%BA%E7%A1%80%E5%BF%85%E5%A4%87%E7%9F%A5%E8%AF%86/">Redis(1).基础必备知识</a>
-      </h1>
-
-      <p class="index-excerpt">
-        <a href="/2020/10/07/Redis%EF%BC%9A%E4%B8%80%E3%80%81%E5%9F%BA%E7%A1%80%E5%BF%85%E5%A4%87%E7%9F%A5%E8%AF%86/">
-          
-          
-            
-          
-          一、什么是NoSQL?时代演进，网页开发可以概述为以下过程：
-1、单机Mysql的引进：初始时都是三层访问方式：   (DAL数据库访问层)
-这种情况下，整个网站的瓶颈存在：(1)、数据量太大，一个机器放不下；(2)、访问量太多—-读写混合，一个服务器受不了；(3)、数据的索引—-B+ Tree，一个机器放不了；
-2、Memcached(缓存)+Mysql+垂直拆分:网站80%的时间都是在读数据，
-        </a>
-      </p>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2020-10-07 20:06" pubdate>
-              2020-10-07
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-category"></i>
-            
-              <a href="/categories/%E4%B8%AD%E9%97%B4%E4%BB%B6/">中间件</a>
-            
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/Redis/">Redis</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-      <div class="col-12 col-md-4 m-auto index-img">
-        <a href="/2020/10/02/offer17/" target="_self">
-          <img src="/passageImg/offer17.assets/header.jpg" srcset="/img/loading.gif" alt="剑指Offer 17.打印从1到最大的n位数">
-        </a>
-      </div>
-    
-    <article class="col-12 col-md-8 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2020/10/02/offer17/">剑指Offer 17.打印从1到最大的n位数</a>
-      </h1>
-
-      <p class="index-excerpt">
-        <a href="/2020/10/02/offer17/">
-          
-          
-            
-          
-          
-问题扩展：本题应当考察的是大数问题，当 n较大时，end会超出 int32 整型的范围，超出取值范围的数字无法正常存储。
-大数问题的解决需要考虑三个方面的重点：
-
-1 . 表示大数的变量类型
-无论是 short / int / long … 任意变量类型，数字的取值范围都是有限的。因此，大数的表示应用字符串 String 类型。
-
-2 .数字进位
-
-
-​        比如说从 9进一位到10 
-        </a>
-      </p>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2020-10-02 21:22" pubdate>
-              2020-10-02
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-category"></i>
-            
-              <a href="/categories/%E5%89%91%E6%8C%87Offer/">剑指Offer</a>
-            
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/java/">java</a>
-            
-              <a href="/tags/%E5%A4%A7%E6%95%B0%E9%97%AE%E9%A2%98/">大数问题</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-      <div class="col-12 col-md-4 m-auto index-img">
-        <a href="/2020/10/02/offer16/" target="_self">
-          <img src="/passageImg/offer16.assets/header.jpg" srcset="/img/loading.gif" alt="剑指Offer 16.数值的整数次方">
-        </a>
-      </div>
-    
-    <article class="col-12 col-md-8 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2020/10/02/offer16/">剑指Offer 16.数值的整数次方</a>
-      </h1>
-
-      <p class="index-excerpt">
-        <a href="/2020/10/02/offer16/">
-          
-          
-            
-          
-          
-扩展算法：
-快速幂算法： 
-快速幂算法能帮我们算出指数非常大的幂，传统的求幂算法之所以时间复杂度非常高（为O(指数n)），就是因为当指数n非常大的时候，需要执行的循环操作次数也非常大。所以我们快速幂算法的核心思想就是每一步都把指数分成两半，而相应的底数做平方运算。这样不仅能把非常大的指数给不断变小，所需要执行的循环次数也变小，而最后表示的结果却一直不会变。
-
-算法讲解：比如说一道ACM算法题： 
-        </a>
-      </p>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2020-10-02 21:00" pubdate>
-              2020-10-02
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-category"></i>
-            
-              <a href="/categories/%E5%89%91%E6%8C%87Offer/">剑指Offer</a>
-            
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/java/">java</a>
-            
-              <a href="/tags/%E5%BF%AB%E9%80%9F%E5%B9%82/">快速幂</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-      <div class="col-12 col-md-4 m-auto index-img">
-        <a href="/2020/10/02/offer15/" target="_self">
-          <img src="/passageImg/offer15.assets/header.jpg" srcset="/img/loading.gif" alt="剑指Offer 15.二进制中1的个数">
-        </a>
-      </div>
-    
-    <article class="col-12 col-md-8 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2020/10/02/offer15/">剑指Offer 15.二进制中1的个数</a>
-      </h1>
-
-      <p class="index-excerpt">
-        <a href="/2020/10/02/offer15/">
-          
-          
-            
-          
-          
-扩展知识：该题重点考察的是如何将一个十进制整数转化为它的二进制数形式。有以下三种方法：
-
-方法一(除基倒取余法)：
-
-类似于数学求二进制的过程，将原数n 不断除以2求出余数然后把商作为下一次的待除数，直到商为0
-12345678public void binaryToDecimal(int n)&#123;     String str = &quot;&quot;;     while(n!=
-        </a>
-      </p>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2020-10-02 20:06" pubdate>
-              2020-10-02
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-category"></i>
-            
-              <a href="/categories/%E5%89%91%E6%8C%87Offer/">剑指Offer</a>
-            
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/java/">java</a>
-            
-              <a href="/tags/%E4%BA%8C%E8%BF%9B%E5%88%B6/">二进制</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-      <div class="col-12 col-md-4 m-auto index-img">
-        <a href="/2020/10/01/offer14_II/" target="_self">
-          <img src="/passageImg/offer14_II.assets/header.jpg" srcset="/img/loading.gif" alt="剑指Offer 14.减绳子">
-        </a>
-      </div>
-    
-    <article class="col-12 col-md-8 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2020/10/01/offer14_II/">剑指Offer 14.减绳子</a>
-      </h1>
-
-      <p class="index-excerpt">
-        <a href="/2020/10/01/offer14_II/">
-          
-          
-            
-          
-          
-1. DP 求解假设 res[n] 代表长度为 n 的绳子的最大乘积，那么  res[n] = max(res[n-i] * res[i])，其中(1&lt;=i&lt;n)
-特别的有一些特殊值：  
-​       res[0] = 0;   //不存在
-​       res[1] = 1;  
-​       res[2] = 2;   //在长度为2时该绳子就不应该被分割了，分割会更小
-
-        </a>
-      </p>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2020-10-01 18:00" pubdate>
-              2020-10-01
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-category"></i>
-            
-              <a href="/categories/%E5%89%91%E6%8C%87Offer/">剑指Offer</a>
-            
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/java/">java</a>
-            
-              <a href="/tags/%E8%B4%AA%E5%BF%83%E6%B3%95/">贪心法</a>
-            
-              <a href="/tags/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/">动态规划</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-      <div class="col-12 col-md-4 m-auto index-img">
-        <a href="/2019/10/10/hello-world/" target="_self">
-          <img src="/img/1.jpg" srcset="/img/loading.gif" alt="文章标题">
-        </a>
-      </div>
-    
-    <article class="col-12 col-md-8 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2019/10/10/hello-world/">文章标题</a>
-      </h1>
-
-      <p class="index-excerpt">
-        <a href="/2019/10/10/hello-world/">
-          
-          
-            
-          
-          Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub.
-Quick
-        </a>
-      </p>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2019-10-10 10:00" pubdate>
-              2019-10-10
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-category"></i>
-            
-              <a href="/categories/%E6%9D%82%E8%AE%B0/">杂记</a>
-            
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/hexo/">hexo</a>
-            
-              <a href="/tags/javascript/">javascript</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
 
 
   <nav aria-label="navigation">
     <span class="pagination" id="pagination">
-      <a class="extend prev" rel="prev" href="/page/2/"><i class="iconfont icon-arrowleft"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span>
+      <a class="extend prev" rel="prev" href="/page/2/"><i class="iconfont icon-arrowleft"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/4/"><i class="iconfont icon-arrowright"></i></a>
     </span>
   </nav>
   

@@ -1,0 +1,510 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=&#34;auto&#34;>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" type="image/png" href="/img/favicon.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="">
+  <meta name="author" content="John Doe">
+  <meta name="keywords" content="">
+  <title>操作系统（二）、操作系统基础操作 - Hexo</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10.4.0/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+  
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.8.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"⚡","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"onlypost":false},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null}}};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.3.0"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>~码先生</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                友链
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;</a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" href="javascript:">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/bg/passage.jpg') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="操作系统（二）、操作系统基础操作">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2020-11-15 21:11" pubdate>
+        2020年11月15日 晚上
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      1.5k 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      15
+       分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">操作系统（二）、操作系统基础操作</h1>
+            
+            <div class="markdown-body">
+              <h2 id="1-操作系统的启动-异常和中断"><a href="#1-操作系统的启动-异常和中断" class="headerlink" title="1.  操作系统的启动 异常和中断"></a>1.  操作系统的启动 异常和中断</h2><h3 id="启动"><a href="#启动" class="headerlink" title="启动:"></a>启动:</h3><p>OS的启动加载是通过一步步来执行实现的，主要涉及到 <strong>BIOS(基本I/O处理系统,检查外设硬件能否正常工作)、DISK(存放OS)、Bootloader(加载OS，能够让OS从硬盘加载到内存中去)</strong>.</p>
+<ol>
+<li>通电之后BIOS就会从一个特定的地址开始执行(CS:IP = 0xf0000:fff0   CS是段寄存器,IP是指令寄存器) ;</li>
+<li>然后接下来会完成一系列操作,包括  加电自检(POST) ,自检是指检查一些硬件外设设备能否正常工作; 在自检完成后就会将bootloader从硬盘上加载进内存中去(bootloader的位置往往位于硬盘的第一个扇区,仅仅只有512个字节);</li>
+<li>接下来CPU的控制权就交给了bootloader, bootloader最主要的一个功能就是将 OS 从硬盘上加载进内存,然后CPU的控制权交给OS , 接下来系统的管理就由OS来控制.</li>
+</ol>
+<p><img src="/passageImg%E7%AC%AC%E4%BA%8C%E7%AB%A0%E3%80%81%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%9F%BA%E7%A1%80%E6%93%8D%E4%BD%9Cmd.assets/image-20200910153923563.png" srcset="/img/loading.gif"></p>
+<h3 id="系统调用、中断、异常的概念及不同点："><a href="#系统调用、中断、异常的概念及不同点：" class="headerlink" title="系统调用、中断、异常的概念及不同点："></a>系统调用、中断、异常的概念及不同点：</h3><ul>
+<li>系统调用(来源于应用程序)<ul>
+<li>应用程序主动向操作系统发出服务请求</li>
+</ul>
+</li>
+<li>异常(来源于不良的应用程序)<ul>
+<li>非法指令或者其它坏的处理状态(如内存出错)</li>
+</ul>
+</li>
+<li>中断(来源于外设)<ul>
+<li>来自不同的硬件设备的计时器和网络中断</li>
+</ul>
+</li>
+</ul>
+<p>==三者的不同点：==</p>
+<p><img src="/passageImg%E7%AC%AC%E4%BA%8C%E7%AB%A0%E3%80%81%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%9F%BA%E7%A1%80%E6%93%8D%E4%BD%9Cmd.assets/image-20200910161158456.png" srcset="/img/loading.gif"></p>
+<p><img src="/passageImg%E7%AC%AC%E4%BA%8C%E7%AB%A0%E3%80%81%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%9F%BA%E7%A1%80%E6%93%8D%E4%BD%9Cmd.assets/image-20200910161208483.png" srcset="/img/loading.gif"></p>
+<p><img src="/passageImg%E7%AC%AC%E4%BA%8C%E7%AB%A0%E3%80%81%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%9F%BA%E7%A1%80%E6%93%8D%E4%BD%9Cmd.assets/image-20200910161258115.png" srcset="/img/loading.gif"></p>
+<p>为什么应用程序不能直接访问硬件而是通过操作系统？<br>            -计算机运行时，内核是被信任的第三方。<br>            -只有内核可以执行特权指令。<br>            -为了方便应用程序。</p>
+<h3 id="中断的类型以及用户态和核心态的概念："><a href="#中断的类型以及用户态和核心态的概念：" class="headerlink" title="中断的类型以及用户态和核心态的概念："></a>中断的类型以及用户态和核心态的概念：</h3><ol>
+<li><p>由于早期各个程序间都是串行执行的，引入了中断后便实现了多道程序并行。中断的产生就意味着操作系统的介入，进行了管理；</p>
+</li>
+<li><p><strong>计时部件记录时间</strong>,当<strong>进程1</strong>运行了指定时间后,计时器告诉CPU进程1<strong>运行时间到了</strong><br>这个时候<strong>CPU</strong>知道了(<strong>接收到中断信号</strong>),然后<strong>CPU就切换到核心态</strong>(变身为特工),然后<strong>告诉操作系统</strong>,让操作系统过来管理<br><strong>操作系统</strong>知道了以后(<strong>对中断信号进行处理</strong>),然后<strong>操作系统</strong>就会<strong>进行相应的调度</strong>(比如让进程2再跑一个指定时间)<br>然后<strong>操作系统把CPU的使用权</strong> <strong>给用户的进程</strong>,进程2开始执行<br>(进程执行-&gt;计时器监视进程到时间 -&gt;CPU令牌变色(用户态-&gt;核心态)<br>-&gt;操作系统得到CPU令牌,进行调度后-&gt;令牌褪色(核心态-&gt;用户态)-&gt;归还给进程去执行())<br><img src="https://img-blog.csdnimg.cn/20200103183845655.png" srcset="/img/loading.gif" alt="img"><br>需要特权指令 中断 :CPU变色(用户态-&gt;核心态) 找操作系统去处理<br><strong>用户态 - &gt; 核心态是通过中断实现的<br>并且中断是唯一途径</strong></p>
+</li>
+<li><p>中断的分类：</p>
+</li>
+</ol>
+<p><img src="/passageImg%E7%AC%AC%E4%BA%8C%E7%AB%A0%E3%80%81%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%9F%BA%E7%A1%80%E6%93%8D%E4%BD%9C.assets/20200103184313293.png" srcset="/img/loading.gif" alt="img"></p>
+<p><img src="/passageImg%E7%AC%AC%E4%BA%8C%E7%AB%A0%E3%80%81%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%9F%BA%E7%A1%80%E6%93%8D%E4%BD%9C.assets/20200103184420354.png" srcset="/img/loading.gif" alt="img"></p>
+<p><img src="/passageImg%E7%AC%AC%E4%BA%8C%E7%AB%A0%E3%80%81%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%9F%BA%E7%A1%80%E6%93%8D%E4%BD%9C.assets/20200103184602821.png" srcset="/img/loading.gif" alt="img"></p>
+<h3 id="中断和异常处理机制："><a href="#中断和异常处理机制：" class="headerlink" title="中断和异常处理机制："></a>中断和异常处理机制：</h3><p><strong>（1）中断处理</strong>：</p>
+<p><img src="/passageImg%E7%AC%AC%E4%BA%8C%E7%AB%A0%E3%80%81%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%9F%BA%E7%A1%80%E6%93%8D%E4%BD%9Cmd.assets/image-20200910162339623.png" srcset="/img/loading.gif"></p>
+<p>分为硬件和软件，硬件方面外设首先会产生一个中断标记，当CPU检测到这个中断标记后会产生一个具体的中断ID，并且将该ID发送给操作系统，操作系统就能够根据具体的ID去操作；</p>
+<p><img src="/passageImg%E7%AC%AC%E4%BA%8C%E7%AB%A0%E3%80%81%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%9F%BA%E7%A1%80%E6%93%8D%E4%BD%9Cmd.assets/image-20200910162558481.png" srcset="/img/loading.gif"></p>
+<p>软件方面需要打断当前正在运行的程序，那么就会保存当前的处理状态，然后去处理中断服务程序，处理完毕后清理中断标记，最后恢复之前保存的处理状态；</p>
+<p><strong>（2）异常处理：</strong></p>
+<p>​    异常处理过程和中断不一样，异常处理首先也会产生异常编号告知操作系统，操作系统会保存产生异常的指令的程序现场(比如当前指令的地址和寄存器的内容)，然后进行异常处理，处理结果可能为杀死异常程序或者恢复现场后重新执行异常指令。</p>
+<p><img src="/passageImg%E7%AC%AC%E4%BA%8C%E7%AB%A0%E3%80%81%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%9F%BA%E7%A1%80%E6%93%8D%E4%BD%9Cmd.assets/image-20200910162855451.png" srcset="/img/loading.gif"></p>
+<h3 id="系统调用："><a href="#系统调用：" class="headerlink" title="系统调用："></a>系统调用：</h3><p><strong>（1）程序访问主要是通过高层次的API接口而不是直接进行系统调用：</strong></p>
+<p>一条指令会触发一个系统调用；</p>
+<p>-通常情况下，存在与每个系统调用相关的序号，系统调用接口根据这些序号来维护表的索引。<br>        -系统调用接口调用内核态中预期的系统调用，并返回系统调用的状态和其它任何返回值。<br>        -用户不需要知道系统调用是如何实现的，只需要获取API和了解操作新系统将什么作为返回结果。操作系统接口的细节大部分都隐藏在API中，并通过运行程序支持的库来管理。</p>
+<p>-用户态：应用程序在执行的过程中，CPU执行的特权级的状态(很低，不能访问特殊机器指令和IO)。<br>        -内核态：应用程序在执行的过程中，CPU执行的特权级的状态(高，操作系统可以执行CPU任何一条指令)。</p>
+<p>-系统调用时涉及到特权级从用户态到内核态的转换，应用程序和操作系统有各自的堆栈会涉及到堆栈的转变，这两个变化比函数调用的开销更大，但更安全和可靠。(而程序调用是在一个栈空间实现参数的调用和返回)。</p>
+<p><strong>（2）系统调用会涉及到跨越操作系统边界的开销：</strong></p>
+<p>在执行时间上系统调用会超过程序调用，这其中的开销包括 ：①建立中断/异常/系统调用号与对应服务例程映射关系的初始化开销；②建立内核堆栈(操作系统和应用程序的堆栈不一样)；③验证参数(操作系统不信任应用程序会检查数据)；④内核态映射到用户态的地址空间，更新页面映射权限(内存拷贝开销)；⑤内核态独立地址空间TLB</p>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/408/">408</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E9%87%8D%E7%82%B9%E7%9F%A5%E8%AF%86/">计算机重点知识</a>
+                    
+                      <a class="hover-with-bg" href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">操作系统</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！</p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2020/11/17/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E2%80%94%E2%80%94%E7%AC%AC%E4%B8%89%E7%AB%A0%E3%80%81%E8%BF%9E%E7%BB%AD%E5%BC%8F%E5%86%85%E5%AD%98%E5%88%86%E9%85%8D/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">操作系统（三）、连续内存分配</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2020/11/13/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E2%80%94%E2%80%94%E7%AC%AC%E4%B8%83%E7%AB%A0%E3%80%81%E8%BF%9B%E7%A8%8B%E5%92%8C%E7%BA%BF%E7%A8%8B/">
+                        <span class="hidden-mobile">操作系统（七）、进程和线程</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+  </div>
+  
+
+  
+
+  
+</footer>
+
+<!-- SCRIPTS -->
+
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/debouncer.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/js/lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/tocbot@4.12.0/dist/tocbot.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4.3.0/anchor.min.js" ></script>
+
+
+
+  <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js" ></script>
+
+
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
+  </script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+  <script>
+    (function () {
+      var path = "/local-search.xml";
+      var inputArea = document.querySelector("#local-search-input");
+      inputArea.onclick = function () {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+        this.onclick = null
+      }
+    })()
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+
+</body>
+</html>

@@ -1,0 +1,552 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=&#34;auto&#34;>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" type="image/png" href="/img/favicon.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="">
+  <meta name="author" content="John Doe">
+  <meta name="keywords" content="">
+  <title>操作系统（三）、连续内存分配 - Hexo</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10.4.0/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+  
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.8.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"⚡","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"onlypost":false},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null}}};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.3.0"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>~码先生</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                友链
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;</a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" href="javascript:">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/bg/passage.jpg') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="操作系统（三）、连续内存分配">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2020-11-17 21:11" pubdate>
+        2020年11月17日 晚上
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      1.5k 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      14
+       分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">操作系统（三）、连续内存分配</h1>
+            
+            <div class="markdown-body">
+              <h1 id="操作系统的内存管理："><a href="#操作系统的内存管理：" class="headerlink" title="操作系统的内存管理："></a>操作系统的内存管理：</h1><h2 id="3-1-计算机体系结构及内存分层体系"><a href="#3-1-计算机体系结构及内存分层体系" class="headerlink" title="3.1 计算机体系结构及内存分层体系"></a>3.1 计算机体系结构及内存分层体系</h2><p><img src="/passageImg/%E7%AC%AC%E4%B8%89%E7%AB%A0%E3%80%81%E8%BF%9E%E7%BB%AD%E5%BC%8F%E5%86%85%E5%AD%98%E5%88%86%E9%85%8D.assets/v2-6cbe0ce1ed6a7336de891e9f83ad4269_r.jpg" srcset="/img/loading.gif"></p>
+<p><img src="/passageImg/%E7%AC%AC%E4%B8%89%E7%AB%A0%E3%80%81%E8%BF%9E%E7%BB%AD%E5%BC%8F%E5%86%85%E5%AD%98%E5%88%86%E9%85%8D.assets/image-20200916143445419.png" srcset="/img/loading.gif"></p>
+<h3 id="操作系统的内存层次："><a href="#操作系统的内存层次：" class="headerlink" title="操作系统的内存层次："></a>操作系统的内存层次：</h3><p><img src="/passageImg/%E7%AC%AC%E4%B8%89%E7%AB%A0%E3%80%81%E8%BF%9E%E7%BB%AD%E5%BC%8F%E5%86%85%E5%AD%98%E5%88%86%E9%85%8D.assets/image-20200916143731533.png" srcset="/img/loading.gif"></p>
+<h3 id="操作系统在内存管理方面需要完成的目标："><a href="#操作系统在内存管理方面需要完成的目标：" class="headerlink" title="操作系统在内存管理方面需要完成的目标："></a>操作系统在内存管理方面需要完成的目标：</h3><ol>
+<li>抽象： 逻辑地址空间</li>
+<li>保护： 独立地址空间(保证多个进程间不会相互干扰)</li>
+<li>共享： 访问共同的地址空间（当多个进程需要操作同一块操作地址时，需要共享地址空间）</li>
+<li>虚拟化： 由于缓存及寄存器的存储空间有限，当存储大量数据时，就需要使用虚拟空间<img src="/passageImg/%E7%AC%AC%E4%B8%89%E7%AB%A0%E3%80%81%E8%BF%9E%E7%BB%AD%E5%BC%8F%E5%86%85%E5%AD%98%E5%88%86%E9%85%8D.assets/image-20200916144414097.png" srcset="/img/loading.gif"></li>
+</ol>
+<h3 id="操作系统管理内存的不同方法："><a href="#操作系统管理内存的不同方法：" class="headerlink" title="操作系统管理内存的不同方法："></a>操作系统管理内存的不同方法：</h3><ul>
+<li>程序重定位</li>
+<li>分段</li>
+<li>分页</li>
+<li>虚拟内存</li>
+<li>按需分页虚拟内存</li>
+</ul>
+<p><strong>操作系统在完成内存管理操作同时还需要高度依赖于硬件</strong></p>
+<ul>
+<li>必须知道内存架构</li>
+<li>MMU（内存管理单元）：硬件组件负责处理CPU的内存访问请求</li>
+</ul>
+<h2 id="3-2-地址空间及地址生成"><a href="#3-2-地址空间及地址生成" class="headerlink" title="3.2 地址空间及地址生成"></a>3.2 地址空间及地址生成</h2><h3 id="①-地址空间的定义："><a href="#①-地址空间的定义：" class="headerlink" title="① 地址空间的定义："></a>① 地址空间的定义：</h3><h4 id="物理地址空间："><a href="#物理地址空间：" class="headerlink" title="物理地址空间："></a>物理地址空间：</h4><p>物理地址空间是指一些硬件支持的地址空间，比如硬盘和内存条、高速缓存…..</p>
+<h4 id="逻辑地址空间："><a href="#逻辑地址空间：" class="headerlink" title="逻辑地址空间："></a>逻辑地址空间：</h4><p>逻辑地址空间是指一个运行程序所拥有的内存范围，它的结构很简单，就是一条线性的地址空间</p>
+<p>==但是最终逻辑地址空间还是会指向物理地址空间，操作系统需要协调这二者的关系，通过映射来使得逻辑地址指向物理地址。==</p>
+<h3 id="②-逻辑地址的生成："><a href="#②-逻辑地址的生成：" class="headerlink" title="② 逻辑地址的生成："></a>② 逻辑地址的生成：</h3><p><img src="/passageImg/%E7%AC%AC%E4%B8%89%E7%AB%A0%E3%80%81%E8%BF%9E%E7%BB%AD%E5%BC%8F%E5%86%85%E5%AD%98%E5%88%86%E9%85%8D.assets/image-20200916145911777.png" srcset="/img/loading.gif"></p>
+<h3 id="③-物理地址的生成："><a href="#③-物理地址的生成：" class="headerlink" title="③ 物理地址的生成："></a>③ 物理地址的生成：</h3><p>  <strong>=&gt;CPU方面</strong></p>
+<p>a. CPU执行指令时，它的ALU部件会需要指令的某个内容，它发出的请求中的参数会携带逻辑地址；</p>
+<p>b. CPU的内存管理单元MMU 寻找逻辑地址的映射表中是否存在物理地址。如果没有找到，那么就会产生一个处理过程，去内存中找。如果最终找着了，那么CPU的控制器从总线发送在物理地址的内存内容的请求；</p>
+<p><strong>=&gt;内存方面</strong></p>
+<p>a. 内存发送物理地址内存内容给CPU（CPU开始处理对应的指令）</p>
+<p><strong>=&gt;操作系统方面</strong></p>
+<p>a. 建立逻辑地址和物理地址之间的映射关系，该关系可以放在内存中由CPU缓存来加快进程(确保程序不相互干扰)</p>
+<p><img src="/passageImg/%E7%AC%AC%E4%B8%89%E7%AB%A0%E3%80%81%E8%BF%9E%E7%BB%AD%E5%BC%8F%E5%86%85%E5%AD%98%E5%88%86%E9%85%8D.assets/image-20200916152657429.png" srcset="/img/loading.gif"></p>
+<h3 id="④-地址安全检查："><a href="#④-地址安全检查：" class="headerlink" title="④ 地址安全检查："></a>④ 地址安全检查：</h3><p><img src="/passageImg/%E7%AC%AC%E4%B8%89%E7%AB%A0%E3%80%81%E8%BF%9E%E7%BB%AD%E5%BC%8F%E5%86%85%E5%AD%98%E5%88%86%E9%85%8D.assets/image-20200916152901439.png" srcset="/img/loading.gif"></p>
+<h2 id="3-3-连续内存分配：内存碎片与分区的动态分配"><a href="#3-3-连续内存分配：内存碎片与分区的动态分配" class="headerlink" title="3.3 连续内存分配：内存碎片与分区的动态分配"></a>3.3 连续内存分配：内存碎片与分区的动态分配</h2><h3 id="内存碎片问题："><a href="#内存碎片问题：" class="headerlink" title="内存碎片问题："></a>内存碎片问题：</h3><p>碎片是指内存空闲不能被利用，碎片分为内部碎片和外部碎片，外部碎片是指分配单元之间不能被使用；内部碎片是指分配单元中不能被使用。</p>
+<h3 id="简单的内存管理方法："><a href="#简单的内存管理方法：" class="headerlink" title="简单的内存管理方法："></a>简单的内存管理方法：</h3><p>操作系统管理内存的简单方法：当一个程序准许运行在内存中时分配一个连续的空间；分配一个连续的内存空间给运行的程序以访问数据。</p>
+<h3 id="分区的动态分配策略："><a href="#分区的动态分配策略：" class="headerlink" title="分区的动态分配策略："></a>分区的动态分配策略：</h3><h4 id="1、首次适配："><a href="#1、首次适配：" class="headerlink" title="1、首次适配："></a>1、首次适配：</h4><p>概念：现在想要分配n 字节，那么就会从低地址开始查找，当查找到第一个空间大于n字节就结束返回。</p>
+<p>需求：</p>
+<ul>
+<li> 存在一个按照地址排序的空闲块列表</li>
+<li>分配需要寻找一个合适的分区</li>
+<li>重分配需要检查，看是否自由分区能够合并于相邻的空闲分区(回收)</li>
+</ul>
+<p>优点：</p>
+<ul>
+<li>简单、易于操作</li>
+<li>便于生成更大的空间块，向着空间地址的结尾(如果在前边找到后就结束，那么不会破坏之后的空间块)</li>
+</ul>
+<p>缺点：</p>
+<ul>
+<li>易于产生外部碎片(前后两个可利用空间块之间的小块不能被使用，会被忽视)</li>
+<li>不确定性</li>
+</ul>
+<h4 id="2、最优适配："><a href="#2、最优适配：" class="headerlink" title="2、最优适配："></a>2、最优适配：</h4><p>概念：会在空闲块间查找最适合的空间块，为了避免分割大的空闲块，同时为了最小化外部碎片产生的尺寸</p>
+<p>需求：</p>
+<ul>
+<li>按照尺寸排列的空闲块列表</li>
+<li>分配需要查找一个合适的分区</li>
+<li>重分配需要搜索合并于相邻的空闲分区</li>
+</ul>
+<p>优点：</p>
+<ul>
+<li>当大部分是小尺寸时非常有效</li>
+<li>比较简单</li>
+</ul>
+<p>缺点：</p>
+<ul>
+<li>会产生外部碎片</li>
+<li>重分配慢</li>
+<li>易于产生很多没用的微小碎片</li>
+</ul>
+<h4 id="3、最差适配："><a href="#3、最差适配：" class="headerlink" title="3、最差适配："></a>3、最差适配：</h4><p>概念：为了分配n字节，使用最大的空闲块，以至块的尺寸比n大</p>
+<p>需求：</p>
+<ul>
+<li>按尺寸排列的空闲块</li>
+<li>分配很快(每次获得最大的分区)</li>
+<li>重分配需要合并于相邻的空闲分区</li>
+</ul>
+<p>优点：对于分配的是中等尺寸效果最好</p>
+<p>缺点：</p>
+<ul>
+<li>重分配慢</li>
+<li>会产生外部碎片</li>
+<li>易于破坏大的空闲块以至于需要分配大分区时无法被分配</li>
+</ul>
+<h2 id="3-4-连续内存分配：压缩式与交换式碎片整理"><a href="#3-4-连续内存分配：压缩式与交换式碎片整理" class="headerlink" title="3.4 连续内存分配：压缩式与交换式碎片整理"></a>3.4 连续内存分配：压缩式与交换式碎片整理</h2><h3 id="1、压缩式碎片整理（紧致）"><a href="#1、压缩式碎片整理（紧致）" class="headerlink" title="1、压缩式碎片整理（紧致）"></a>1、压缩式碎片整理（紧致）</h3><p> <img src="/passageImg/%E7%AC%AC%E4%B8%89%E7%AB%A0%E3%80%81%E8%BF%9E%E7%BB%AD%E5%BC%8F%E5%86%85%E5%AD%98%E5%88%86%E9%85%8D.assets/image-20200918111237501.png" srcset="/img/loading.gif"></p>
+<ul>
+<li>重置程序以合并空洞</li>
+<li>要求所有程序是动态可重置的</li>
+<li>问题：何时重置，开销大</li>
+</ul>
+<p>如图：如果能够将程序占用的内存进行拷贝重分配，那么会产生更多可用的内存空间，但是仅仅靠软件来操作会有很大的开销，对系统的性能会有更大的影响。</p>
+<h3 id="2、交换式碎片整理"><a href="#2、交换式碎片整理" class="headerlink" title="2、交换式碎片整理"></a>2、交换式碎片整理</h3><p><img src="/passageImg/%E7%AC%AC%E4%B8%89%E7%AB%A0%E3%80%81%E8%BF%9E%E7%BB%AD%E5%BC%8F%E5%86%85%E5%AD%98%E5%88%86%E9%85%8D.assets/image-20200919205114421.png" srcset="/img/loading.gif"></p>
+<p>如果在运行P3时需要更多的内存，而此时P4正在等待，那么就可以将P4的数据拷贝到磁盘(虚拟内存)中，此时P3就获得了足够多的内存可以运行；当P4需要执行时再从磁盘上拷贝回 memory(主存)中即可。</p>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/408/">408</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E9%87%8D%E7%82%B9%E7%9F%A5%E8%AF%86/">计算机重点知识</a>
+                    
+                      <a class="hover-with-bg" href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">操作系统</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！</p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2020/11/20/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E2%80%94%E2%80%94%E7%AC%AC%E5%9B%9B%E7%AB%A0%E3%80%81%E9%9D%9E%E8%BF%9E%E7%BB%AD%E5%BC%8F%E5%86%85%E5%AD%98%E5%88%86%E9%85%8D/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">操作系统（四）、非连续内存分配</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2020/11/15/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E2%80%94%E2%80%94%E7%AC%AC%E4%BA%8C%E7%AB%A0%E3%80%81%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%9F%BA%E7%A1%80%E6%93%8D%E4%BD%9C/">
+                        <span class="hidden-mobile">操作系统（二）、操作系统基础操作</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+  </div>
+  
+
+  
+
+  
+</footer>
+
+<!-- SCRIPTS -->
+
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/debouncer.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/js/lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/tocbot@4.12.0/dist/tocbot.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4.3.0/anchor.min.js" ></script>
+
+
+
+  <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js" ></script>
+
+
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
+  </script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+  <script>
+    (function () {
+      var path = "/local-search.xml";
+      var inputArea = document.querySelector("#local-search-input");
+      inputArea.onclick = function () {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+        this.onclick = null
+      }
+    })()
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+
+</body>
+</html>

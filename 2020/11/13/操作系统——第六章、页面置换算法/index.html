@@ -1,0 +1,570 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=&#34;auto&#34;>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" type="image/png" href="/img/favicon.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="">
+  <meta name="author" content="John Doe">
+  <meta name="keywords" content="">
+  <title>操作系统（六）、页面置换算法 - Hexo</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10.4.0/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+  
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.8.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"⚡","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"onlypost":false},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null}}};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.3.0"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>~码先生</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                友链
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;</a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" href="javascript:">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/bg/passage.jpg') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="操作系统（六）、页面置换算法">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2020-11-13 21:11" pubdate>
+        2020年11月13日 晚上
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      2k 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      21
+       分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">操作系统（六）、页面置换算法</h1>
+            
+            <div class="markdown-body">
+              <h1 id="页面置换算法："><a href="#页面置换算法：" class="headerlink" title="页面置换算法："></a>页面置换算法：</h1><h2 id="1、页面置换算法的功能目标"><a href="#1、页面置换算法的功能目标" class="headerlink" title="1、页面置换算法的功能目标:"></a>1、页面置换算法的功能目标:</h2><p><img src="/passageImg/%E7%AC%AC%E5%85%AD%E7%AB%A0%E3%80%81%E9%A1%B5%E9%9D%A2%E7%BD%AE%E6%8D%A2%E7%AE%97%E6%B3%95.assets/image-20200925153915313.png" srcset="/img/loading.gif"></p>
+<p><strong>1.1 举例：</strong></p>
+<p><img src="/passageImg/%E7%AC%AC%E5%85%AD%E7%AB%A0%E3%80%81%E9%A1%B5%E9%9D%A2%E7%BD%AE%E6%8D%A2%E7%AE%97%E6%B3%95.assets/image-20200925154148351.png" srcset="/img/loading.gif"></p>
+<h2 id="2、局部页面置换算法："><a href="#2、局部页面置换算法：" class="headerlink" title="2、局部页面置换算法："></a>2、局部页面置换算法：</h2><h3 id="2-1最优页面置换算法："><a href="#2-1最优页面置换算法：" class="headerlink" title="2.1最优页面置换算法："></a>2.1最优页面置换算法：</h3><ul>
+<li>基本思路：当一个缺页中断发生时，对于保存在内存当中的每一个逻辑页面，计算在它的下一次访问之前，还需要等待多长时间，从中选择等待时间的最长的那个，作为被置换的页面；</li>
+<li>这只是一种理想情况，实际中无法实现，因为操作系统无法得知每一个页面需要等待多长时间之后才会被再次访问；</li>
+<li>可以用作其它算法的性能评价依据。</li>
+</ul>
+<p><strong>例子:</strong></p>
+<p>​    <img src="/passageImg/%E7%AC%AC%E5%85%AD%E7%AB%A0%E3%80%81%E9%A1%B5%E9%9D%A2%E7%BD%AE%E6%8D%A2%E7%AE%97%E6%B3%95.assets/image-20200925164301327.png" srcset="/img/loading.gif"></p>
+<h3 id=""><a href="#" class="headerlink" title=""></a></h3><h3 id="2-2先进先出算法-FIFO-："><a href="#2-2先进先出算法-FIFO-：" class="headerlink" title="2.2先进先出算法(FIFO)："></a>2.2先进先出算法(FIFO)：</h3><p><img src="/passageImg/%E7%AC%AC%E5%85%AD%E7%AB%A0%E3%80%81%E9%A1%B5%E9%9D%A2%E7%BD%AE%E6%8D%A2%E7%AE%97%E6%B3%95.assets/image-20200925164445812.png" srcset="/img/loading.gif"></p>
+<p><strong>例子：</strong></p>
+<p><img src="/passageImg/%E7%AC%AC%E5%85%AD%E7%AB%A0%E3%80%81%E9%A1%B5%E9%9D%A2%E7%BD%AE%E6%8D%A2%E7%AE%97%E6%B3%95.assets/image-20200925164709099.png" srcset="/img/loading.gif"></p>
+<h3 id="-1"><a href="#-1" class="headerlink" title=""></a></h3><h3 id="2-3最近最久未使用算法-LRU—Least-Recently-Used-："><a href="#2-3最近最久未使用算法-LRU—Least-Recently-Used-：" class="headerlink" title="2.3最近最久未使用算法(LRU—Least Recently Used)："></a>2.3最近最久未使用算法(LRU—Least Recently Used)：</h3><p><strong>（1）概念：</strong></p>
+<blockquote>
+<p>区别于FIFO算法，FIFO算法替换的是在内存中驻留时间最长的页面，是根据页面驻留时间长短来区分的；</p>
+<p>而最近最久未使用算法对应的是页面的访问，是根据最近页面访问来决定的。</p>
+</blockquote>
+<p><img src="/passageImg/%E7%AC%AC%E5%85%AD%E7%AB%A0%E3%80%81%E9%A1%B5%E9%9D%A2%E7%BD%AE%E6%8D%A2%E7%AE%97%E6%B3%95.assets/image-20200925165111660.png" srcset="/img/loading.gif"></p>
+<p><strong>（2）例子：</strong></p>
+<p><img src="/passageImg/%E7%AC%AC%E5%85%AD%E7%AB%A0%E3%80%81%E9%A1%B5%E9%9D%A2%E7%BD%AE%E6%8D%A2%E7%AE%97%E6%B3%95.assets/image-20200925165448038.png" srcset="/img/loading.gif"></p>
+<p><img src="/passageImg/%E7%AC%AC%E5%85%AD%E7%AB%A0%E3%80%81%E9%A1%B5%E9%9D%A2%E7%BD%AE%E6%8D%A2%E7%AE%97%E6%B3%95.assets/image-20200925170932956.png" srcset="/img/loading.gif"></p>
+<p><strong>通过栈来实现LRU算法（记录页面的访问次数及顺序）：</strong></p>
+<p><img src="/passageImg/%E7%AC%AC%E5%85%AD%E7%AB%A0%E3%80%81%E9%A1%B5%E9%9D%A2%E7%BD%AE%E6%8D%A2%E7%AE%97%E6%B3%95.assets/image-20200925171549687.png" srcset="/img/loading.gif"></p>
+<h3 id="-2"><a href="#-2" class="headerlink" title=""></a></h3><h3 id="2-4时钟页面置换算法-Clock-："><a href="#2-4时钟页面置换算法-Clock-：" class="headerlink" title="2.4时钟页面置换算法(Clock)："></a>2.4时钟页面置换算法(Clock)：</h3><p><strong>（1） 概念：</strong></p>
+<p> <img src="/passageImg/%E7%AC%AC%E5%85%AD%E7%AB%A0%E3%80%81%E9%A1%B5%E9%9D%A2%E7%BD%AE%E6%8D%A2%E7%AE%97%E6%B3%95.assets/image-20200925172816402.png" srcset="/img/loading.gif"></p>
+<blockquote>
+<p>时钟页面置换算法需要用到页表中的访问位，当一个页面被装入内存时，设置为0，一旦被访问就设置为1（置1的操作是由硬件来完成的）；各个页面组织成一个环形链表，指针指向最老的页面，当发生缺页中断时，去看指针指向的最老的页面的访问位，为0则淘汰。</p>
+<p>Clock算法因为只增加了一个used bit(一位)，因此总的来说比LRU算法更节省资源空间。</p>
+</blockquote>
+<p><strong>（2）时钟置换过程：</strong> </p>
+<p><img src="/passageImg/%E7%AC%AC%E5%85%AD%E7%AB%A0%E3%80%81%E9%A1%B5%E9%9D%A2%E7%BD%AE%E6%8D%A2%E7%AE%97%E6%B3%95.assets/image-20200925173529793.png" srcset="/img/loading.gif"></p>
+<blockquote>
+<p>首先内存中存放了5个页面，每个页面的 第一位为驻留位(判断该页是否存在于内存中)，第二位是访问位(判断该页最近是否被访问过，用于页面置换)，第三位是页帧号(用于查找对应的物理页面)。</p>
+<p>当需要访问Page6时，首先会看内存中是否还有空间，因为没有空间就需要用到页面置换，查看指针指向的最老的页(这里为Page 0)，由于Page 0的访问位为1(表示最近刚刚被访问过)，因此会将Page 0的访问位置0然后接着顺时针继续查找，遇到访问位为1则置0，直到遇到访问位为0的为止。当遇到访问为为0的页面后就会进行替换，<strong>将新的页面的访问位置1然后指针指向下一个页面。</strong></p>
+<p>​    </p>
+<p><strong>！注意：</strong>如果没有发生缺页异常，比如说需要访问Page 4，内存中恰好存在，会由硬件将对应页面的访问位置1，<strong>但是指针不会移动！！！</strong></p>
+</blockquote>
+<p><strong>（3）实例：</strong></p>
+<p><img src="/passageImg/%E7%AC%AC%E5%85%AD%E7%AB%A0%E3%80%81%E9%A1%B5%E9%9D%A2%E7%BD%AE%E6%8D%A2%E7%AE%97%E6%B3%95.assets/image-20200925175539767.png" srcset="/img/loading.gif"></p>
+<h3 id="2-5二次机会法-Enhanced-Clock-algorithm-："><a href="#2-5二次机会法-Enhanced-Clock-algorithm-：" class="headerlink" title="2.5二次机会法(Enhanced Clock algorithm)："></a>2.5二次机会法(Enhanced Clock algorithm)：</h3><p><strong>（1）概念：</strong></p>
+<p> <img src="/passageImg/%E7%AC%AC%E5%85%AD%E7%AB%A0%E3%80%81%E9%A1%B5%E9%9D%A2%E7%BD%AE%E6%8D%A2%E7%AE%97%E6%B3%95.assets/image-20200925175935327.png" srcset="/img/loading.gif"></p>
+<blockquote>
+<p>修改了Clock算法，新增了一个 drity bit位，该位主要用于记录页面访问过程中是否被修改过。</p>
+<p>对于那些只读的页，它们的dirty bit为0，那么当used bit也为0的时候会直接被替换掉，当used为1时会将used bit 置0；</p>
+<p>对于某些进行了修改的页面，修改过后它们的 dirty bit 会被置1，但是此时即使used bit 为0也仅仅会将used bit 置0，不会将该页给替换掉；而对于used bit 和　dirty bit 都为1 的页面，只会将used bit 置0；</p>
+<p><strong>这种做法保证了某些被修改过的页面不会轻易被替换掉，因为替换的过程是非常耗时的，操作系统需要将该页的数据写回到外存中来保证数据的统一。而对于只读的页面，由于数据始终是统一的，操作系统会将它们直接释放掉。</strong></p>
+</blockquote>
+<p><strong>（2）实例：</strong></p>
+<p><img src="/passageImg/%E7%AC%AC%E5%85%AD%E7%AB%A0%E3%80%81%E9%A1%B5%E9%9D%A2%E7%BD%AE%E6%8D%A2%E7%AE%97%E6%B3%95.assets/image-20200925181603230.png" srcset="/img/loading.gif"></p>
+<h3 id="2-6-最不常用算法-LFU-—-Least-Frequently-Used-："><a href="#2-6-最不常用算法-LFU-—-Least-Frequently-Used-：" class="headerlink" title="2.6 最不常用算法(LFU —- Least Frequently Used)："></a>2.6 最不常用算法(LFU —- Least Frequently Used)：</h3><p><strong>（1） 概念：</strong></p>
+<p><img src="/passageImg/%E7%AC%AC%E5%85%AD%E7%AB%A0%E3%80%81%E9%A1%B5%E9%9D%A2%E7%BD%AE%E6%8D%A2%E7%AE%97%E6%B3%95.assets/image-20200925195654474.png" srcset="/img/loading.gif"></p>
+<blockquote>
+<p>LFU算法是根据 页面数据访问的频率来决定替换哪个页面的。</p>
+</blockquote>
+<h3 id="2-7Belady现象及原因："><a href="#2-7Belady现象及原因：" class="headerlink" title="2.7Belady现象及原因："></a>2.7Belady现象及原因：</h3><p><strong>(1) Belady现象：</strong></p>
+<p>​       在采用FIFO 算法时，有时会出现分配的物理页面数增加，缺页率反而提高的异常现象；</p>
+<p><strong>(2) Belady现象的原因：</strong></p>
+<p>​       FIFO算法的置换特征与进程访问内存的动态特征是矛盾的，与置换算法的目标是不一致的(即替换较少使用的页面)，而FIFO算法替换调的是贮存在内存中时间最长的页面，因此，被它置换出去的页面不一定是进程不会访问的。</p>
+<p><strong>(3) Belady现象实例(增加了物理页面数，缺页率反而提高)：</strong></p>
+<p><img src="/passageImg/%E7%AC%AC%E5%85%AD%E7%AB%A0%E3%80%81%E9%A1%B5%E9%9D%A2%E7%BD%AE%E6%8D%A2%E7%AE%97%E6%B3%95.assets/image-20200926152811725.png" srcset="/img/loading.gif"></p>
+<p><img src="/passageImg/%E7%AC%AC%E5%85%AD%E7%AB%A0%E3%80%81%E9%A1%B5%E9%9D%A2%E7%BD%AE%E6%8D%A2%E7%AE%97%E6%B3%95.assets/image-20200926152947883.png" srcset="/img/loading.gif"></p>
+<blockquote>
+<p>FIFO算法只会体现页面存在内存中的时间，不会体现页面何时被访问的时间先后。</p>
+</blockquote>
+<p><img src="/passageImg/%E7%AC%AC%E5%85%AD%E7%AB%A0%E3%80%81%E9%A1%B5%E9%9D%A2%E7%BD%AE%E6%8D%A2%E7%AE%97%E6%B3%95.assets/image-20200926153453922.png" srcset="/img/loading.gif"></p>
+<blockquote>
+<p>为什么FIFO算法会产生Belady现象，而LRU算法不会产生Belady现象：</p>
+<p>​           解答：因为LRU算法符合栈算法的特点，而FIFO算法不符合栈算法的特点。栈算法的特点是给予的物理页帧越多，所产生的缺页中断次数就越少。</p>
+</blockquote>
+<p><strong>(4) LRU、FIFO和Clock算法的比较：</strong></p>
+<p><img src="/passageImg/%E7%AC%AC%E5%85%AD%E7%AB%A0%E3%80%81%E9%A1%B5%E9%9D%A2%E7%BD%AE%E6%8D%A2%E7%AE%97%E6%B3%95.assets/image-20200926153640373.png" srcset="/img/loading.gif"></p>
+<p><img src="/passageImg/%E7%AC%AC%E5%85%AD%E7%AB%A0%E3%80%81%E9%A1%B5%E9%9D%A2%E7%BD%AE%E6%8D%A2%E7%AE%97%E6%B3%95.assets/image-20200926154252082.png" srcset="/img/loading.gif"></p>
+<h2 id="3、全局页面置换算法："><a href="#3、全局页面置换算法：" class="headerlink" title="3、全局页面置换算法："></a>3、全局页面置换算法：</h2><h3 id="3-1-工作集模型："><a href="#3-1-工作集模型：" class="headerlink" title="3.1 工作集模型："></a>3.1 工作集模型：</h3><p><strong>（1）工作集模型[对程序局部性的分析与体现]:</strong></p>
+<p><img src="/passageImg/%E7%AC%AC%E5%85%AD%E7%AB%A0%E3%80%81%E9%A1%B5%E9%9D%A2%E7%BD%AE%E6%8D%A2%E7%AE%97%E6%B3%95.assets/image-20200926160612981.png" srcset="/img/loading.gif"></p>
+<p><img src="/passageImg/%E7%AC%AC%E5%85%AD%E7%AB%A0%E3%80%81%E9%A1%B5%E9%9D%A2%E7%BD%AE%E6%8D%A2%E7%AE%97%E6%B3%95.assets/image-20200926160842222.png" srcset="/img/loading.gif"></p>
+<p><strong>（2）例子：</strong></p>
+<p><img src="/passageImg/%E7%AC%AC%E5%85%AD%E7%AB%A0%E3%80%81%E9%A1%B5%E9%9D%A2%E7%BD%AE%E6%8D%A2%E7%AE%97%E6%B3%95.assets/image-20200926161208332.png" srcset="/img/loading.gif"></p>
+<p><img src="/passageImg/%E7%AC%AC%E5%85%AD%E7%AB%A0%E3%80%81%E9%A1%B5%E9%9D%A2%E7%BD%AE%E6%8D%A2%E7%AE%97%E6%B3%95.assets/image-20200926161310900.png" srcset="/img/loading.gif"></p>
+<p><strong>（3）工作集与常驻集的差异：</strong></p>
+<blockquote>
+<p>工作集：一个进程当前正在使用的逻辑页面的集合，该程序在访问过程中需要的页面是哪些，这些页面可以存在于内存中也可以不存在于内存中。可以用一个二元函数 <code>W(t,^)来表示：</code></p>
+<ul>
+<li>t是当前的执行时刻</li>
+<li><code>^</code>称为工作集窗口（working-set window），即一个定长的页面访问的时间窗口（^是不变的）</li>
+<li><code>w(t,^)=</code>在当前的时刻t之前的 <code>^</code>时间窗口当中的所有页面所组成的集合(随着t的变化，该集合也在不断地变化)；</li>
+<li><code>| W(t,^) |</code>,值工作集的大小，集页面的数目；</li>
+</ul>
+<p>常驻集：在当前时刻，进程实际驻留在内存当中的页面集合。</p>
+<ul>
+<li>工作集是进程在运行过程中固有的性质，而常驻集取决于系统分配给进程的物理页面的数目，以及所采用的页面置换算法；</li>
+<li>如果一个进程的整个工作集都在内存当中，即常驻集包含或者等于工作集，那么进程将很顺利地进行，而不会产生太多的缺页中断（直到工作集发生剧烈的变动，从而过渡到另外一个状态）；</li>
+<li>当进程常驻集的大小达到某个数目以后，再给它分配更多的物理页面，缺页率也不会明显的下降。</li>
+</ul>
+</blockquote>
+<h3 id="3-2-两个全局页面置换算法："><a href="#3-2-两个全局页面置换算法：" class="headerlink" title="3.2 两个全局页面置换算法："></a>3.2 两个全局页面置换算法：</h3><p><strong>（1）基于固定窗口的工作集页面置换算法：</strong></p>
+<p><img src="/passageImg/%E7%AC%AC%E5%85%AD%E7%AB%A0%E3%80%81%E9%A1%B5%E9%9D%A2%E7%BD%AE%E6%8D%A2%E7%AE%97%E6%B3%95.assets/image-20200926164241701.png" srcset="/img/loading.gif"></p>
+<blockquote>
+<p>随着时间的迁移，当前在物理内存中放哪些页完全取决于当前执行时刻和工作集大小，如果某一页超出了工作集窗口的界限，它就会被换出，如果此页被写过，那么会先写回到外存然后再被换出。</p>
+</blockquote>
+<p><strong>（2）基于缺页率的页面置换算法：</strong></p>
+<p><img src="/passageImg/%E7%AC%AC%E5%85%AD%E7%AB%A0%E3%80%81%E9%A1%B5%E9%9D%A2%E7%BD%AE%E6%8D%A2%E7%AE%97%E6%B3%95.assets/image-20200926164535645.png" srcset="/img/loading.gif"></p>
+<p><img src="/passageImg/%E7%AC%AC%E5%85%AD%E7%AB%A0%E3%80%81%E9%A1%B5%E9%9D%A2%E7%BD%AE%E6%8D%A2%E7%AE%97%E6%B3%95.assets/image-20200926164657462.png" srcset="/img/loading.gif"></p>
+<blockquote>
+<p>若运行的程序的缺页率过高，则通过工作集来分配更多的物理页面；若运行的程序的缺页率过小，则通过减少工作集来减少他的物理页面数。力图试运行的每个程序的缺页率保持在一个合理的范围内。</p>
+</blockquote>
+<p>​              <strong>根据缺页率改变工作集大小的做法：</strong></p>
+<p><img src="/passageImg/%E7%AC%AC%E5%85%AD%E7%AB%A0%E3%80%81%E9%A1%B5%E9%9D%A2%E7%BD%AE%E6%8D%A2%E7%AE%97%E6%B3%95.assets/image-20200926165133278.png" srcset="/img/loading.gif"></p>
+<p>​             <strong>实例：</strong></p>
+<p><img src="/passageImg/%E7%AC%AC%E5%85%AD%E7%AB%A0%E3%80%81%E9%A1%B5%E9%9D%A2%E7%BD%AE%E6%8D%A2%E7%AE%97%E6%B3%95.assets/image-20200926165617716.png" srcset="/img/loading.gif"></p>
+<h3 id="3-3-抖动问题-thrashing"><a href="#3-3-抖动问题-thrashing" class="headerlink" title="3.3 抖动问题(thrashing):"></a>3.3 抖动问题(thrashing):</h3><p><img src="/passageImg/%E7%AC%AC%E5%85%AD%E7%AB%A0%E3%80%81%E9%A1%B5%E9%9D%A2%E7%BD%AE%E6%8D%A2%E7%AE%97%E6%B3%95.assets/image-20200926165940586.png" srcset="/img/loading.gif"></p>
+<p><img src="/passageImg/%E7%AC%AC%E5%85%AD%E7%AB%A0%E3%80%81%E9%A1%B5%E9%9D%A2%E7%BD%AE%E6%8D%A2%E7%AE%97%E6%B3%95.assets/image-20200926170453250.png" srcset="/img/loading.gif"></p>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/408/">408</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E9%87%8D%E7%82%B9%E7%9F%A5%E8%AF%86/">计算机重点知识</a>
+                    
+                      <a class="hover-with-bg" href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">操作系统</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！</p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2020/11/13/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E2%80%94%E2%80%94%E7%AC%AC%E4%BA%94%E7%AB%A0%E3%80%81%E8%99%9A%E6%8B%9F%E5%86%85%E5%AD%98/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">操作系统（五）、虚拟内存</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2020/11/02/t20~t40/">
+                        <span class="hidden-mobile">牛客剑指offer(20~40题总结)</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+  </div>
+  
+
+  
+
+  
+</footer>
+
+<!-- SCRIPTS -->
+
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/debouncer.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/js/lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/tocbot@4.12.0/dist/tocbot.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4.3.0/anchor.min.js" ></script>
+
+
+
+  <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js" ></script>
+
+
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
+  </script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+  <script>
+    (function () {
+      var path = "/local-search.xml";
+      var inputArea = document.querySelector("#local-search-input");
+      inputArea.onclick = function () {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+        this.onclick = null
+      }
+    })()
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+
+</body>
+</html>
