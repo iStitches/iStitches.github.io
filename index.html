@@ -254,6 +254,291 @@
     
     
       <div class="col-12 col-md-4 m-auto index-img">
+        <a href="/2021/04/10/HashMap%E6%BA%90%E7%A0%81/" target="_self">
+          <img src="/passageImg/Synchorized%E5%89%96%E6%9E%90.assets/yuanma.jpg" srcset="/img/loading.gif" alt="HashMap源码解读">
+        </a>
+      </div>
+    
+    <article class="col-12 col-md-8 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2021/04/10/HashMap%E6%BA%90%E7%A0%81/">HashMap源码解读</a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2021/04/10/HashMap%E6%BA%90%E7%A0%81/">
+          
+          
+            
+          
+          HashMap一、JDK 1.7 的HashMap1. 数据结构123public class HashMap&lt;K,V&gt;         extends AbstractMap&lt;K,V&gt;          implements Map&lt;K,V&gt;, Cloneable, Serializable
+
+HashMap 继承了 AbstractMap 抽象类，实现了 C
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2021-04-10 18:47" pubdate>
+              2021-04-10
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/%E6%BA%90%E7%A0%81%E8%A7%A3%E8%AF%BB/">源码解读</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/java%E9%AB%98%E7%BA%A7%E6%B7%B1%E5%85%A5/">java高级深入</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+      <div class="col-12 col-md-4 m-auto index-img">
+        <a href="/2021/04/06/concurrentHashMap%E6%BA%90%E7%A0%81/" target="_self">
+          <img src="/passageImg/Synchorized%E5%89%96%E6%9E%90.assets/yuanma.jpg" srcset="/img/loading.gif" alt="ConcurrentHashMap源码解读">
+        </a>
+      </div>
+    
+    <article class="col-12 col-md-8 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2021/04/06/concurrentHashMap%E6%BA%90%E7%A0%81/">ConcurrentHashMap源码解读</a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2021/04/06/concurrentHashMap%E6%BA%90%E7%A0%81/">
+          
+          
+            
+          
+          引言由于 HashMap 在多线程情况下存在线程安全的问题，因此在多线程情况下不会去选择使用这种结构，相应的我们会有几种方案去解决：
+
+采用线程安全的 HashTable
+使用 Collections.synchorizedMap(Map) 来创建线程安全的Map集合；
+使用 ConcurrentHashMap
+
+但是由于效率和并发度的原因，往往会舍弃前两种选择第三种方式。
+1.7 中的Concu
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2021-04-06 21:49" pubdate>
+              2021-04-06
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/%E6%BA%90%E7%A0%81%E8%A7%A3%E8%AF%BB/">源码解读</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/java%E9%AB%98%E7%BA%A7%E6%B7%B1%E5%85%A5/">java高级深入</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+      <div class="col-12 col-md-4 m-auto index-img">
+        <a href="/2021/04/03/ReentrantLock_AQS/" target="_self">
+          <img src="/passageImg/Synchorized%E5%89%96%E6%9E%90.assets/yuanma.jpg" srcset="/img/loading.gif" alt="ReentrantLock源码解读">
+        </a>
+      </div>
+    
+    <article class="col-12 col-md-8 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2021/04/03/ReentrantLock_AQS/">ReentrantLock源码解读</a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2021/04/03/ReentrantLock_AQS/">
+          
+          
+            
+          
+          一、Java中的锁1. Java当中有哪些锁？公平锁、非公平锁、读写锁、共享锁、互斥锁、自旋锁、偏向锁、轻量级锁、重量级锁
+2. ReentrantLock锁与 Sync锁的区别12345678910111213141516171819public class test&#123;   //定义一个静态对象   static A a = new A();     //定义juc下的 Reentra
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2021-04-03 18:47" pubdate>
+              2021-04-03
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/%E6%BA%90%E7%A0%81%E8%A7%A3%E8%AF%BB/">源码解读</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/java%E9%AB%98%E7%BA%A7%E6%B7%B1%E5%85%A5/">java高级深入</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+      <div class="col-12 col-md-4 m-auto index-img">
+        <a href="/2021/04/02/ArrayList%E3%80%81LinkedList%E3%80%81Vector/" target="_self">
+          <img src="/passageImg/Synchorized%E5%89%96%E6%9E%90.assets/yuanma.jpg" srcset="/img/loading.gif" alt="ArrayList、LinkedList、Vector源码解读">
+        </a>
+      </div>
+    
+    <article class="col-12 col-md-8 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2021/04/02/ArrayList%E3%80%81LinkedList%E3%80%81Vector/">ArrayList、LinkedList、Vector源码解读</a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2021/04/02/ArrayList%E3%80%81LinkedList%E3%80%81Vector/">
+          
+          
+            
+          
+          ArrayList、LinkedList、Vector 三者差异比较一、ArrayList、LinkedList、Vector的区别（1）底层结构ArrayList 的底层是基于动态数组来实现的，LinkedList 的底层是基于拥有头尾指针的双向链表来实现的。
+（2）继承关系ArrayList 继承于 AbstractList 抽象类，实现了 Serializable、Cloneable、Ran
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2021-04-02 21:44" pubdate>
+              2021-04-02
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/%E6%BA%90%E7%A0%81%E8%A7%A3%E8%AF%BB/">源码解读</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/java%E9%AB%98%E7%BA%A7%E6%B7%B1%E5%85%A5/">java高级深入</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+      <div class="col-12 col-md-4 m-auto index-img">
+        <a href="/2021/04/01/Synchorized%E5%89%96%E6%9E%90/" target="_self">
+          <img src="/passageImg/Synchorized%E5%89%96%E6%9E%90.assets/yuanma.jpg" srcset="/img/loading.gif" alt="Synchronized源码解读">
+        </a>
+      </div>
+    
+    <article class="col-12 col-md-8 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2021/04/01/Synchorized%E5%89%96%E6%9E%90/">Synchronized源码解读</a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2021/04/01/Synchorized%E5%89%96%E6%9E%90/">
+          
+          
+            
+          
+          Synchorized一、Synchorized 的基本使用Synchorized的作用：
+
+原子性：对同步代码块的访问是互斥执行的。
+可见性：保证共享变量的修改能够及时可见，其实就是Java内存模型中的 “对同一个变量 unlock之前会将工作内存中变量的值同步到主内存中；对同一个变量的 lock 之前，则会清空工作内存中此变量的值，然后将主内存中的变量值同步到工作内存中”。
+有序性：一个 un
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2021-04-01 20:47" pubdate>
+              2021-04-01
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/%E6%BA%90%E7%A0%81%E8%A7%A3%E8%AF%BB/">源码解读</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/java%E9%AB%98%E7%BA%A7%E6%B7%B1%E5%85%A5/">java高级深入</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+      <div class="col-12 col-md-4 m-auto index-img">
         <a href="/2021/03/20/%E5%85%A5%E9%97%A8/" target="_self">
           <img src="/passageImg/%E5%85%A5%E9%97%A8.assets/zookeeper.jpg" srcset="/img/loading.gif" alt="Zookeeper(一)、入门">
         </a>
@@ -461,336 +746,11 @@ TCP/IP 运输层端口：  16位二进制；
     </article>
   </div>
 
-  <div class="row mx-auto index-card">
-    
-    
-      <div class="col-12 col-md-4 m-auto index-img">
-        <a href="/2021/03/01/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E2%80%94%E2%80%94%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%E5%B1%82/" target="_self">
-          <img src="/passageImg/%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%E5%B1%82.assets/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C.jpg" srcset="/img/loading.gif" alt="计网（一）、数据链路层">
-        </a>
-      </div>
-    
-    <article class="col-12 col-md-8 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2021/03/01/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E2%80%94%E2%80%94%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%E5%B1%82/">计网（一）、数据链路层</a>
-      </h1>
-
-      <p class="index-excerpt">
-        <a href="/2021/03/01/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E2%80%94%E2%80%94%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%E5%B1%82/">
-          
-          
-            
-          
-          数据链路层一、基本概念
-链路：一条无源的点到点的物理线路段，中间没有任何其它的交换节点；
-
-数据链路：除了物理线路外，还必须有通信协议来控制这些数据的传输；把这些协议的硬件和软件加到链路上，就构成了数据链路；
-最常用的方法是：适配器（网卡）来实现软件和硬件，网卡一般都包括了数据链路层和物理层这两层；
-
-数据链路层传送的是帧。网络层将 ip数据报传入数据链路层封装成帧，数据链路层再将帧传送给物理层转
-        </a>
-      </p>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2021-03-01 19:06" pubdate>
-              2021-03-01
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-category"></i>
-            
-              <a href="/categories/408/">408</a>
-            
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/">计算机网络</a>
-            
-              <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E9%87%8D%E7%82%B9%E7%9F%A5%E8%AF%86/">计算机重点知识</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-      <div class="col-12 col-md-4 m-auto index-img">
-        <a href="/2020/11/20/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E2%80%94%E2%80%94%E7%AC%AC%E5%9B%9B%E7%AB%A0%E3%80%81%E9%9D%9E%E8%BF%9E%E7%BB%AD%E5%BC%8F%E5%86%85%E5%AD%98%E5%88%86%E9%85%8D/" target="_self">
-          <img src="/passageImg/%E9%9D%9E%E8%BF%9E%E7%BB%AD%E5%86%85%E5%AD%98%E5%88%86%E9%85%8D.assets/cover.jpg" srcset="/img/loading.gif" alt="操作系统（四）、非连续内存分配">
-        </a>
-      </div>
-    
-    <article class="col-12 col-md-8 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2020/11/20/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E2%80%94%E2%80%94%E7%AC%AC%E5%9B%9B%E7%AB%A0%E3%80%81%E9%9D%9E%E8%BF%9E%E7%BB%AD%E5%BC%8F%E5%86%85%E5%AD%98%E5%88%86%E9%85%8D/">操作系统（四）、非连续内存分配</a>
-      </h1>
-
-      <p class="index-excerpt">
-        <a href="/2020/11/20/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E2%80%94%E2%80%94%E7%AC%AC%E5%9B%9B%E7%AB%A0%E3%80%81%E9%9D%9E%E8%BF%9E%E7%BB%AD%E5%BC%8F%E5%86%85%E5%AD%98%E5%88%86%E9%85%8D/">
-          
-          
-            
-          
-          非连续内存分配：1.1、为什么需要非连续内存分配：
-
-
-1.2 分段(Segmentation)：
-程序的分段地址空间：
-​     逻辑地址空间是连续的，物理地址是离散的中间需要映射机制来建立联系。
-
-通过硬件将内存中的不同区域划分，分别分开进行管理。如果用软件来实现就会涉及到拷贝，开销是很大的。
-分段寻址方案：
-
-
-一个段指一个 “内存块”，是一个逻辑地址空间。    
-方式一： 采用 段号(
-        </a>
-      </p>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2020-11-20 21:11" pubdate>
-              2020-11-20
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-category"></i>
-            
-              <a href="/categories/408/">408</a>
-            
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E9%87%8D%E7%82%B9%E7%9F%A5%E8%AF%86/">计算机重点知识</a>
-            
-              <a href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">操作系统</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-      <div class="col-12 col-md-4 m-auto index-img">
-        <a href="/2020/11/17/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E2%80%94%E2%80%94%E7%AC%AC%E4%B8%89%E7%AB%A0%E3%80%81%E8%BF%9E%E7%BB%AD%E5%BC%8F%E5%86%85%E5%AD%98%E5%88%86%E9%85%8D/" target="_self">
-          <img src="/passageImg/%E8%BF%9E%E7%BB%AD%E5%86%85%E5%AD%98%E5%88%86%E9%85%8D.assets/cover.jpg" srcset="/img/loading.gif" alt="操作系统（三）、连续内存分配">
-        </a>
-      </div>
-    
-    <article class="col-12 col-md-8 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2020/11/17/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E2%80%94%E2%80%94%E7%AC%AC%E4%B8%89%E7%AB%A0%E3%80%81%E8%BF%9E%E7%BB%AD%E5%BC%8F%E5%86%85%E5%AD%98%E5%88%86%E9%85%8D/">操作系统（三）、连续内存分配</a>
-      </h1>
-
-      <p class="index-excerpt">
-        <a href="/2020/11/17/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E2%80%94%E2%80%94%E7%AC%AC%E4%B8%89%E7%AB%A0%E3%80%81%E8%BF%9E%E7%BB%AD%E5%BC%8F%E5%86%85%E5%AD%98%E5%88%86%E9%85%8D/">
-          
-          
-            
-          
-          操作系统的内存管理：3.1 计算机体系结构及内存分层体系
-
-操作系统的内存层次：
-操作系统在内存管理方面需要完成的目标：
-抽象： 逻辑地址空间
-保护： 独立地址空间(保证多个进程间不会相互干扰)
-共享： 访问共同的地址空间（当多个进程需要操作同一块操作地址时，需要共享地址空间）
-虚拟化： 由于缓存及寄存器的存储空间有限，当存储大量数据时，就需要使用虚拟空间
-
-操作系统管理内存的不同方法：
-程序重定
-        </a>
-      </p>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2020-11-17 21:11" pubdate>
-              2020-11-17
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-category"></i>
-            
-              <a href="/categories/408/">408</a>
-            
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E9%87%8D%E7%82%B9%E7%9F%A5%E8%AF%86/">计算机重点知识</a>
-            
-              <a href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">操作系统</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-      <div class="col-12 col-md-4 m-auto index-img">
-        <a href="/2020/11/15/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E2%80%94%E2%80%94%E7%AC%AC%E4%BA%8C%E7%AB%A0%E3%80%81%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%9F%BA%E7%A1%80%E6%93%8D%E4%BD%9C/" target="_self">
-          <img src="/passageImg/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%9F%BA%E7%A1%80%E6%93%8D%E4%BD%9C.assets/cover.jpg" srcset="/img/loading.gif" alt="操作系统（二）、操作系统基础操作">
-        </a>
-      </div>
-    
-    <article class="col-12 col-md-8 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2020/11/15/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E2%80%94%E2%80%94%E7%AC%AC%E4%BA%8C%E7%AB%A0%E3%80%81%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%9F%BA%E7%A1%80%E6%93%8D%E4%BD%9C/">操作系统（二）、操作系统基础操作</a>
-      </h1>
-
-      <p class="index-excerpt">
-        <a href="/2020/11/15/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E2%80%94%E2%80%94%E7%AC%AC%E4%BA%8C%E7%AB%A0%E3%80%81%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%9F%BA%E7%A1%80%E6%93%8D%E4%BD%9C/">
-          
-          
-            
-          
-          1.  操作系统的启动 异常和中断启动:OS的启动加载是通过一步步来执行实现的，主要涉及到 BIOS(基本I/O处理系统,检查外设硬件能否正常工作)、DISK(存放OS)、Bootloader(加载OS，能够让OS从硬盘加载到内存中去).
-
-通电之后BIOS就会从一个特定的地址开始执行(CS:IP = 0xf0000:fff0   CS是段寄存器,IP是指令寄存器) ;
-然后接下来会完成一系列操作
-        </a>
-      </p>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2020-11-15 21:11" pubdate>
-              2020-11-15
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-category"></i>
-            
-              <a href="/categories/408/">408</a>
-            
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E9%87%8D%E7%82%B9%E7%9F%A5%E8%AF%86/">计算机重点知识</a>
-            
-              <a href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">操作系统</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-      <div class="col-12 col-md-4 m-auto index-img">
-        <a href="/2020/11/13/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E2%80%94%E2%80%94%E7%AC%AC%E4%B8%83%E7%AB%A0%E3%80%81%E8%BF%9B%E7%A8%8B%E5%92%8C%E7%BA%BF%E7%A8%8B/" target="_self">
-          <img src="/passageImg/%E8%BF%9B%E7%A8%8B%E5%92%8C%E7%BA%BF%E7%A8%8B.assets/cover.jpg" srcset="/img/loading.gif" alt="操作系统（七）、进程和线程">
-        </a>
-      </div>
-    
-    <article class="col-12 col-md-8 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2020/11/13/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E2%80%94%E2%80%94%E7%AC%AC%E4%B8%83%E7%AB%A0%E3%80%81%E8%BF%9B%E7%A8%8B%E5%92%8C%E7%BA%BF%E7%A8%8B/">操作系统（七）、进程和线程</a>
-      </h1>
-
-      <p class="index-excerpt">
-        <a href="/2020/11/13/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E2%80%94%E2%80%94%E7%AC%AC%E4%B8%83%E7%AB%A0%E3%80%81%E8%BF%9B%E7%A8%8B%E5%92%8C%E7%BA%BF%E7%A8%8B/">
-          
-          
-            
-          
-          进程管理：1、进程(PROCESS)管理1.1 进程的定义：
-进程：一个具有一定独立功能的程序在一个数据集合上的一次动态执行过程。
-
-1.2 进程的组成：
-一个进程应该包括：
-
-程序的代码；
-程序处理的数据；
-程序计数器中的值，指示下一条将要运行的指令；
-一组通用的寄存器的当前值，堆，栈
-一组系统资源（如打开的文件）
-
-总之，进程包含了正在运行的一个程序的所有状态信息
-
-1.3 进程与程序的联系：
-        </a>
-      </p>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2020-11-13 21:11" pubdate>
-              2020-11-13
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-category"></i>
-            
-              <a href="/categories/408/">408</a>
-            
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E9%87%8D%E7%82%B9%E7%9F%A5%E8%AF%86/">计算机重点知识</a>
-            
-              <a href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">操作系统</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
 
 
   <nav aria-label="navigation">
     <span class="pagination" id="pagination">
-      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/2/"><i class="iconfont icon-arrowright"></i></a>
+      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/2/"><i class="iconfont icon-arrowright"></i></a>
     </span>
   </nav>
   
