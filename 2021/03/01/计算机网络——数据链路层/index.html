@@ -270,12 +270,12 @@
 <ul>
 <li>字符填充（同步传输时使用）：</li>
 </ul>
-<img src="/passageImg/数据链路层.assets/image-20210321162808891.png" srcset="/img/loading.gif" alt="image-20210321162808891" style="zoom: 67%;" />
+<img src="/passageImg/计算机网络_数据链路层.assets/image-20210321162808891.png" srcset="/img/loading.gif" alt="image-20210321162808891" style="zoom: 67%;" />
 
 <ul>
 <li>零比特传输：</li>
 </ul>
-<img src="/passageImg/数据链路层.assets/image-20210321162932524.png" srcset="/img/loading.gif" alt="image-20210321162932524" style="zoom:67%;" />
+<img src="/passageImg/计算机网络_数据链路层.assets/image-20210321162932524.png" srcset="/img/loading.gif" alt="image-20210321162932524" style="zoom:67%;" />
 
 <ul>
 <li></li>
@@ -316,7 +316,7 @@
 <li>链路控制协议 LCP（Link Control Protocol）：用来建立、检测链路连接的协议；</li>
 <li>网络控制协议 NCP（Network Control Protocol）：用来支持多种网络层协议；</li>
 </ol>
-<p><img src="/passageImg/%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%E5%B1%82.assets/image-20210321162612678.png" srcset="/img/loading.gif" alt="image-20210321162612678"></p>
+<p><img src="/passageImg/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C_%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%E5%B1%82.assets/image-20210321162612678.png" srcset="/img/loading.gif" alt="image-20210321162612678"></p>
 <h2 id="四、以太网"><a href="#四、以太网" class="headerlink" title="四、以太网"></a>四、以太网</h2><blockquote>
 <p>适配器：计算机与外界局域网的连接是通过通信适配器(网卡)进行的。</p>
 </blockquote>
@@ -326,13 +326,13 @@
 <li>在计算机操作系统中安装设备；在主板安装适配器时必须将管理适配器的设备驱动程序安装在计算机操作系统中；</li>
 <li>实现以太网协议；</li>
 </ol>
-<p><img src="/passageImg/%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%E5%B1%82.assets/image-20210321164536629.png" srcset="/img/loading.gif" alt="image-20210321164536629"></p>
+<p><img src="/passageImg/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C_%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%E5%B1%82.assets/image-20210321164536629.png" srcset="/img/loading.gif" alt="image-20210321164536629"></p>
 <h3 id="2-以太网-MAC网帧"><a href="#2-以太网-MAC网帧" class="headerlink" title="2. 以太网 MAC网帧"></a>2. 以太网 MAC网帧</h3><blockquote>
 <p>MAC地址：媒体接入层上使用的地址，也叫做物理地址、硬件地址或者链路地址，由网络设备制造商生产时写在硬件内部。MAC地址与网络无关，也即无论将带有这个地址的硬件设备接入到网络的何处，都有相同的MAC地址。现在一般采用 6字节(48位)的MAC地址。前24位由 IEEE 注册，后24位由厂家指定。</p>
 <p>在OSI 模型中，第三层网络层负责 IP 地址，第二层数据链路层则负责 MAC 地址。因此一个主机会有一个唯一的MAC地址，而每个网络位置会有一个唯一的IP地址。工作在数据链路层的交换机维护着 计算机MAC地址和MAC地址表，交换机根据接收到的数据帧中的 “目的MAC地址” 字段来转发数据帧。</p>
 </blockquote>
 <p>以太网 MAC帧的格式：</p>
-<p><img src="/passageImg/%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%E5%B1%82.assets/20131017004657921" srcset="/img/loading.gif" alt="img"></p>
+<p><img src="/passageImg/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C_%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%E5%B1%82.assets/20131017004657921" srcset="/img/loading.gif" alt="img"></p>
 <p>组成：</p>
 <ul>
 <li>6字节长的目的地址和源地址；</li>
@@ -356,14 +356,14 @@
 <h3 id="4-CSMA-CD-协议："><a href="#4-CSMA-CD-协议：" class="headerlink" title="4. CSMA/CD 协议："></a>4. CSMA/CD 协议：</h3><blockquote>
 <p>A 和 B分别双向发送数据，那么一定会在某一时刻两列电磁波相遇，相遇后的电磁波会被叠加，那么在两个接收端接收到的信号数据都将被废弃。</p>
 </blockquote>
-<img src="/passageImg/数据链路层.assets/image-20210321193103480.png" srcset="/img/loading.gif" alt="image-20210321193103480" style="zoom:67%;" />
+<img src="/passageImg/计算机网络_数据链路层.assets/image-20210321193103480.png" srcset="/img/loading.gif" alt="image-20210321193103480" style="zoom:67%;" />
 
 
 
 
 
 <p>解决方法： </p>
-<img src="/passageImg/数据链路层.assets/image-20210321194923942.png" srcset="/img/loading.gif" alt="image-20210321194923942" style="zoom: 67%;" />
+<img src="/passageImg/计算机网络_数据链路层.assets/image-20210321194923942.png" srcset="/img/loading.gif" alt="image-20210321194923942" style="zoom: 67%;" />
 
 <p><strong>二进制指数类型退避算法：</strong></p>
 <p>发生碰撞的站在停止发送数据后，要推迟一个随机时间才能再次发送数据。</p>
@@ -375,11 +375,11 @@
 <p>因此 64字节就变成了有效帧的最短长度，如果小于这个值说明这个帧的数据不完整，在传送过程中可能发生了冲突，因此会被丢弃。</p>
 <p>因为发送过程总可能会发生冲突，为了保证信道利用率，就必须增加帧的长度，因此最短帧长就是争用期内能够发送的数据量。</p>
 </blockquote>
-<img src="/passageImg/数据链路层.assets/image-20210321200728032.png" srcset="/img/loading.gif" alt="image-20210321200728032" style="zoom:80%;" />
+<img src="/passageImg/计算机网络_数据链路层.assets/image-20210321200728032.png" srcset="/img/loading.gif" alt="image-20210321200728032" style="zoom:80%;" />
 
 <p>总结：**先听后发 → 边听边发 → 冲突停止 → 延迟后发 **</p>
 <p>​    </p>
-<h2 id="五、集线器"><a href="#五、集线器" class="headerlink" title="五、集线器"></a>五、集线器</h2><p><img src="/passageImg/%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%E5%B1%82.assets/image-20210321201453233.png" srcset="/img/loading.gif" alt="image-20210321201453233"></p>
+<h2 id="五、集线器"><a href="#五、集线器" class="headerlink" title="五、集线器"></a>五、集线器</h2><p><img src="/passageImg/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C_%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%E5%B1%82.assets/image-20210321201453233.png" srcset="/img/loading.gif" alt="image-20210321201453233"></p>
 <p>集线器仅仅将计算机之间的连接由总线方式改变为星型结构；在逻辑上仍然是一个总线网，各工作站使用的还是 CSMA/CD 协议，并共享逻辑上的总线。是一个物理层的设备。</p>
 <p><strong>集线器和交换机的区别：</strong></p>
 <ol>
@@ -396,7 +396,7 @@
 <p>交换机上两个端口进行通信时，它们之间的通道是相互独立的，可以进行全双工通信。</p>
 </li>
 </ol>
-<img src="/passageImg/数据链路层.assets/image-20210321210839931.png" srcset="/img/loading.gif" alt="image-20210321210839931" style="zoom:80%;" />
+<img src="/passageImg/计算机网络_数据链路层.assets/image-20210321210839931.png" srcset="/img/loading.gif" alt="image-20210321210839931" style="zoom:80%;" />
 
 
 
@@ -406,7 +406,7 @@
 <p>当增加了冗余链路时，交换机自学习的过程就可能导致以太网帧在网络的某个环路中无限制地兜圈子。这样就在网络中产生了环路；</p>
 <p>例如 主机A的数据帧的目的地址为1号端口，那么就会通过交换机一的3号端口转发给交换机二的1号端口；</p>
 <p>同时交换机二接收到数据帧后发现目的MAC地址为4号端口，那么又会通过交换机二的2号端口发送给交换机一的4号端口，这样就形成了回路。数据帧会在交换机一和交换机二之间来回不停地传输，这样就消耗掉了很多资源。</p>
-<img src="/passageImg/数据链路层.assets/image-20210325180049945.png" srcset="/img/loading.gif" alt="image-20210325180049945" style="zoom:67%;" />
+<img src="/passageImg/计算机网络_数据链路层.assets/image-20210325180049945.png" srcset="/img/loading.gif" alt="image-20210325180049945" style="zoom:67%;" />
 
 
 
@@ -416,7 +416,7 @@
 <h3 id="2-虚拟局域网"><a href="#2-虚拟局域网" class="headerlink" title="2. 虚拟局域网"></a>2. 虚拟局域网</h3><blockquote>
 <p>当多个主机处在不同的局域网环境中，它们是不能直接进行数据交换的；但是通过连接在同一个虚拟局域网环境下，多个主机之间能够通过广播的形式交换数据。</p>
 </blockquote>
-<img src="/passageImg/数据链路层.assets/image-20210325181145180.png" srcset="/img/loading.gif" alt="image-20210325181145180" style="zoom:67%;" />
+<img src="/passageImg/计算机网络_数据链路层.assets/image-20210325181145180.png" srcset="/img/loading.gif" alt="image-20210325181145180" style="zoom:67%;" />
 
 <p>如图，A1、A2、A3、A4处于同一虚拟局域网 VLAN1中，它们虽然没有连接在同一以太网交换机上但是仍然能够交换数据信息；</p>
 <p>A1、A2、B1、C1虽然连接在同一交换机下，但是所处的虚拟局域网不同，因此不能交换数据。</p>
@@ -429,7 +429,7 @@
                   <div class="post-meta mr-3">
                     <i class="iconfont icon-category"></i>
                     
-                      <a class="hover-with-bg" href="/categories/408/">408</a>
+                      <a class="hover-with-bg" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/">计算机网络</a>
                     
                   </div>
                 
@@ -437,9 +437,7 @@
                   <div class="post-meta">
                     <i class="iconfont icon-tags"></i>
                     
-                      <a class="hover-with-bg" href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/">计算机网络</a>
-                    
-                      <a class="hover-with-bg" href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E9%87%8D%E7%82%B9%E7%9F%A5%E8%AF%86/">计算机重点知识</a>
+                      <a class="hover-with-bg" href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80%E7%B4%A0%E5%85%BB/">计算机基础素养</a>
                     
                   </div>
                 
@@ -462,7 +460,7 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2021/01/10/HashMap%E6%BA%90%E7%A0%81/">
+                      <a href="/2021/01/10/Java%E6%BA%90%E7%A0%81_HashMap%E6%BA%90%E7%A0%81/">
                         <span class="hidden-mobile">HashMap源码解读</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
