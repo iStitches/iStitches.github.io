@@ -246,7 +246,7 @@
 <li>使用 ConcurrentHashMap</li>
 </ul>
 <p>但是由于效率和并发度的原因，往往会舍弃前两种选择第三种方式。</p>
-<h2 id="1-7-中的ConcurrentHashMap"><a href="#1-7-中的ConcurrentHashMap" class="headerlink" title="1.7 中的ConcurrentHashMap"></a>1.7 中的ConcurrentHashMap</h2><h3 id="1-数据结构"><a href="#1-数据结构" class="headerlink" title="1. 数据结构"></a>1. 数据结构</h3><p><img src="/passageImg/concurrentHashMap%E6%BA%90%E7%A0%81.assets/16f140880441eab3" srcset="/img/loading.gif" alt="img"></p>
+<h2 id="1-7-中的ConcurrentHashMap"><a href="#1-7-中的ConcurrentHashMap" class="headerlink" title="1.7 中的ConcurrentHashMap"></a>1.7 中的ConcurrentHashMap</h2><h3 id="1-数据结构"><a href="#1-数据结构" class="headerlink" title="1. 数据结构"></a>1. 数据结构</h3><p><img src="/passageImg/Java%E6%BA%90%E7%A0%81%E8%A7%A3%E8%AF%BB.assets/16f140880441eab3" srcset="/img/loading.gif" alt="img"></p>
 <p>JDK7 中 ConcurrentHashMap 由 <code>Segment数组</code>+<code>HashEntry结点组成</code>，和 HashMap一样，都是<strong>数组+链表</strong>的结构。 </p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">//默认的数组大小16</span><br><span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> <span class="hljs-keyword">int</span> DEFAULT_INITIAL_CAPACITY = <span class="hljs-number">16</span>;<br><br><span class="hljs-comment">//扩容因子0.75</span><br><span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> <span class="hljs-keyword">float</span> DEFAULT_LOAD_FACTOR = <span class="hljs-number">0.75f</span>;<br> <br><span class="hljs-comment">//ConcurrentHashMap中的 Segment 数组</span><br><span class="hljs-keyword">final</span> Segment&lt;K,V&gt;[] segments<br><br><span class="hljs-comment">//默认并发标准16</span><br><span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> <span class="hljs-keyword">int</span> DEFAULT_CONCURRENCY_LEVEL = <span class="hljs-number">16</span>;<br><br><span class="hljs-comment">//Segment是ReentrantLock子类，因此拥有锁的操作</span><br> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Segment</span>&lt;<span class="hljs-title">K</span>,<span class="hljs-title">V</span>&gt; <span class="hljs-keyword">extends</span> <span class="hljs-title">ReentrantLock</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">Serializable</span> </span>&#123;<br>  <span class="hljs-keyword">transient</span> <span class="hljs-keyword">volatile</span> HashEntry&lt;K,V&gt;[] table;  <span class="hljs-comment">// HashEntry数组</span><br>  <span class="hljs-keyword">transient</span> <span class="hljs-keyword">int</span> count;                        <span class="hljs-comment">// 结点个数</span><br>  <span class="hljs-keyword">transient</span> <span class="hljs-keyword">int</span> threshold;                    <span class="hljs-comment">// 扩容阈值</span><br>  <span class="hljs-keyword">final</span> <span class="hljs-keyword">float</span> loadFactor;                     <span class="hljs-comment">// 负载因子</span><br><br>  Segment(<span class="hljs-keyword">float</span> lf, <span class="hljs-keyword">int</span> threshold, HashEntry&lt;K,V&gt;[] tab) &#123;<br>            <span class="hljs-keyword">this</span>.loadFactor = lf;<br>            <span class="hljs-keyword">this</span>.threshold = threshold;<br>            <span class="hljs-keyword">this</span>.table = tab;<br>        &#125;<br> &#125;<br> <br> <span class="hljs-comment">//HashEntry结点，和 HashMap中的 Entry结点一样</span><br> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">HashEntry</span>&lt;<span class="hljs-title">K</span>,<span class="hljs-title">V</span>&gt; </span>&#123;<br>        <span class="hljs-keyword">final</span> <span class="hljs-keyword">int</span> hash;<br>        <span class="hljs-keyword">final</span> K key;<br>        <span class="hljs-keyword">volatile</span> V value;   <span class="hljs-comment">//不同的是用 volatile进行修饰，保证内存的可见性</span><br>        <span class="hljs-keyword">volatile</span> HashEntry&lt;K,V&gt; next;<br> &#125;<br><span class="hljs-comment">//segment中HashEntry[]数组最小长度</span><br><span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> <span class="hljs-keyword">int</span> MIN_SEGMENT_TABLE_CAPACITY = <span class="hljs-number">2</span>;<br><br><span class="hljs-comment">//用于定位在segments数组中的位置，下面介绍</span><br><span class="hljs-keyword">final</span> <span class="hljs-keyword">int</span> segmentMask;<br><span class="hljs-keyword">final</span> <span class="hljs-keyword">int</span> segmentShift;<br></code></pre></td></tr></table></figure>
 <p>可以发现，ConcurrentHashMap 内部是由 Segment 数组组成，而 Segment数组又包含着一个 HashEntry 数组，其中 HashEntry 和 Entry结点类似，都是链表中的结点类型。不同的是 HashEntry 结点中的 value和 next 用 <code>volatile</code> 进行了修饰，这主要是为了保证在并发情况下内存的一致性。</p>
@@ -266,7 +266,7 @@
 <li>如果成功获取锁，那么再次通过 hash和数组长度由<code>插入位置 = hash &amp; (length-1)</code>确定在 HashEntry数组中应该插入的位置。定位到该该位置对应的链表头结点，遍历链表查找 key 值和当前key相同的结点，如果找到进行覆盖；如果没有找到，则首先判断是否需要扩容，扩容完毕后生成新结点进行插入。（注意扩容操作中使用的也是头插法）；</li>
 <li>如果自旋获取锁达到了一定的上限仍未获得，就会改为阻塞式获取锁。</li>
 </ul>
-<p><img src="/passageImg/concurrentHashMap%E6%BA%90%E7%A0%81.assets/1604851702c89293" srcset="/img/loading.gif" alt="img"></p>
+<p><img src="/passageImg/Java%E6%BA%90%E7%A0%81%E8%A7%A3%E8%AF%BB.assets/1604851702c89293" srcset="/img/loading.gif" alt="img"></p>
 <p><strong>问：ConcurrentHashMap 并发度高的原因？</strong></p>
 <p>因为 ConcurrentHashMap 使用了<strong>分段锁</strong>技术，ConcurrentHashMap  中包含的有一个 Segment数组，而Segment类是继承自 ReentrantLock 类，因此在操作每一个 Segment 时能够进行上锁和解锁控制，那么在多线程情况下，对于同一个 Segment 某一个时刻只能有一个线程进行操作，不同的 Segment 可以由不同的线程同时操作互不影响。ConcurrentHashMap 所能支持的最大并发度等于Segment 数组的大小，也就是说如果容量是16，最大并发度就是16。</p>
 <p><strong>问：ConcurrentHashMap 的get操作是怎样的？</strong></p>
@@ -313,7 +313,7 @@
 <li><strong>实现方式不同：</strong>HashMap 继承自 AbstractMap类，而 HashTable继承自 Dictionary类；</li>
 <li><strong>容量机制不同：</strong>HashMap初始容量为16，HashTable初始容量为11；两者的负载因子都为0.75。HashMap扩容时是将容量扩大为原来的2倍；而HashTable是将容量扩大为原来的2倍+1.</li>
 </ol>
-<img src="/passageImg/concurrentHashMap源码.assets/image-20210420161225536.png" srcset="/img/loading.gif" alt="image-20210420161225536" style="zoom:67%;" />
+<img src="/passageImg/Java源码解读.assets/image-20210420161225536.png" srcset="/img/loading.gif" alt="image-20210420161225536" style="zoom:67%;" />
 
 
 
@@ -359,7 +359,7 @@
 <p>先使用偏向锁优化同一线程获取锁；如果这个过程中出现锁竞争而且竞争失败就会升级为轻量级锁，轻量级锁</p>
 <p>只能用于解决并发度小的情况，当并发度大锁竞争比较严重时如果轻量级锁获取失败会先进行自旋操作，自旋</p>
 <p>到一定的次数就必须升级为重量级锁了。</p>
-<p><img src="/passageImg/concurrentHashMap%E6%BA%90%E7%A0%81.assets/image-20210421204000145.png" srcset="/img/loading.gif" alt="image-20210421204000145"></p>
+<p><img src="/passageImg/Java%E6%BA%90%E7%A0%81%E8%A7%A3%E8%AF%BB.assets/image-20210421204000145.png" srcset="/img/loading.gif" alt="image-20210421204000145"></p>
 <p>参考文章：</p>
 <p><a target="_blank" rel="noopener" href="https://juejin.cn/post/6844903520957644808">https://juejin.cn/post/6844903520957644808</a></p>
 <p><a target="_blank" rel="noopener" href="https://juejin.cn/post/6844904023003250701">https://juejin.cn/post/6844904023003250701</a></p>
@@ -394,9 +394,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2021/04/10/HashMap%E6%BA%90%E7%A0%81/">
+                      <a href="/2021/04/15/%E6%91%B8%E9%B1%BC-office2019%E5%AD%A6%E4%B9%A0(%E4%B8%80)/">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">HashMap源码解读</span>
+                        <span class="hidden-mobile">Office(一)、基础使用</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
