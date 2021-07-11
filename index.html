@@ -191,6 +191,123 @@
     
     
       <div class="col-12 col-md-4 m-auto index-img">
+        <a href="/2021/07/11/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3Java%E8%99%9A%E6%8B%9F%E6%9C%BA%E2%80%94%E2%80%94%E5%9E%83%E5%9C%BE%E6%94%B6%E9%9B%86%E5%99%A8%E4%B8%8E%E5%86%85%E5%AD%98%E5%88%86%E9%85%8D%E7%AD%96%E7%95%A5/" target="_self">
+          <img src="/img/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3Java%E8%99%9A%E6%8B%9F%E6%9C%BA.jpg" srcset="/img/loading.gif" alt="深入理解Java虚拟机—垃圾收集器与内存分配策略">
+        </a>
+      </div>
+    
+    <article class="col-12 col-md-8 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2021/07/11/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3Java%E8%99%9A%E6%8B%9F%E6%9C%BA%E2%80%94%E2%80%94%E5%9E%83%E5%9C%BE%E6%94%B6%E9%9B%86%E5%99%A8%E4%B8%8E%E5%86%85%E5%AD%98%E5%88%86%E9%85%8D%E7%AD%96%E7%95%A5/">深入理解Java虚拟机—垃圾收集器与内存分配策略</a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2021/07/11/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3Java%E8%99%9A%E6%8B%9F%E6%9C%BA%E2%80%94%E2%80%94%E5%9E%83%E5%9C%BE%E6%94%B6%E9%9B%86%E5%99%A8%E4%B8%8E%E5%86%85%E5%AD%98%E5%88%86%E9%85%8D%E7%AD%96%E7%95%A5/">
+          
+          
+            
+          
+          
+在Java的运行时数据区的各个部分，其中程序计数器、虚拟机栈、本地方法栈都为线程私有，随着线程生灭。因此垃圾收集器的主要作用区域是线程共享的堆和方法区。
+
+确定哪些对象需要被回收？引用计数算法算法思路：在对象中添加一个引用计数器，每当有一个地方引用它时，计数器的值就加一；当引用失效时，计数器的值就减一；任何时刻计数器为零的对象就是不会再被使用的。
+引用计数法执行起来很简单，效率也比较高，但是有一
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2021-07-11 22:06" pubdate>
+              2021-07-11
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/">读书笔记</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/Java%E4%B9%A6%E7%B1%8D/">Java书籍</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+      <div class="col-12 col-md-4 m-auto index-img">
+        <a href="/2021/07/11/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3Java%E8%99%9A%E6%8B%9F%E6%9C%BA%E2%80%94%E2%80%94Java%E5%86%85%E5%AD%98%E5%8C%BA%E5%9F%9F/" target="_self">
+          <img src="/img/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3Java%E8%99%9A%E6%8B%9F%E6%9C%BA.jpg" srcset="/img/loading.gif" alt="深入理解Java虚拟机—Java内存区域">
+        </a>
+      </div>
+    
+    <article class="col-12 col-md-8 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2021/07/11/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3Java%E8%99%9A%E6%8B%9F%E6%9C%BA%E2%80%94%E2%80%94Java%E5%86%85%E5%AD%98%E5%8C%BA%E5%9F%9F/">深入理解Java虚拟机—Java内存区域</a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2021/07/11/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3Java%E8%99%9A%E6%8B%9F%E6%9C%BA%E2%80%94%E2%80%94Java%E5%86%85%E5%AD%98%E5%8C%BA%E5%9F%9F/">
+          
+          
+            
+          
+          
+Java虚拟机在执行Java程序的过程中会把所管理的内存划分为若干个不同的数据区域。这些区域各有各自的用途，以及创建和销毁的时间。总的来说Java虚拟机可以划分为如下几个运行时数据区部分。
+
+首先总体上说Java虚拟机包括方法区、堆、虚拟机栈、本地方法栈、程序计数器五个主要的运行时数据区部分。
+
+程序计数器介绍：程序计数器(PC) 用来指示当前线程所执行的字节码行号指示器，字节码解释器工作时就是
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2021-07-11 21:06" pubdate>
+              2021-07-11
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/">读书笔记</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/Java%E4%B9%A6%E7%B1%8D/">Java书籍</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+      <div class="col-12 col-md-4 m-auto index-img">
         <a href="/2021/05/10/TCP%E4%B8%89%E6%8F%A1%E5%9B%9B%E6%8C%A5%E6%8B%93%E5%B1%95/" target="_self">
           <img src="/passageImg/%E7%BD%91%E7%BB%9C%E5%B1%82.assets/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C.jpg" srcset="/img/loading.gif" alt="TCP三握四挥知识拓展">
         </a>
@@ -597,137 +714,6 @@ A类地址：
             <i class="iconfont icon-date"></i>
             <time datetime="2021-03-20 21:06" pubdate>
               2021-03-20
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-category"></i>
-            
-              <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/">计算机网络</a>
-            
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80%E7%B4%A0%E5%85%BB/">计算机基础素养</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-      <div class="col-12 col-md-4 m-auto index-img">
-        <a href="/2021/03/20/Zookeeper_%E5%85%A5%E9%97%A8/" target="_self">
-          <img src="/img/Zookeeper.jpg" srcset="/img/loading.gif" alt="Zookeeper——入门">
-        </a>
-      </div>
-    
-    <article class="col-12 col-md-8 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2021/03/20/Zookeeper_%E5%85%A5%E9%97%A8/">Zookeeper——入门</a>
-      </h1>
-
-      <p class="index-excerpt">
-        <a href="/2021/03/20/Zookeeper_%E5%85%A5%E9%97%A8/">
-          
-          
-            
-          
-          一、分布式介绍1.1 分布式环境特点：1）分布性：异地多活；
-2）并发性：程序运行过程中，并发性操作很常见；同一个分布式系统中的多个结点同时访问一个共享资源，比如数据库或者分布式存储。分布式并发是基于多进程的。
-3）无序性：进程之间的消息通信会出现顺序不一致的问题。
-1.2 分布式环境下面临的问题：1）网络通信：网络通信异常导致分布式各结点间的消息收发过程出现问题。另外即使分布式系统各个结点之间的
-        </a>
-      </p>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2021-03-20 21:06" pubdate>
-              2021-03-20
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-category"></i>
-            
-              <a href="/categories/%E4%B8%AD%E9%97%B4%E4%BB%B6/">中间件</a>
-            
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/Zookeeper/">Zookeeper</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-      <div class="col-12 col-md-4 m-auto index-img">
-        <a href="/2021/03/17/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E2%80%94%E2%80%94%E4%BC%A0%E8%BE%93%E5%B1%82/" target="_self">
-          <img src="/img/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C.jpg" srcset="/img/loading.gif" alt="计网（三）、传输层">
-        </a>
-      </div>
-    
-    <article class="col-12 col-md-8 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2021/03/17/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E2%80%94%E2%80%94%E4%BC%A0%E8%BE%93%E5%B1%82/">计网（三）、传输层</a>
-      </h1>
-
-      <p class="index-excerpt">
-        <a href="/2021/03/17/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E2%80%94%E2%80%94%E4%BC%A0%E8%BE%93%E5%B1%82/">
-          
-          
-            
-          
-          一、传输层协议概述运输层的作用： 运输层提供应用进程间的逻辑通信
-端口
-端口的复用和分用功能：
-
-
-
-
-
-
-
-
-TCP/IP 运输层端口：  16位二进制；
-
-​          MAC地址：48位二进制；
-​          IP地址：32位二进制；
-
-两大类端口
-
-（1）服务器端使用的端口号
-       * 熟知端口，数值一般为 0~1023
-       * 登记端口号，数值为 102
-        </a>
-      </p>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2021-03-17 21:11" pubdate>
-              2021-03-17
             </time>
           </div>
         
