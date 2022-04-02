@@ -1,0 +1,266 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>操作系统（六）、页面置换算法 | iStitches</title><meta name="keywords" content="操作系统"><meta name="author" content="XjX-zc"><meta name="copyright" content="XjX-zc"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="页面置换算法：1、页面置换算法的功能目标: 1.1 举例：">
+<meta property="og:type" content="article">
+<meta property="og:title" content="操作系统（六）、页面置换算法">
+<meta property="og:url" content="http://example.com/2020/11/13/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E2%80%94%E2%80%94%E7%AC%AC%E5%85%AD%E7%AB%A0%E3%80%81%E9%A1%B5%E9%9D%A2%E7%BD%AE%E6%8D%A2%E7%AE%97%E6%B3%95/index.html">
+<meta property="og:site_name" content="iStitches">
+<meta property="og:description" content="页面置换算法：1、页面置换算法的功能目标: 1.1 举例：">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/img/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F.jpg">
+<meta property="article:published_time" content="2020-11-13T13:11:00.000Z">
+<meta property="article:modified_time" content="2022-04-02T02:22:12.801Z">
+<meta property="article:author" content="XjX-zc">
+<meta property="article:tag" content="操作系统">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/img/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://example.com/2020/11/13/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E2%80%94%E2%80%94%E7%AC%AC%E5%85%AD%E7%AB%A0%E3%80%81%E9%A1%B5%E9%9D%A2%E7%BD%AE%E6%8D%A2%E7%AE%97%E6%B3%95/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#121212","position":"top-right"},
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery@2/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery@2/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '操作系统（六）、页面置换算法',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2022-04-02 10:22:12'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><link rel="stylesheet" href="/css/mycss.css"><link rel="stylesheet" href="/css/mybkcss.css"><link rel="stylesheet" href="/css/myfootercss.css"><link rel="stylesheet" href="//at.alicdn.com/t/font_3294417_y9wnoregopg.css"><link rel="stylesheet" href="/css/iconfont.css"><link rel="stylesheet" href="/css/myfont.css"><link rel="stylesheet" href="/css/optimizeCss.css"><meta name="generator" content="Hexo 6.1.0"><link rel="alternate" href="/atom.xml" title="iStitches" type="application/atom+xml">
+</head><body><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/loading.gif" data-original="/img/avatar.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data is-center"><div class="data-item"><a href="/archives/"><div class="headline">文章</div><div class="length-num">48</div></a></div><div class="data-item"><a href="/tags/"><div class="headline">标签</div><div class="length-num">13</div></a></div><div class="data-item"><a href="/categories/"><div class="headline">分类</div><div class="length-num">14</div></a></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fa fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fa fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fa fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/messageboard/"><i class="fa-fw fa fa-paper-plane"></i><span> 留言板</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fa fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/timeline/"><i class="fa-fw fa fa-bell"></i><span> 日志</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fa fa-list"></i><span> 菜单</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/%E5%85%B3%E4%BA%8E"><i class="fa-fw /about/"></i><span> 0</span></a></li><li><a class="site-page child" href="/myself"><i class="fa-fw /myself/"></i><span> 1</span></a></li><li><a class="site-page child" href="/butterfly%E4%B8%BB%E9%A2%98"><i class="fa-fw https://github.com/jerryc127/hexo-theme-butterfly/"></i><span> 2</span></a></li></ul></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('/img/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">iStitches</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fa fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fa fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fa fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/messageboard/"><i class="fa-fw fa fa-paper-plane"></i><span> 留言板</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fa fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/timeline/"><i class="fa-fw fa fa-bell"></i><span> 日志</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fa fa-list"></i><span> 菜单</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/%E5%85%B3%E4%BA%8E"><i class="fa-fw /about/"></i><span> 0</span></a></li><li><a class="site-page child" href="/myself"><i class="fa-fw /myself/"></i><span> 1</span></a></li><li><a class="site-page child" href="/butterfly%E4%B8%BB%E9%A2%98"><i class="fa-fw https://github.com/jerryc127/hexo-theme-butterfly/"></i><span> 2</span></a></li></ul></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">操作系统（六）、页面置换算法</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2020-11-13T13:11:00.000Z" title="发表于 2020-11-13 21:11:00">2020-11-13</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2022-04-02T02:22:12.801Z" title="更新于 2022-04-02 10:22:12">2022-04-02</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">操作系统</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="操作系统（六）、页面置换算法"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="页面置换算法："><a href="#页面置换算法：" class="headerlink" title="页面置换算法："></a>页面置换算法：</h1><h2 id="1、页面置换算法的功能目标"><a href="#1、页面置换算法的功能目标" class="headerlink" title="1、页面置换算法的功能目标:"></a>1、页面置换算法的功能目标:</h2><p><img src="/img/loading.gif" data-original="/passageImg/%E7%AC%AC%E5%85%AD%E7%AB%A0%E3%80%81%E9%A1%B5%E9%9D%A2%E7%BD%AE%E6%8D%A2%E7%AE%97%E6%B3%95.assets/image-20200925153915313.png"></p>
+<p><strong>1.1 举例：</strong></p>
+<p><img src="/img/loading.gif" data-original="/passageImg/%E7%AC%AC%E5%85%AD%E7%AB%A0%E3%80%81%E9%A1%B5%E9%9D%A2%E7%BD%AE%E6%8D%A2%E7%AE%97%E6%B3%95.assets/image-20200925154148351.png"></p>
+<span id="more"></span>
+
+<h2 id="2、局部页面置换算法："><a href="#2、局部页面置换算法：" class="headerlink" title="2、局部页面置换算法："></a>2、局部页面置换算法：</h2><h3 id="2-1最优页面置换算法："><a href="#2-1最优页面置换算法：" class="headerlink" title="2.1最优页面置换算法："></a>2.1最优页面置换算法：</h3><ul>
+<li>基本思路：当一个缺页中断发生时，对于保存在内存当中的每一个逻辑页面，计算在它的下一次访问之前，还需要等待多长时间，从中选择等待时间的最长的那个，作为被置换的页面；</li>
+<li>这只是一种理想情况，实际中无法实现，因为操作系统无法得知每一个页面需要等待多长时间之后才会被再次访问；</li>
+<li>可以用作其它算法的性能评价依据。</li>
+</ul>
+<p><strong>例子:</strong></p>
+<p>​    <img src="/img/loading.gif" data-original="/passageImg/%E7%AC%AC%E5%85%AD%E7%AB%A0%E3%80%81%E9%A1%B5%E9%9D%A2%E7%BD%AE%E6%8D%A2%E7%AE%97%E6%B3%95.assets/image-20200925164301327.png"></p>
+<h3 id=""><a href="#" class="headerlink" title=""></a></h3><h3 id="2-2先进先出算法-FIFO-："><a href="#2-2先进先出算法-FIFO-：" class="headerlink" title="2.2先进先出算法(FIFO)："></a>2.2先进先出算法(FIFO)：</h3><p><img src="/img/loading.gif" data-original="/passageImg/%E7%AC%AC%E5%85%AD%E7%AB%A0%E3%80%81%E9%A1%B5%E9%9D%A2%E7%BD%AE%E6%8D%A2%E7%AE%97%E6%B3%95.assets/image-20200925164445812.png"></p>
+<p><strong>例子：</strong></p>
+<p><img src="/img/loading.gif" data-original="/passageImg/%E7%AC%AC%E5%85%AD%E7%AB%A0%E3%80%81%E9%A1%B5%E9%9D%A2%E7%BD%AE%E6%8D%A2%E7%AE%97%E6%B3%95.assets/image-20200925164709099.png"></p>
+<h3 id="-1"><a href="#-1" class="headerlink" title=""></a></h3><h3 id="2-3最近最久未使用算法-LRU—Least-Recently-Used-："><a href="#2-3最近最久未使用算法-LRU—Least-Recently-Used-：" class="headerlink" title="2.3最近最久未使用算法(LRU—Least Recently Used)："></a>2.3最近最久未使用算法(LRU—Least Recently Used)：</h3><p><strong>（1）概念：</strong></p>
+<blockquote>
+<p>区别于FIFO算法，FIFO算法替换的是在内存中驻留时间最长的页面，是根据页面驻留时间长短来区分的；</p>
+<p>而最近最久未使用算法对应的是页面的访问，是根据最近页面访问来决定的。</p>
+</blockquote>
+<p><img src="/img/loading.gif" data-original="/passageImg/%E7%AC%AC%E5%85%AD%E7%AB%A0%E3%80%81%E9%A1%B5%E9%9D%A2%E7%BD%AE%E6%8D%A2%E7%AE%97%E6%B3%95.assets/image-20200925165111660.png"></p>
+<p><strong>（2）例子：</strong></p>
+<p><img src="/img/loading.gif" data-original="/passageImg/%E7%AC%AC%E5%85%AD%E7%AB%A0%E3%80%81%E9%A1%B5%E9%9D%A2%E7%BD%AE%E6%8D%A2%E7%AE%97%E6%B3%95.assets/image-20200925165448038.png"></p>
+<p><img src="/img/loading.gif" data-original="/passageImg/%E7%AC%AC%E5%85%AD%E7%AB%A0%E3%80%81%E9%A1%B5%E9%9D%A2%E7%BD%AE%E6%8D%A2%E7%AE%97%E6%B3%95.assets/image-20200925170932956.png"></p>
+<p><strong>通过栈来实现LRU算法（记录页面的访问次数及顺序）：</strong></p>
+<p><img src="/img/loading.gif" data-original="/passageImg/%E7%AC%AC%E5%85%AD%E7%AB%A0%E3%80%81%E9%A1%B5%E9%9D%A2%E7%BD%AE%E6%8D%A2%E7%AE%97%E6%B3%95.assets/image-20200925171549687.png"></p>
+<h3 id="-2"><a href="#-2" class="headerlink" title=""></a></h3><h3 id="2-4时钟页面置换算法-Clock-："><a href="#2-4时钟页面置换算法-Clock-：" class="headerlink" title="2.4时钟页面置换算法(Clock)："></a>2.4时钟页面置换算法(Clock)：</h3><p><strong>（1） 概念：</strong></p>
+<p> <img src="/img/loading.gif" data-original="/passageImg/%E7%AC%AC%E5%85%AD%E7%AB%A0%E3%80%81%E9%A1%B5%E9%9D%A2%E7%BD%AE%E6%8D%A2%E7%AE%97%E6%B3%95.assets/image-20200925172816402.png"></p>
+<blockquote>
+<p>时钟页面置换算法需要用到页表中的访问位，当一个页面被装入内存时，设置为0，一旦被访问就设置为1（置1的操作是由硬件来完成的）；各个页面组织成一个环形链表，指针指向最老的页面，当发生缺页中断时，去看指针指向的最老的页面的访问位，为0则淘汰。</p>
+<p>Clock算法因为只增加了一个used bit(一位)，因此总的来说比LRU算法更节省资源空间。</p>
+</blockquote>
+<p><strong>（2）时钟置换过程：</strong> </p>
+<p><img src="/img/loading.gif" data-original="/passageImg/%E7%AC%AC%E5%85%AD%E7%AB%A0%E3%80%81%E9%A1%B5%E9%9D%A2%E7%BD%AE%E6%8D%A2%E7%AE%97%E6%B3%95.assets/image-20200925173529793.png"></p>
+<blockquote>
+<p>首先内存中存放了5个页面，每个页面的 第一位为驻留位(判断该页是否存在于内存中)，第二位是访问位(判断该页最近是否被访问过，用于页面置换)，第三位是页帧号(用于查找对应的物理页面)。</p>
+<p>当需要访问Page6时，首先会看内存中是否还有空间，因为没有空间就需要用到页面置换，查看指针指向的最老的页(这里为Page 0)，由于Page 0的访问位为1(表示最近刚刚被访问过)，因此会将Page 0的访问位置0然后接着顺时针继续查找，遇到访问位为1则置0，直到遇到访问位为0的为止。当遇到访问为为0的页面后就会进行替换，<strong>将新的页面的访问位置1然后指针指向下一个页面。</strong></p>
+<p>​    </p>
+<p><strong>！注意：</strong>如果没有发生缺页异常，比如说需要访问Page 4，内存中恰好存在，会由硬件将对应页面的访问位置1，<strong>但是指针不会移动！！！</strong></p>
+</blockquote>
+<p><strong>（3）实例：</strong></p>
+<p><img src="/img/loading.gif" data-original="/passageImg/%E7%AC%AC%E5%85%AD%E7%AB%A0%E3%80%81%E9%A1%B5%E9%9D%A2%E7%BD%AE%E6%8D%A2%E7%AE%97%E6%B3%95.assets/image-20200925175539767.png"></p>
+<h3 id="2-5二次机会法-Enhanced-Clock-algorithm-："><a href="#2-5二次机会法-Enhanced-Clock-algorithm-：" class="headerlink" title="2.5二次机会法(Enhanced Clock algorithm)："></a>2.5二次机会法(Enhanced Clock algorithm)：</h3><p><strong>（1）概念：</strong></p>
+<p> <img src="/img/loading.gif" data-original="/passageImg/%E7%AC%AC%E5%85%AD%E7%AB%A0%E3%80%81%E9%A1%B5%E9%9D%A2%E7%BD%AE%E6%8D%A2%E7%AE%97%E6%B3%95.assets/image-20200925175935327.png"></p>
+<blockquote>
+<p>修改了Clock算法，新增了一个 drity bit位，该位主要用于记录页面访问过程中是否被修改过。</p>
+<p>对于那些只读的页，它们的dirty bit为0，那么当used bit也为0的时候会直接被替换掉，当used为1时会将used bit 置0；</p>
+<p>对于某些进行了修改的页面，修改过后它们的 dirty bit 会被置1，但是此时即使used bit 为0也仅仅会将used bit 置0，不会将该页给替换掉；而对于used bit 和　dirty bit 都为1 的页面，只会将used bit 置0；</p>
+<p><strong>这种做法保证了某些被修改过的页面不会轻易被替换掉，因为替换的过程是非常耗时的，操作系统需要将该页的数据写回到外存中来保证数据的统一。而对于只读的页面，由于数据始终是统一的，操作系统会将它们直接释放掉。</strong></p>
+</blockquote>
+<p><strong>（2）实例：</strong></p>
+<p><img src="/img/loading.gif" data-original="/passageImg/%E7%AC%AC%E5%85%AD%E7%AB%A0%E3%80%81%E9%A1%B5%E9%9D%A2%E7%BD%AE%E6%8D%A2%E7%AE%97%E6%B3%95.assets/image-20200925181603230.png"></p>
+<h3 id="2-6-最不常用算法-LFU-—-Least-Frequently-Used-："><a href="#2-6-最不常用算法-LFU-—-Least-Frequently-Used-：" class="headerlink" title="2.6 最不常用算法(LFU —- Least Frequently Used)："></a>2.6 最不常用算法(LFU —- Least Frequently Used)：</h3><p><strong>（1） 概念：</strong></p>
+<p><img src="/img/loading.gif" data-original="/passageImg/%E7%AC%AC%E5%85%AD%E7%AB%A0%E3%80%81%E9%A1%B5%E9%9D%A2%E7%BD%AE%E6%8D%A2%E7%AE%97%E6%B3%95.assets/image-20200925195654474.png"></p>
+<blockquote>
+<p>LFU算法是根据 页面数据访问的频率来决定替换哪个页面的。</p>
+</blockquote>
+<h3 id="2-7Belady现象及原因："><a href="#2-7Belady现象及原因：" class="headerlink" title="2.7Belady现象及原因："></a>2.7Belady现象及原因：</h3><p><strong>(1) Belady现象：</strong></p>
+<p>​       在采用FIFO 算法时，有时会出现分配的物理页面数增加，缺页率反而提高的异常现象；</p>
+<p><strong>(2) Belady现象的原因：</strong></p>
+<p>​       FIFO算法的置换特征与进程访问内存的动态特征是矛盾的，与置换算法的目标是不一致的(即替换较少使用的页面)，而FIFO算法替换调的是贮存在内存中时间最长的页面，因此，被它置换出去的页面不一定是进程不会访问的。</p>
+<p><strong>(3) Belady现象实例(增加了物理页面数，缺页率反而提高)：</strong></p>
+<p><img src="/img/loading.gif" data-original="/passageImg/%E7%AC%AC%E5%85%AD%E7%AB%A0%E3%80%81%E9%A1%B5%E9%9D%A2%E7%BD%AE%E6%8D%A2%E7%AE%97%E6%B3%95.assets/image-20200926152811725.png"></p>
+<p><img src="/img/loading.gif" data-original="/passageImg/%E7%AC%AC%E5%85%AD%E7%AB%A0%E3%80%81%E9%A1%B5%E9%9D%A2%E7%BD%AE%E6%8D%A2%E7%AE%97%E6%B3%95.assets/image-20200926152947883.png"></p>
+<blockquote>
+<p>FIFO算法只会体现页面存在内存中的时间，不会体现页面何时被访问的时间先后。</p>
+</blockquote>
+<p><img src="/img/loading.gif" data-original="/passageImg/%E7%AC%AC%E5%85%AD%E7%AB%A0%E3%80%81%E9%A1%B5%E9%9D%A2%E7%BD%AE%E6%8D%A2%E7%AE%97%E6%B3%95.assets/image-20200926153453922.png"></p>
+<blockquote>
+<p>为什么FIFO算法会产生Belady现象，而LRU算法不会产生Belady现象：</p>
+<p>​           解答：因为LRU算法符合栈算法的特点，而FIFO算法不符合栈算法的特点。栈算法的特点是给予的物理页帧越多，所产生的缺页中断次数就越少。</p>
+</blockquote>
+<p><strong>(4) LRU、FIFO和Clock算法的比较：</strong></p>
+<p><img src="/img/loading.gif" data-original="/passageImg/%E7%AC%AC%E5%85%AD%E7%AB%A0%E3%80%81%E9%A1%B5%E9%9D%A2%E7%BD%AE%E6%8D%A2%E7%AE%97%E6%B3%95.assets/image-20200926153640373.png"></p>
+<p><img src="/img/loading.gif" data-original="/passageImg/%E7%AC%AC%E5%85%AD%E7%AB%A0%E3%80%81%E9%A1%B5%E9%9D%A2%E7%BD%AE%E6%8D%A2%E7%AE%97%E6%B3%95.assets/image-20200926154252082.png"></p>
+<h2 id="3、全局页面置换算法："><a href="#3、全局页面置换算法：" class="headerlink" title="3、全局页面置换算法："></a>3、全局页面置换算法：</h2><h3 id="3-1-工作集模型："><a href="#3-1-工作集模型：" class="headerlink" title="3.1 工作集模型："></a>3.1 工作集模型：</h3><p><strong>（1）工作集模型[对程序局部性的分析与体现]:</strong></p>
+<p><img src="/img/loading.gif" data-original="/passageImg/%E7%AC%AC%E5%85%AD%E7%AB%A0%E3%80%81%E9%A1%B5%E9%9D%A2%E7%BD%AE%E6%8D%A2%E7%AE%97%E6%B3%95.assets/image-20200926160612981.png"></p>
+<p><img src="/img/loading.gif" data-original="/passageImg/%E7%AC%AC%E5%85%AD%E7%AB%A0%E3%80%81%E9%A1%B5%E9%9D%A2%E7%BD%AE%E6%8D%A2%E7%AE%97%E6%B3%95.assets/image-20200926160842222.png"></p>
+<p><strong>（2）例子：</strong></p>
+<p><img src="/img/loading.gif" data-original="/passageImg/%E7%AC%AC%E5%85%AD%E7%AB%A0%E3%80%81%E9%A1%B5%E9%9D%A2%E7%BD%AE%E6%8D%A2%E7%AE%97%E6%B3%95.assets/image-20200926161208332.png"></p>
+<p><img src="/img/loading.gif" data-original="/passageImg/%E7%AC%AC%E5%85%AD%E7%AB%A0%E3%80%81%E9%A1%B5%E9%9D%A2%E7%BD%AE%E6%8D%A2%E7%AE%97%E6%B3%95.assets/image-20200926161310900.png"></p>
+<p><strong>（3）工作集与常驻集的差异：</strong></p>
+<blockquote>
+<p>工作集：一个进程当前正在使用的逻辑页面的集合，该程序在访问过程中需要的页面是哪些，这些页面可以存在于内存中也可以不存在于内存中。可以用一个二元函数 <code>W(t,^)来表示：</code></p>
+<ul>
+<li>t是当前的执行时刻</li>
+<li><code>^</code>称为工作集窗口（working-set window），即一个定长的页面访问的时间窗口（^是不变的）</li>
+<li><code>w(t,^)=</code>在当前的时刻t之前的 <code>^</code>时间窗口当中的所有页面所组成的集合(随着t的变化，该集合也在不断地变化)；</li>
+<li><code>| W(t,^) |</code>,值工作集的大小，集页面的数目；</li>
+</ul>
+<p>常驻集：在当前时刻，进程实际驻留在内存当中的页面集合。</p>
+<ul>
+<li>工作集是进程在运行过程中固有的性质，而常驻集取决于系统分配给进程的物理页面的数目，以及所采用的页面置换算法；</li>
+<li>如果一个进程的整个工作集都在内存当中，即常驻集包含或者等于工作集，那么进程将很顺利地进行，而不会产生太多的缺页中断（直到工作集发生剧烈的变动，从而过渡到另外一个状态）；</li>
+<li>当进程常驻集的大小达到某个数目以后，再给它分配更多的物理页面，缺页率也不会明显的下降。</li>
+</ul>
+</blockquote>
+<h3 id="3-2-两个全局页面置换算法："><a href="#3-2-两个全局页面置换算法：" class="headerlink" title="3.2 两个全局页面置换算法："></a>3.2 两个全局页面置换算法：</h3><p><strong>（1）基于固定窗口的工作集页面置换算法：</strong></p>
+<p><img src="/img/loading.gif" data-original="/passageImg/%E7%AC%AC%E5%85%AD%E7%AB%A0%E3%80%81%E9%A1%B5%E9%9D%A2%E7%BD%AE%E6%8D%A2%E7%AE%97%E6%B3%95.assets/image-20200926164241701.png"></p>
+<blockquote>
+<p>随着时间的迁移，当前在物理内存中放哪些页完全取决于当前执行时刻和工作集大小，如果某一页超出了工作集窗口的界限，它就会被换出，如果此页被写过，那么会先写回到外存然后再被换出。</p>
+</blockquote>
+<p><strong>（2）基于缺页率的页面置换算法：</strong></p>
+<p><img src="/img/loading.gif" data-original="/passageImg/%E7%AC%AC%E5%85%AD%E7%AB%A0%E3%80%81%E9%A1%B5%E9%9D%A2%E7%BD%AE%E6%8D%A2%E7%AE%97%E6%B3%95.assets/image-20200926164535645.png"></p>
+<p><img src="/img/loading.gif" data-original="/passageImg/%E7%AC%AC%E5%85%AD%E7%AB%A0%E3%80%81%E9%A1%B5%E9%9D%A2%E7%BD%AE%E6%8D%A2%E7%AE%97%E6%B3%95.assets/image-20200926164657462.png"></p>
+<blockquote>
+<p>若运行的程序的缺页率过高，则通过工作集来分配更多的物理页面；若运行的程序的缺页率过小，则通过减少工作集来减少他的物理页面数。力图试运行的每个程序的缺页率保持在一个合理的范围内。</p>
+</blockquote>
+<p>​              <strong>根据缺页率改变工作集大小的做法：</strong></p>
+<p><img src="/img/loading.gif" data-original="/passageImg/%E7%AC%AC%E5%85%AD%E7%AB%A0%E3%80%81%E9%A1%B5%E9%9D%A2%E7%BD%AE%E6%8D%A2%E7%AE%97%E6%B3%95.assets/image-20200926165133278.png"></p>
+<p>​             <strong>实例：</strong></p>
+<p><img src="/img/loading.gif" data-original="/passageImg/%E7%AC%AC%E5%85%AD%E7%AB%A0%E3%80%81%E9%A1%B5%E9%9D%A2%E7%BD%AE%E6%8D%A2%E7%AE%97%E6%B3%95.assets/image-20200926165617716.png"></p>
+<h3 id="3-3-抖动问题-thrashing"><a href="#3-3-抖动问题-thrashing" class="headerlink" title="3.3 抖动问题(thrashing):"></a>3.3 抖动问题(thrashing):</h3><p><img src="/img/loading.gif" data-original="/passageImg/%E7%AC%AC%E5%85%AD%E7%AB%A0%E3%80%81%E9%A1%B5%E9%9D%A2%E7%BD%AE%E6%8D%A2%E7%AE%97%E6%B3%95.assets/image-20200926165940586.png"></p>
+<p><img src="/img/loading.gif" data-original="/passageImg/%E7%AC%AC%E5%85%AD%E7%AB%A0%E3%80%81%E9%A1%B5%E9%9D%A2%E7%BD%AE%E6%8D%A2%E7%AE%97%E6%B3%95.assets/image-20200926170453250.png"></p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:undefined">XjX-zc</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="http://example.com/2020/11/13/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E2%80%94%E2%80%94%E7%AC%AC%E5%85%AD%E7%AB%A0%E3%80%81%E9%A1%B5%E9%9D%A2%E7%BD%AE%E6%8D%A2%E7%AE%97%E6%B3%95/">http://example.com/2020/11/13/操作系统——第六章、页面置换算法/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://example.com" target="_blank">iStitches</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">操作系统</a></div><div class="post_share"><div class="social-share" data-image="/img/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2020/11/13/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E2%80%94%E2%80%94%E7%AC%AC%E4%BA%94%E7%AB%A0%E3%80%81%E8%99%9A%E6%8B%9F%E5%86%85%E5%AD%98/"><img class="prev-cover" src="/img/loading.gif" data-original="/img/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">操作系统（五）、虚拟内存</div></div></a></div><div class="next-post pull-right"><a href="/2020/10/21/Mysql%E3%80%81(%E4%B8%89)%20%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84%E4%B8%8E%E5%AD%98%E5%82%A8%E5%BC%95%E6%93%8E/"><img class="next-cover" src="/img/loading.gif" data-original="/img/Mysql.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">MySQL、(三) 体系结构与存储引擎</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><div><a href="/2020/11/13/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E2%80%94%E2%80%94%E7%AC%AC%E4%B8%80%E7%AB%A0%E3%80%81%E6%A6%82%E8%BF%B0/" title="操作系统（一）、概述"><img class="cover" src="/img/loading.gif" data-original="/img/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2020-11-13</div><div class="title">操作系统（一）、概述</div></div></a></div><div><a href="/2020/11/13/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E2%80%94%E2%80%94%E7%AC%AC%E4%B8%83%E7%AB%A0%E3%80%81%E8%BF%9B%E7%A8%8B%E5%92%8C%E7%BA%BF%E7%A8%8B/" title="操作系统（七）、进程和线程"><img class="cover" src="/img/loading.gif" data-original="/img/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2020-11-13</div><div class="title">操作系统（七）、进程和线程</div></div></a></div><div><a href="/2020/11/17/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E2%80%94%E2%80%94%E7%AC%AC%E4%B8%89%E7%AB%A0%E3%80%81%E8%BF%9E%E7%BB%AD%E5%BC%8F%E5%86%85%E5%AD%98%E5%88%86%E9%85%8D/" title="操作系统（三）、连续内存分配"><img class="cover" src="/img/loading.gif" data-original="/img/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2020-11-17</div><div class="title">操作系统（三）、连续内存分配</div></div></a></div><div><a href="/2020/11/15/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E2%80%94%E2%80%94%E7%AC%AC%E4%BA%8C%E7%AB%A0%E3%80%81%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%9F%BA%E7%A1%80%E6%93%8D%E4%BD%9C/" title="操作系统（二）、操作系统基础操作"><img class="cover" src="/img/loading.gif" data-original="/img/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2020-11-15</div><div class="title">操作系统（二）、操作系统基础操作</div></div></a></div><div><a href="/2020/11/13/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E2%80%94%E2%80%94%E7%AC%AC%E4%BA%94%E7%AB%A0%E3%80%81%E8%99%9A%E6%8B%9F%E5%86%85%E5%AD%98/" title="操作系统（五）、虚拟内存"><img class="cover" src="/img/loading.gif" data-original="/img/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2020-11-13</div><div class="title">操作系统（五）、虚拟内存</div></div></a></div><div><a href="/2020/11/20/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E2%80%94%E2%80%94%E7%AC%AC%E5%9B%9B%E7%AB%A0%E3%80%81%E9%9D%9E%E8%BF%9E%E7%BB%AD%E5%BC%8F%E5%86%85%E5%AD%98%E5%88%86%E9%85%8D/" title="操作系统（四）、非连续内存分配"><img class="cover" src="/img/loading.gif" data-original="/img/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2020-11-20</div><div class="title">操作系统（四）、非连续内存分配</div></div></a></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/loading.gif" data-original="/img/avatar.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">XjX-zc</div><div class="author-info__description">生活原本沉闷,但跑起来就会有风</div></div><div class="card-info-data is-center"><div class="card-info-data-item"><a href="/archives/"><div class="headline">文章</div><div class="length-num">48</div></a></div><div class="card-info-data-item"><a href="/tags/"><div class="headline">标签</div><div class="length-num">13</div></a></div><div class="card-info-data-item"><a href="/categories/"><div class="headline">分类</div><div class="length-num">14</div></a></div></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/iStitches"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="/atom.xml" target="_blank" title="RSS链接"><i class="iconfont icon-social-rss card_icon"></i></a><a class="social-icon" href="https://github.com/iStitches" target="_blank" title="Github"><i class="iconfont icon-icon-Github card_icon"></i></a><a class="social-icon" href="https://blog.csdn.net/qq_43684985?spm=1000.2115.3001.5343" target="_blank" title="CSDN"><i class="iconfont icon-icon-csdn card_icon"></i></a><a class="social-icon" href="https://space.bilibili.com/407787894" target="_blank" title="Bilibili"><i class="iconfont icon-icon_bilibili card_icon"></i></a><a class="social-icon" href="tencent://AddContact/?fromId=45&amp;fromSubId=1&amp;subcmd=all&amp;uin=1093453695&amp;website=www.oicqzone.com" target="_blank" title="QQ"><i class="iconfont icon-icon-QQ card_icon"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">开发菜鸡,欢迎大家光临,一起学习进步！！！</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E9%A1%B5%E9%9D%A2%E7%BD%AE%E6%8D%A2%E7%AE%97%E6%B3%95%EF%BC%9A"><span class="toc-number">1.</span> <span class="toc-text">页面置换算法：</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1%E3%80%81%E9%A1%B5%E9%9D%A2%E7%BD%AE%E6%8D%A2%E7%AE%97%E6%B3%95%E7%9A%84%E5%8A%9F%E8%83%BD%E7%9B%AE%E6%A0%87"><span class="toc-number">1.1.</span> <span class="toc-text">1、页面置换算法的功能目标:</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2%E3%80%81%E5%B1%80%E9%83%A8%E9%A1%B5%E9%9D%A2%E7%BD%AE%E6%8D%A2%E7%AE%97%E6%B3%95%EF%BC%9A"><span class="toc-number">1.2.</span> <span class="toc-text">2、局部页面置换算法：</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1%E6%9C%80%E4%BC%98%E9%A1%B5%E9%9D%A2%E7%BD%AE%E6%8D%A2%E7%AE%97%E6%B3%95%EF%BC%9A"><span class="toc-number">1.2.1.</span> <span class="toc-text">2.1最优页面置换算法：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link"><span class="toc-number">1.2.2.</span> <span class="toc-text"></span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2%E5%85%88%E8%BF%9B%E5%85%88%E5%87%BA%E7%AE%97%E6%B3%95-FIFO-%EF%BC%9A"><span class="toc-number">1.2.3.</span> <span class="toc-text">2.2先进先出算法(FIFO)：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#-1"><span class="toc-number">1.2.4.</span> <span class="toc-text"></span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-3%E6%9C%80%E8%BF%91%E6%9C%80%E4%B9%85%E6%9C%AA%E4%BD%BF%E7%94%A8%E7%AE%97%E6%B3%95-LRU%E2%80%94Least-Recently-Used-%EF%BC%9A"><span class="toc-number">1.2.5.</span> <span class="toc-text">2.3最近最久未使用算法(LRU—Least Recently Used)：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#-2"><span class="toc-number">1.2.6.</span> <span class="toc-text"></span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-4%E6%97%B6%E9%92%9F%E9%A1%B5%E9%9D%A2%E7%BD%AE%E6%8D%A2%E7%AE%97%E6%B3%95-Clock-%EF%BC%9A"><span class="toc-number">1.2.7.</span> <span class="toc-text">2.4时钟页面置换算法(Clock)：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-5%E4%BA%8C%E6%AC%A1%E6%9C%BA%E4%BC%9A%E6%B3%95-Enhanced-Clock-algorithm-%EF%BC%9A"><span class="toc-number">1.2.8.</span> <span class="toc-text">2.5二次机会法(Enhanced Clock algorithm)：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-6-%E6%9C%80%E4%B8%8D%E5%B8%B8%E7%94%A8%E7%AE%97%E6%B3%95-LFU-%E2%80%94-Least-Frequently-Used-%EF%BC%9A"><span class="toc-number">1.2.9.</span> <span class="toc-text">2.6 最不常用算法(LFU —- Least Frequently Used)：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-7Belady%E7%8E%B0%E8%B1%A1%E5%8F%8A%E5%8E%9F%E5%9B%A0%EF%BC%9A"><span class="toc-number">1.2.10.</span> <span class="toc-text">2.7Belady现象及原因：</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3%E3%80%81%E5%85%A8%E5%B1%80%E9%A1%B5%E9%9D%A2%E7%BD%AE%E6%8D%A2%E7%AE%97%E6%B3%95%EF%BC%9A"><span class="toc-number">1.3.</span> <span class="toc-text">3、全局页面置换算法：</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-1-%E5%B7%A5%E4%BD%9C%E9%9B%86%E6%A8%A1%E5%9E%8B%EF%BC%9A"><span class="toc-number">1.3.1.</span> <span class="toc-text">3.1 工作集模型：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-2-%E4%B8%A4%E4%B8%AA%E5%85%A8%E5%B1%80%E9%A1%B5%E9%9D%A2%E7%BD%AE%E6%8D%A2%E7%AE%97%E6%B3%95%EF%BC%9A"><span class="toc-number">1.3.2.</span> <span class="toc-text">3.2 两个全局页面置换算法：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-3-%E6%8A%96%E5%8A%A8%E9%97%AE%E9%A2%98-thrashing"><span class="toc-number">1.3.3.</span> <span class="toc-text">3.3 抖动问题(thrashing):</span></a></li></ol></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2022/03/31/hello-world/" title="Hello World"><img src="/img/loading.gif" data-original="https://i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Hello World"/></a><div class="content"><a class="title" href="/2022/03/31/hello-world/" title="Hello World">Hello World</a><time datetime="2022-03-31T09:49:07.771Z" title="发表于 2022-03-31 17:49:07">2022-03-31</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/10/26/%E8%87%AA%E9%A1%B6%E5%90%91%E4%B8%8B(1)/" title="计算机网络 自顶向下方法(应用层)"><img src="/img/loading.gif" data-original="/img/%E8%87%AA%E9%A1%B6%E5%90%91%E4%B8%8B%E6%96%B9%E6%B3%95.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="计算机网络 自顶向下方法(应用层)"/></a><div class="content"><a class="title" href="/2021/10/26/%E8%87%AA%E9%A1%B6%E5%90%91%E4%B8%8B(1)/" title="计算机网络 自顶向下方法(应用层)">计算机网络 自顶向下方法(应用层)</a><time datetime="2021-10-26T08:47:02.000Z" title="发表于 2021-10-26 16:47:02">2021-10-26</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/07/11/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3Java%E8%99%9A%E6%8B%9F%E6%9C%BA%E2%80%94%E2%80%94%E5%9E%83%E5%9C%BE%E6%94%B6%E9%9B%86%E5%99%A8%E4%B8%8E%E5%86%85%E5%AD%98%E5%88%86%E9%85%8D%E7%AD%96%E7%95%A5/" title="深入理解Java虚拟机—垃圾收集器与内存分配策略"><img src="/img/loading.gif" data-original="/img/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3Java%E8%99%9A%E6%8B%9F%E6%9C%BA.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="深入理解Java虚拟机—垃圾收集器与内存分配策略"/></a><div class="content"><a class="title" href="/2021/07/11/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3Java%E8%99%9A%E6%8B%9F%E6%9C%BA%E2%80%94%E2%80%94%E5%9E%83%E5%9C%BE%E6%94%B6%E9%9B%86%E5%99%A8%E4%B8%8E%E5%86%85%E5%AD%98%E5%88%86%E9%85%8D%E7%AD%96%E7%95%A5/" title="深入理解Java虚拟机—垃圾收集器与内存分配策略">深入理解Java虚拟机—垃圾收集器与内存分配策略</a><time datetime="2021-07-11T14:06:00.000Z" title="发表于 2021-07-11 22:06:00">2021-07-11</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/07/11/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3Java%E8%99%9A%E6%8B%9F%E6%9C%BA%E2%80%94%E2%80%94Java%E5%86%85%E5%AD%98%E5%8C%BA%E5%9F%9F/" title="深入理解Java虚拟机—Java内存区域"><img src="/img/loading.gif" data-original="/img/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3Java%E8%99%9A%E6%8B%9F%E6%9C%BA.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="深入理解Java虚拟机—Java内存区域"/></a><div class="content"><a class="title" href="/2021/07/11/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3Java%E8%99%9A%E6%8B%9F%E6%9C%BA%E2%80%94%E2%80%94Java%E5%86%85%E5%AD%98%E5%8C%BA%E5%9F%9F/" title="深入理解Java虚拟机—Java内存区域">深入理解Java虚拟机—Java内存区域</a><time datetime="2021-07-11T13:06:00.000Z" title="发表于 2021-07-11 21:06:00">2021-07-11</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/05/10/TCP%E4%B8%89%E6%8F%A1%E5%9B%9B%E6%8C%A5%E6%8B%93%E5%B1%95/" title="TCP三握四挥知识拓展"><img src="/img/loading.gif" data-original="/img/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="TCP三握四挥知识拓展"/></a><div class="content"><a class="title" href="/2021/05/10/TCP%E4%B8%89%E6%8F%A1%E5%9B%9B%E6%8C%A5%E6%8B%93%E5%B1%95/" title="TCP三握四挥知识拓展">TCP三握四挥知识拓展</a><time datetime="2021-05-10T10:12:00.000Z" title="发表于 2021-05-10 18:12:00">2021-05-10</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2022 By XjX-zc</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">本地搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.js"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><script src="/js/search/local-search.js"></script><div class="js-pjax"></div><script defer="defer" id="fluttering_ribbon" mobile="true" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/canvas-fluttering-ribbon.min.js"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div><script>
+            window.imageLazyLoadSetting = {
+                isSPA: false,
+                preloadRatio: 1,
+                processImages: null,
+            };
+        </script><script>window.addEventListener("load",function(){var t=/\.(gif|jpg|jpeg|tiff|png)$/i,r=/^data:image\/[a-z]+;base64,/;Array.prototype.slice.call(document.querySelectorAll("img[data-original]")).forEach(function(a){var e=a.parentNode;"A"===e.tagName&&(e.href.match(t)||e.href.match(r))&&(e.href=a.dataset.original)})});</script><script>!function(n){n.imageLazyLoadSetting.processImages=o;var e=n.imageLazyLoadSetting.isSPA,i=n.imageLazyLoadSetting.preloadRatio||1,r=Array.prototype.slice.call(document.querySelectorAll("img[data-original]"));function o(){e&&(r=Array.prototype.slice.call(document.querySelectorAll("img[data-original]")));for(var t,a=0;a<r.length;a++)0<=(t=(t=r[a]).getBoundingClientRect()).bottom&&0<=t.left&&t.top<=(n.innerHeight*i||document.documentElement.clientHeight*i)&&function(){var t,e,n,i,o=r[a];t=o,e=function(){r=r.filter(function(t){return o!==t})},n=new Image,i=t.getAttribute("data-original"),n.onload=function(){t.src=i,e&&e()},t.src!==i&&(n.src=i)}()}o(),n.addEventListener("scroll",function(){var t,e;t=o,e=n,clearTimeout(t.tId),t.tId=setTimeout(function(){t.call(e)},500)})}(this);</script></body></html>

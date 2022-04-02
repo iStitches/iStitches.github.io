@@ -1,0 +1,529 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>iStitches</title>
+  <icon>http://example.com/icon.png</icon>
+  <subtitle>Do our best</subtitle>
+  <link href="http://example.com/atom.xml" rel="self"/>
+  
+  <link href="http://example.com/"/>
+  <updated>2022-04-02T02:43:49.770Z</updated>
+  <id>http://example.com/</id>
+  
+  <author>
+    <name>XjX-zc</name>
+    
+  </author>
+  
+  <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Hello World</title>
+    <link href="http://example.com/2022/03/31/hello-world/"/>
+    <id>http://example.com/2022/03/31/hello-world/</id>
+    <published>2022-03-31T09:49:07.771Z</published>
+    <updated>2022-04-02T02:43:49.770Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;Welcome to &lt;a href=&quot;https://hexo.io/&quot;&gt;Hexo&lt;/a&gt;! This is your very first post. Check &lt;a href=&quot;https://hexo.io/docs/&quot;&gt;documentation&lt;/a&gt;</summary>
+        
+      
+    
+    
+    
+    <category term="test" scheme="http://example.com/categories/test/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>计算机网络 自顶向下方法(应用层)</title>
+    <link href="http://example.com/2021/10/26/%E8%87%AA%E9%A1%B6%E5%90%91%E4%B8%8B(1)/"/>
+    <id>http://example.com/2021/10/26/%E8%87%AA%E9%A1%B6%E5%90%91%E4%B8%8B(1)/</id>
+    <published>2021-10-26T08:47:02.000Z</published>
+    <updated>2022-04-02T02:33:06.822Z</updated>
+    
+    
+    <summary type="html">&lt;blockquote&gt;
+&lt;p&gt; WireShark 抓包指南：   &lt;a href=&quot;https://zhuanlan.zhihu.com/p/82498482&quot;&gt;https://zhuanlan.zhihu.com/p/82498482&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id=&quot;协议分层&quot;&gt;&lt;a href=&quot;#协议分层&quot; class=&quot;headerlink&quot; title=&quot;协议分层&quot;&gt;&lt;/a&gt;协议分层&lt;/h2&gt;&lt;p&gt;协议规定了发送者、接收者和所有中间设备为了高效通信需要遵守的规则。&lt;/p&gt;
+&lt;p&gt;协议分层允许我们将一个复杂的任务分解成几个较小的、简单的任务。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;协议分层的好处：&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;第一，它允许我们将服务从实现中分离出来。一层需要能够接收较低一层的一系列服务，同时向较高层提供服务，而我们不需要关心这一层是如何实现的。&lt;/li&gt;
+&lt;li&gt;第二，在通信过程中中间系统只需要一些层次而不是所有的层次，如果不使用协议分层，形成的中间系统就不得不像端系统一样复杂，这样会提高整个系统的造价。&lt;/li&gt;
+&lt;/ul&gt;</summary>
+    
+    
+    
+    <category term="计算机网络 自顶向下方法" scheme="http://example.com/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C-%E8%87%AA%E9%A1%B6%E5%90%91%E4%B8%8B%E6%96%B9%E6%B3%95/"/>
+    
+    
+    <category term="读书笔记" scheme="http://example.com/tags/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>深入理解Java虚拟机—垃圾收集器与内存分配策略</title>
+    <link href="http://example.com/2021/07/11/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3Java%E8%99%9A%E6%8B%9F%E6%9C%BA%E2%80%94%E2%80%94%E5%9E%83%E5%9C%BE%E6%94%B6%E9%9B%86%E5%99%A8%E4%B8%8E%E5%86%85%E5%AD%98%E5%88%86%E9%85%8D%E7%AD%96%E7%95%A5/"/>
+    <id>http://example.com/2021/07/11/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3Java%E8%99%9A%E6%8B%9F%E6%9C%BA%E2%80%94%E2%80%94%E5%9E%83%E5%9C%BE%E6%94%B6%E9%9B%86%E5%99%A8%E4%B8%8E%E5%86%85%E5%AD%98%E5%88%86%E9%85%8D%E7%AD%96%E7%95%A5/</id>
+    <published>2021-07-11T14:06:00.000Z</published>
+    <updated>2022-04-02T02:20:21.340Z</updated>
+    
+    
+    <summary type="html">&lt;blockquote&gt;
+&lt;p&gt;在Java的运行时数据区的各个部分，其中程序计数器、虚拟机栈、本地方法栈都为线程私有，随着线程生灭。因此垃圾收集器的主要作用区域是线程共享的堆和方法区。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id=&quot;确定哪些对象需要被回收？&quot;&gt;&lt;a href=&quot;#确定哪些对象需要被回收？&quot; class=&quot;headerlink&quot; title=&quot;确定哪些对象需要被回收？&quot;&gt;&lt;/a&gt;确定哪些对象需要被回收？&lt;/h2&gt;&lt;h3 id=&quot;引用计数算法&quot;&gt;&lt;a href=&quot;#引用计数算法&quot; class=&quot;headerlink&quot; title=&quot;引用计数算法&quot;&gt;&lt;/a&gt;引用计数算法&lt;/h3&gt;&lt;p&gt;&lt;strong&gt;算法思路：&lt;/strong&gt;在对象中添加一个引用计数器，每当有一个地方引用它时，计数器的值就加一；当引用失效时，计数器的值就减一；任何时刻计数器为零的对象就是不会再被使用的。&lt;/p&gt;
+&lt;p&gt;引用计数法执行起来很简单，效率也比较高，但是有一个很难解决的问题就是循环引用。什么是循环引用？&lt;/p&gt;
+&lt;p&gt;对象 objA和对象objB都由字段 instance，赋值令 objA.instance &amp;#x3D; objB.instance，除次之外，这两个对象再无其它引用，此时就会产生循环引用的问题。&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="深入理解Java虚拟机" scheme="http://example.com/categories/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3Java%E8%99%9A%E6%8B%9F%E6%9C%BA/"/>
+    
+    
+    <category term="读书笔记" scheme="http://example.com/tags/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>深入理解Java虚拟机—Java内存区域</title>
+    <link href="http://example.com/2021/07/11/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3Java%E8%99%9A%E6%8B%9F%E6%9C%BA%E2%80%94%E2%80%94Java%E5%86%85%E5%AD%98%E5%8C%BA%E5%9F%9F/"/>
+    <id>http://example.com/2021/07/11/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3Java%E8%99%9A%E6%8B%9F%E6%9C%BA%E2%80%94%E2%80%94Java%E5%86%85%E5%AD%98%E5%8C%BA%E5%9F%9F/</id>
+    <published>2021-07-11T13:06:00.000Z</published>
+    <updated>2022-04-02T02:20:26.070Z</updated>
+    
+    
+    <summary type="html">&lt;blockquote&gt;
+&lt;p&gt;Java虚拟机在执行Java程序的过程中会把所管理的内存划分为若干个不同的数据区域。这些区域各有各自的用途，以及创建和销毁的时间。总的来说Java虚拟机可以划分为如下几个运行时数据区部分。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;首先总体上说Java虚拟机包括&lt;strong&gt;方法区&lt;/strong&gt;、&lt;strong&gt;堆&lt;/strong&gt;、&lt;strong&gt;虚拟机栈&lt;/strong&gt;、&lt;strong&gt;本地方法栈&lt;/strong&gt;、&lt;strong&gt;程序计数器&lt;/strong&gt;五个主要的运行时数据区部分。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/../passageImg/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3Java%E8%99%9A%E6%8B%9F%E6%9C%BA.assets/image-20210711104433492.png&quot; alt=&quot;image-20210711104433492&quot;&gt;&lt;/p&gt;
+&lt;h2 id=&quot;程序计数器&quot;&gt;&lt;a href=&quot;#程序计数器&quot; class=&quot;headerlink&quot; title=&quot;程序计数器&quot;&gt;&lt;/a&gt;程序计数器&lt;/h2&gt;&lt;h3 id=&quot;介绍：&quot;&gt;&lt;a href=&quot;#介绍：&quot; class=&quot;headerlink&quot; title=&quot;介绍：&quot;&gt;&lt;/a&gt;介绍：&lt;/h3&gt;&lt;p&gt;程序计数器(PC) 用来指示当前线程所执行的字节码行号指示器，字节码解释器工作时就是通过改变这个计数器的值来指明下一条需要执行的字节码指令。它是程序控制流的指示器、，分支、跳转、循环、异常处理、线程恢复等基础功能都依赖于这个计数器来完成。&lt;/p&gt;
+&lt;h3 id=&quot;特性：&quot;&gt;&lt;a href=&quot;#特性：&quot; class=&quot;headerlink&quot; title=&quot;特性：&quot;&gt;&lt;/a&gt;特性：&lt;/h3&gt;&lt;p&gt;为了多个线程之间的执行操作互不影响，每个线程都需要有一个&lt;strong&gt;独立&lt;/strong&gt;的程序计数器，各条线程之间计数器互不影响，独立存储，我们称这类内存区域为 “线程私有” 的内存。&lt;/p&gt;
+&lt;p&gt;如果线程执行的是一个Java方法，这个计数器记录的是正在执行的虚拟机字节码指令的地址；如果执行的是一个本地(Native)方法，则计数器的值应该为空。&lt;/p&gt;
+&lt;p&gt;程序计数器是各个运行时数据区中唯一一个不会出现&lt;code&gt;OutOfMemoryError&lt;/code&gt;情况的区域。&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="深入理解Java虚拟机" scheme="http://example.com/categories/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3Java%E8%99%9A%E6%8B%9F%E6%9C%BA/"/>
+    
+    
+    <category term="读书笔记" scheme="http://example.com/tags/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>TCP三握四挥知识拓展</title>
+    <link href="http://example.com/2021/05/10/TCP%E4%B8%89%E6%8F%A1%E5%9B%9B%E6%8C%A5%E6%8B%93%E5%B1%95/"/>
+    <id>http://example.com/2021/05/10/TCP%E4%B8%89%E6%8F%A1%E5%9B%9B%E6%8C%A5%E6%8B%93%E5%B1%95/</id>
+    <published>2021-05-10T10:12:00.000Z</published>
+    <updated>2022-04-02T02:39:17.412Z</updated>
+    
+    
+    <summary type="html">&lt;h1 id=&quot;TCP与UDP、三握四挥的拓展&quot;&gt;&lt;a href=&quot;#TCP与UDP、三握四挥的拓展&quot; class=&quot;headerlink&quot; title=&quot;TCP与UDP、三握四挥的拓展&quot;&gt;&lt;/a&gt;TCP与UDP、三握四挥的拓展&lt;/h1&gt;&lt;h2 id=&quot;TCP-基本认识&quot;&gt;&lt;a href=&quot;#TCP-基本认识&quot; class=&quot;headerlink&quot; title=&quot;TCP 基本认识&quot;&gt;&lt;/a&gt;TCP 基本认识&lt;/h2&gt;&lt;img src=&quot;/passageImg/TCP三握四挥.assets/1616140750-aAtekK-file_1616140748581&quot; alt=&quot;img&quot; style=&quot;zoom: 80%;&quot; /&gt;
+
+&lt;h3 id=&quot;1-TCP-头格式&quot;&gt;&lt;a href=&quot;#1-TCP-头格式&quot; class=&quot;headerlink&quot; title=&quot;1. TCP 头格式&quot;&gt;&lt;/a&gt;1. TCP 头格式&lt;/h3&gt;&lt;blockquote&gt;
+&lt;p&gt;参考：&lt;a href=&quot;https://blog.csdn.net/zhouzhenhe2008/article/details/71075969&quot;&gt;https://blog.csdn.net/zhouzhenhe2008/article/details/71075969&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://www.cnblogs.com/azraelly/archive/2012/12/25/2832393.html&quot;&gt;https://www.cnblogs.com/azraelly/archive/2012/12/25/2832393.html&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;img src=&quot;/passageImg/TCP三握四挥.assets/1616140750-tkQhoX-file_1616140748676&quot; alt=&quot;TCP 头格式&quot; style=&quot;zoom: 67%;&quot; /&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;序列号：在初始建立连接时计算机随机分配一个值作为初始值，之后每发送一次数据就加上此次发送数据的字节数大小。&lt;strong&gt;用来解决包乱序问题&lt;/strong&gt;。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;确认号：表示下一次希望接收的数据的序号。发送方通过确认号来确定此序号之前的所有数据都被接收了，&lt;strong&gt;用来确认传输过程不丢包&lt;/strong&gt;。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;控制位：（URG、ACK、PSH、SYN、RST、FIN）&lt;/p&gt;
+&lt;p&gt;URG：为1表示有紧急数据需要发送，结合紧急指针一起使用；&lt;/p&gt;
+&lt;p&gt;ACK：初始建立连接时为0，之后整个数据传输过程都为1，表示确认号有效；&lt;/p&gt;
+&lt;p&gt;PSH：为1表示本次传送的数据不为空，真正的有数据需要传输；&lt;/p&gt;
+&lt;p&gt;SYN：为1表示请求建立连接；&lt;/p&gt;
+&lt;p&gt;RST：为1表示tcp连接时出现了问题，需要重新建立连接；&lt;/p&gt;
+&lt;p&gt;FIN：为1表示通信过程结束，请求释放连接。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;窗口大小：指的是接收窗口的大小，用来进行流量控制，解决拥塞问题。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;校验和：对整个TCP报文段进行检验，包括头和数据部分，并由目标端进行验证。（这里和IP数据报不一样，IP数据报只检验首部）；&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;紧急指针：有紧急数据需要传送，是一个偏移量，和序号字段的值相加表示紧急数据最后一个字节的需要。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;选项：长度不确定，最大为40字节（和IP数据报的可选部分类似）。&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;</summary>
+    
+    
+    
+    <category term="计算机网络" scheme="http://example.com/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/"/>
+    
+    
+    <category term="计算机网络" scheme="http://example.com/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Office(一)、基础使用</title>
+    <link href="http://example.com/2021/04/15/%E6%91%B8%E9%B1%BC-office2019%E5%AD%A6%E4%B9%A0(%E4%B8%80)/"/>
+    <id>http://example.com/2021/04/15/%E6%91%B8%E9%B1%BC-office2019%E5%AD%A6%E4%B9%A0(%E4%B8%80)/</id>
+    <published>2021-04-15T14:06:00.000Z</published>
+    <updated>2022-04-02T02:20:43.621Z</updated>
+    
+    
+    <summary type="html">&lt;h2 id=&quot;一、对文档进行保存加密处理&quot;&gt;&lt;a href=&quot;#一、对文档进行保存加密处理&quot; class=&quot;headerlink&quot; title=&quot;一、对文档进行保存加密处理&quot;&gt;&lt;/a&gt;一、对文档进行保存加密处理&lt;/h2&gt;&lt;img src=&quot;摸鱼-office2019学习(一).assets/image-20210415170322699.png&quot; alt=&quot;image-20210415170322699&quot; style=&quot;zoom:67%;&quot; /&gt;
+
+&lt;p&gt;在保存界面选择保存方式，然后输入文件打开时的密码。&lt;/p&gt;
+&lt;img src=&quot;摸鱼-office2019学习(一).assets/image-20210415170501111.png&quot; alt=&quot;image-20210415170501111&quot; style=&quot;zoom:67%;&quot; /&gt;
+
+&lt;p&gt;在保存时可以通过&lt;strong&gt;工具&lt;/strong&gt; 选项选择保存选项，里面可以设置修改文件的密码。&lt;/p&gt;
+&lt;img src=&quot;摸鱼-office2019学习(一).assets/image-20210415170555408.png&quot; alt=&quot;image-20210415170555408&quot; style=&quot;zoom:67%;&quot; /&gt;
+
+&lt;p&gt;这样在打开文件的时候就会提示我输入文件阅读密码，输入后会再次提示输入文件修改密码，否则只会作为只读文件类型打开。&lt;/p&gt;
+&lt;img src=&quot;摸鱼-office2019学习(一).assets/image-20210415170659506.png&quot; alt=&quot;image-20210415170659506&quot; style=&quot;zoom:67%;&quot; /&gt;</summary>
+    
+    
+    
+    <category term="摸鱼" scheme="http://example.com/categories/%E6%91%B8%E9%B1%BC/"/>
+    
+    
+    <category term="Office" scheme="http://example.com/tags/Office/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>ConcurrentHashMap源码解读</title>
+    <link href="http://example.com/2021/04/06/Java%E6%BA%90%E7%A0%81_concurrentHashMap%E6%BA%90%E7%A0%81/"/>
+    <id>http://example.com/2021/04/06/Java%E6%BA%90%E7%A0%81_concurrentHashMap%E6%BA%90%E7%A0%81/</id>
+    <published>2021-04-06T13:49:00.000Z</published>
+    <updated>2022-04-02T02:35:54.265Z</updated>
+    
+    
+    <summary type="html">&lt;h2 id=&quot;引言&quot;&gt;&lt;a href=&quot;#引言&quot; class=&quot;headerlink&quot; title=&quot;引言&quot;&gt;&lt;/a&gt;引言&lt;/h2&gt;&lt;p&gt;由于 HashMap 在多线程情况下存在线程安全的问题，因此在多线程情况下不会去选择使用这种结构，相应的我们会有几种方案去解决：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;采用线程安全的 HashTable&lt;/li&gt;
+&lt;li&gt;使用 Collections.synchorizedMap(Map) 来创建线程安全的Map集合；&lt;/li&gt;
+&lt;li&gt;使用 ConcurrentHashMap&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;但是由于效率和并发度的原因，往往会舍弃前两种选择第三种方式。&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="JAVA" scheme="http://example.com/categories/JAVA/"/>
+    
+    
+    <category term="源码解读" scheme="http://example.com/tags/%E6%BA%90%E7%A0%81%E8%A7%A3%E8%AF%BB/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>ReentrantLock源码解读</title>
+    <link href="http://example.com/2021/04/03/Java%E6%BA%90%E7%A0%81_ReentrantLock_AQS/"/>
+    <id>http://example.com/2021/04/03/Java%E6%BA%90%E7%A0%81_ReentrantLock_AQS/</id>
+    <published>2021-04-03T10:47:00.000Z</published>
+    <updated>2022-04-02T02:36:05.786Z</updated>
+    
+    
+    <summary type="html">&lt;h2 id=&quot;一、Java中的锁&quot;&gt;&lt;a href=&quot;#一、Java中的锁&quot; class=&quot;headerlink&quot; title=&quot;一、Java中的锁&quot;&gt;&lt;/a&gt;一、Java中的锁&lt;/h2&gt;&lt;h3 id=&quot;1-Java当中有哪些锁？&quot;&gt;&lt;a href=&quot;#1-Java当中有哪些锁？&quot; class=&quot;headerlink&quot; title=&quot;1. Java当中有哪些锁？&quot;&gt;&lt;/a&gt;1. Java当中有哪些锁？&lt;/h3&gt;&lt;p&gt;公平锁、非公平锁、读写锁、共享锁、互斥锁、自旋锁、偏向锁、轻量级锁、重量级锁&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="JAVA" scheme="http://example.com/categories/JAVA/"/>
+    
+    
+    <category term="源码解读" scheme="http://example.com/tags/%E6%BA%90%E7%A0%81%E8%A7%A3%E8%AF%BB/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>ArrayList、LinkedList、Vector源码解读</title>
+    <link href="http://example.com/2021/04/02/Java%E6%BA%90%E7%A0%81_ArrayList%E3%80%81LinkedList%E3%80%81Vector/"/>
+    <id>http://example.com/2021/04/02/Java%E6%BA%90%E7%A0%81_ArrayList%E3%80%81LinkedList%E3%80%81Vector/</id>
+    <published>2021-04-02T13:44:00.000Z</published>
+    <updated>2022-04-02T02:35:47.924Z</updated>
+    
+    
+    <summary type="html">&lt;h1 id=&quot;ArrayList、LinkedList、Vector-三者差异比较&quot;&gt;&lt;a href=&quot;#ArrayList、LinkedList、Vector-三者差异比较&quot; class=&quot;headerlink&quot; title=&quot;ArrayList、LinkedList、Vector 三者差异比较&quot;&gt;&lt;/a&gt;ArrayList、LinkedList、Vector 三者差异比较&lt;/h1&gt;&lt;h2 id=&quot;一、ArrayList、LinkedList、Vector的区别&quot;&gt;&lt;a href=&quot;#一、ArrayList、LinkedList、Vector的区别&quot; class=&quot;headerlink&quot; title=&quot;一、ArrayList、LinkedList、Vector的区别&quot;&gt;&lt;/a&gt;一、ArrayList、LinkedList、Vector的区别&lt;/h2&gt;&lt;h3 id=&quot;（1）底层结构&quot;&gt;&lt;a href=&quot;#（1）底层结构&quot; class=&quot;headerlink&quot; title=&quot;（1）底层结构&quot;&gt;&lt;/a&gt;（1）底层结构&lt;/h3&gt;&lt;p&gt;ArrayList 的底层是基于动态数组来实现的，LinkedList 的底层是基于拥有头尾指针的双向链表来实现的。&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="JAVA" scheme="http://example.com/categories/JAVA/"/>
+    
+    
+    <category term="源码解读" scheme="http://example.com/tags/%E6%BA%90%E7%A0%81%E8%A7%A3%E8%AF%BB/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Synchronized源码解读</title>
+    <link href="http://example.com/2021/04/01/Java%E6%BA%90%E7%A0%81_Synchorized%E5%89%96%E6%9E%90/"/>
+    <id>http://example.com/2021/04/01/Java%E6%BA%90%E7%A0%81_Synchorized%E5%89%96%E6%9E%90/</id>
+    <published>2021-04-01T12:47:00.000Z</published>
+    <updated>2022-04-02T02:36:11.105Z</updated>
+    
+    
+    <summary type="html">&lt;h1 id=&quot;Synchorized&quot;&gt;&lt;a href=&quot;#Synchorized&quot; class=&quot;headerlink&quot; title=&quot;Synchorized&quot;&gt;&lt;/a&gt;Synchorized&lt;/h1&gt;&lt;h2 id=&quot;一、Synchorized-的基本使用&quot;&gt;&lt;a href=&quot;#一、Synchorized-的基本使用&quot; class=&quot;headerlink&quot; title=&quot;一、Synchorized 的基本使用&quot;&gt;&lt;/a&gt;一、Synchorized 的基本使用&lt;/h2&gt;&lt;p&gt;&lt;strong&gt;Synchorized的作用：&lt;/strong&gt;&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;原子性：对同步代码块的访问是互斥执行的。&lt;/li&gt;
+&lt;li&gt;可见性：保证共享变量的修改能够及时可见，其实就是Java内存模型中的 “对同一个变量 unlock之前会将工作内存中变量的值同步到主内存中；对同一个变量的 lock 之前，则会清空工作内存中此变量的值，然后将主内存中的变量值同步到工作内存中”。&lt;/li&gt;
+&lt;li&gt;有序性：一个 unlock() 操作一定先行发生于**[happen-before]**后面对同一个锁的 lock() 操作。&lt;/li&gt;
+&lt;/ol&gt;</summary>
+    
+    
+    
+    <category term="JAVA" scheme="http://example.com/categories/JAVA/"/>
+    
+    
+    <category term="源码解读" scheme="http://example.com/tags/%E6%BA%90%E7%A0%81%E8%A7%A3%E8%AF%BB/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Zookeeper——入门</title>
+    <link href="http://example.com/2021/03/20/Zookeeper_%E5%85%A5%E9%97%A8/"/>
+    <id>http://example.com/2021/03/20/Zookeeper_%E5%85%A5%E9%97%A8/</id>
+    <published>2021-03-20T13:06:00.000Z</published>
+    <updated>2022-04-02T02:22:21.925Z</updated>
+    
+    
+    <summary type="html">&lt;h2 id=&quot;一、分布式介绍&quot;&gt;&lt;a href=&quot;#一、分布式介绍&quot; class=&quot;headerlink&quot; title=&quot;一、分布式介绍&quot;&gt;&lt;/a&gt;一、分布式介绍&lt;/h2&gt;&lt;h3 id=&quot;1-1-分布式环境特点：&quot;&gt;&lt;a href=&quot;#1-1-分布式环境特点：&quot; class=&quot;headerlink&quot; title=&quot;1.1 分布式环境特点：&quot;&gt;&lt;/a&gt;1.1 分布式环境特点：&lt;/h3&gt;&lt;p&gt;1）分布性：异地多活；&lt;/p&gt;
+&lt;p&gt;2）并发性：程序运行过程中，并发性操作很常见；同一个分布式系统中的多个结点同时访问一个共享资源，比如数据库或者分布式存储。分布式并发是基于多进程的。&lt;/p&gt;
+&lt;p&gt;3）无序性：进程之间的消息通信会出现顺序不一致的问题。&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="中间件" scheme="http://example.com/categories/%E4%B8%AD%E9%97%B4%E4%BB%B6/"/>
+    
+    
+    <category term="Zookeeper" scheme="http://example.com/tags/Zookeeper/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>计网（二）、网络层</title>
+    <link href="http://example.com/2021/03/20/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E2%80%94%E2%80%94%E7%BD%91%E7%BB%9C%E5%B1%82/"/>
+    <id>http://example.com/2021/03/20/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E2%80%94%E2%80%94%E7%BD%91%E7%BB%9C%E5%B1%82/</id>
+    <published>2021-03-20T13:06:00.000Z</published>
+    <updated>2022-04-02T02:21:15.113Z</updated>
+    
+    
+    <summary type="html">&lt;h2 id=&quot;一、网络层提供的服务&quot;&gt;&lt;a href=&quot;#一、网络层提供的服务&quot; class=&quot;headerlink&quot; title=&quot;一、网络层提供的服务&quot;&gt;&lt;/a&gt;一、网络层提供的服务&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;网络层只向上层提供简单灵活的、无连接的、尽最大努力交付的数据报服务。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;网络层不提供端到端的可靠传输服务。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;虚电路方式和数据报方式传递数据的不同：&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img src=&quot;/passageImg/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C_%E7%BD%91%E7%BB%9C%E5%B1%82.assets/image-20210325191357159.png&quot;&gt;&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="计算机网络" scheme="http://example.com/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/"/>
+    
+    
+    <category term="计算机网络" scheme="http://example.com/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>计网（三）、传输层</title>
+    <link href="http://example.com/2021/03/17/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E2%80%94%E2%80%94%E4%BC%A0%E8%BE%93%E5%B1%82/"/>
+    <id>http://example.com/2021/03/17/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E2%80%94%E2%80%94%E4%BC%A0%E8%BE%93%E5%B1%82/</id>
+    <published>2021-03-17T13:11:00.000Z</published>
+    <updated>2022-04-02T02:21:25.779Z</updated>
+    
+    
+    <summary type="html">&lt;h2 id=&quot;一、传输层协议概述&quot;&gt;&lt;a href=&quot;#一、传输层协议概述&quot; class=&quot;headerlink&quot; title=&quot;一、传输层协议概述&quot;&gt;&lt;/a&gt;一、传输层协议概述&lt;/h2&gt;&lt;p&gt;运输层的作用： &lt;strong&gt;运输层提供应用进程间的逻辑通信&lt;/strong&gt;&lt;/p&gt;
+&lt;h3 id=&quot;端口&quot;&gt;&lt;a href=&quot;#端口&quot; class=&quot;headerlink&quot; title=&quot;端口&quot;&gt;&lt;/a&gt;端口&lt;/h3&gt;&lt;ol&gt;
+&lt;li&gt;端口的复用和分用功能：&lt;/li&gt;
+&lt;/ol&gt;
+&lt;img src=&quot;/passageImg/计算机网络_传输层.assets/image-20210328210839296.png&quot; alt=&quot;image-20210328210839296&quot; style=&quot;zoom:67%;&quot; /&gt;</summary>
+    
+    
+    
+    <category term="计算机网络" scheme="http://example.com/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/"/>
+    
+    
+    <category term="计算机网络" scheme="http://example.com/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Java线程池</title>
+    <link href="http://example.com/2021/03/15/%E7%BA%BF%E7%A8%8B%E6%B1%A0/"/>
+    <id>http://example.com/2021/03/15/%E7%BA%BF%E7%A8%8B%E6%B1%A0/</id>
+    <published>2021-03-15T13:06:00.000Z</published>
+    <updated>2022-04-02T02:33:38.652Z</updated>
+    
+    
+    <summary type="html">&lt;h1 id=&quot;线程池&quot;&gt;&lt;a href=&quot;#线程池&quot; class=&quot;headerlink&quot; title=&quot;线程池&quot;&gt;&lt;/a&gt;线程池&lt;/h1&gt;&lt;h2 id=&quot;一、Java线程池-ExecutorService&quot;&gt;&lt;a href=&quot;#一、Java线程池-ExecutorService&quot; class=&quot;headerlink&quot; title=&quot;一、Java线程池 ExecutorService&quot;&gt;&lt;/a&gt;一、Java线程池 ExecutorService&lt;/h2&gt;&lt;h3 id=&quot;1-ExecutorService介绍&quot;&gt;&lt;a href=&quot;#1-ExecutorService介绍&quot; class=&quot;headerlink&quot; title=&quot;1. ExecutorService介绍&quot;&gt;&lt;/a&gt;1. ExecutorService介绍&lt;/h3&gt;&lt;blockquote&gt;
+&lt;p&gt;ExecutorService 是Java中对线程池定义的一个接口，它存在于 java.util.concurrent 包中，这个接口中定义了后台执行任务相关的方法。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;img src=&quot;/passageImg/Java杂记.assets/image-20210406180221611.png&quot; alt=&quot;image-20210406180221611&quot; style=&quot;zoom: 80%;&quot; /&gt;
+
+&lt;p&gt;&lt;img src=&quot;/passageImg/Java%E6%9D%82%E8%AE%B0.assets/20151027091552190&quot; alt=&quot;这里写图片描述&quot;&gt;&lt;/p&gt;
+&lt;p&gt;ExecutorService 继承自&lt;code&gt; Executor&lt;/code&gt; 接口（区分开工厂类 Executors），它有两个实现的子类 &lt;code&gt;ThreadPoolExecutor&lt;/code&gt;、&lt;code&gt;ScheduledThreadPoolExecutor&lt;/code&gt;。&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="JAVA" scheme="http://example.com/categories/JAVA/"/>
+    
+    
+    <category term="线程池" scheme="http://example.com/tags/%E7%BA%BF%E7%A8%8B%E6%B1%A0/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>加密算法</title>
+    <link href="http://example.com/2021/03/01/%E5%8A%A0%E5%AF%86%E7%AE%97%E6%B3%95/"/>
+    <id>http://example.com/2021/03/01/%E5%8A%A0%E5%AF%86%E7%AE%97%E6%B3%95/</id>
+    <published>2021-03-01T11:06:00.000Z</published>
+    <updated>2022-04-02T02:45:25.356Z</updated>
+    
+    
+    <summary type="html">&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;常见的加密编码等算法解析包括&lt;/strong&gt;： MD5、SHA、ASC、进制、时间戳、URL、BASE64、AES、DES等&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;常见加密形式算法解析&lt;/strong&gt;：直接加密、带salt、带密码、带偏移、带位数、带模式、带干扰、自定义组合等；&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;常见解密方式&lt;/strong&gt;：枚举、自定义逆向算法、可逆向&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id=&quot;MD4&quot;&gt;&lt;a href=&quot;#MD4&quot; class=&quot;headerlink&quot; title=&quot;MD4&quot;&gt;&lt;/a&gt;MD4&lt;/h2&gt;&lt;p&gt;&lt;strong&gt;介绍：&lt;/strong&gt;&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;在执行MD4算法前，首先需要对输入的内容进行填充和分段。对于长于448位的信息，在其后添加一个1和n个0，使其按位长度对512求余后值为448。随后用64位的输入长度信息附加在已经填充好的原始信息后，使其长度为512 的整数倍。每次处理一段(512位)，输出四个32位字。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;MD4算法中包括四个32位无符号整数类型的参数H1、H2、H3、H4，四个参数在处理第一块内容前初始化为 H1&amp;#x3D;0x67452301、H2&amp;#x3D;0xefcdab89、H3&amp;#x3D;0x98badcfe、H4&amp;#x3D;0x10335476。在计算完第 i 块后，将更新这四个值作为第 i+1 块的输入。计算完最后一块，它们就作为MD4算法对整个输入内容的计算结果。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;算法中涉及到不同的三类参数：常数y[j]、访问输入内容的索引z[j]、移位次数s[j]。整个算法分为3轮，每轮16步。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/../passageImg/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3Java%E8%99%9A%E6%8B%9F%E6%9C%BA.assets/image-20211019140434221.png&quot; alt=&quot;image-20211019140434221&quot;&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;strong&gt;实现：&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/../passageImg/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3Java%E8%99%9A%E6%8B%9F%E6%9C%BA.assets/image-20211019140508386.png&quot; alt=&quot;image-20211019140508386&quot;&gt;&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="计算机网络" scheme="http://example.com/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/"/>
+    
+    
+    <category term="计算机网络" scheme="http://example.com/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>计网（一）、数据链路层</title>
+    <link href="http://example.com/2021/03/01/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E2%80%94%E2%80%94%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%E5%B1%82/"/>
+    <id>http://example.com/2021/03/01/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E2%80%94%E2%80%94%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%E5%B1%82/</id>
+    <published>2021-03-01T11:06:00.000Z</published>
+    <updated>2022-04-02T02:21:20.587Z</updated>
+    
+    
+    <summary type="html">&lt;h1 id=&quot;数据链路层&quot;&gt;&lt;a href=&quot;#数据链路层&quot; class=&quot;headerlink&quot; title=&quot;数据链路层&quot;&gt;&lt;/a&gt;数据链路层&lt;/h1&gt;&lt;h2 id=&quot;一、基本概念&quot;&gt;&lt;a href=&quot;#一、基本概念&quot; class=&quot;headerlink&quot; title=&quot;一、基本概念&quot;&gt;&lt;/a&gt;一、基本概念&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;链路：一条无源的点到点的物理线路段，中间没有任何其它的交换节点；&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;数据链路：除了物理线路外，还必须有通信协议来控制这些数据的传输；把这些协议的硬件和软件加到链路上，就构成了数据链路；&lt;/p&gt;
+&lt;p&gt;最常用的方法是：适配器（网卡）来实现软件和硬件，网卡一般都包括了数据链路层和物理层这两层；&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;数据链路层传送的是帧。网络层将 ip数据报传入数据链路层封装成帧，数据链路层再将帧传送给物理层转换为比特流的形式发送给对方机器，对方机器接收后再反过来进行转换。&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;</summary>
+    
+    
+    
+    <category term="计算机网络" scheme="http://example.com/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/"/>
+    
+    
+    <category term="计算机网络" scheme="http://example.com/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>HashMap源码解读</title>
+    <link href="http://example.com/2021/01/10/Java%E6%BA%90%E7%A0%81_HashMap%E6%BA%90%E7%A0%81/"/>
+    <id>http://example.com/2021/01/10/Java%E6%BA%90%E7%A0%81_HashMap%E6%BA%90%E7%A0%81/</id>
+    <published>2021-01-10T10:47:00.000Z</published>
+    <updated>2022-04-02T02:35:59.834Z</updated>
+    
+    
+    <summary type="html">&lt;h1 id=&quot;HashMap&quot;&gt;&lt;a href=&quot;#HashMap&quot; class=&quot;headerlink&quot; title=&quot;HashMap&quot;&gt;&lt;/a&gt;HashMap&lt;/h1&gt;&lt;h2 id=&quot;一、JDK-1-7-的HashMap&quot;&gt;&lt;a href=&quot;#一、JDK-1-7-的HashMap&quot; class=&quot;headerlink&quot; title=&quot;一、JDK 1.7 的HashMap&quot;&gt;&lt;/a&gt;一、JDK 1.7 的HashMap&lt;/h2&gt;&lt;h3 id=&quot;1-数据结构&quot;&gt;&lt;a href=&quot;#1-数据结构&quot; class=&quot;headerlink&quot; title=&quot;1. 数据结构&quot;&gt;&lt;/a&gt;1. 数据结构&lt;/h3&gt;&lt;figure class=&quot;highlight java&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;title class_&quot;&gt;HashMap&lt;/span&gt;&amp;lt;K,V&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;         &lt;span class=&quot;keyword&quot;&gt;extends&lt;/span&gt; &lt;span class=&quot;title class_&quot;&gt;AbstractMap&lt;/span&gt;&amp;lt;K,V&amp;gt; &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;         &lt;span class=&quot;keyword&quot;&gt;implements&lt;/span&gt; &lt;span class=&quot;title class_&quot;&gt;Map&lt;/span&gt;&amp;lt;K,V&amp;gt;, Cloneable, Serializable&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+
+&lt;ul&gt;
+&lt;li&gt;HashMap 继承了 AbstractMap 抽象类，实现了 Cloneable、Serializable接口。HashMap的拷贝是一种浅拷贝，即拷贝对象的改变会影响到原对象；HashMap是线程不安全的，不保证插入的键值对有序，但是允许存储键为null的值；HashTable是线程安全的，但是不能存储键为 null的值。&lt;/li&gt;
+&lt;li&gt;jdk 1.7 中的HashMap 是基于 数组+链表 的模式构建的。虽然 HashMap定义了hash函数来避免冲突，但是还是会存在两个 key在计算后桶的位置一样，因此考虑使用 链表的方式解决冲突；&lt;/li&gt;
+&lt;/ul&gt;</summary>
+    
+    
+    
+    <category term="JAVA" scheme="http://example.com/categories/JAVA/"/>
+    
+    
+    <category term="源码解读" scheme="http://example.com/tags/%E6%BA%90%E7%A0%81%E8%A7%A3%E8%AF%BB/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>RabbitMQ(一)、基础入门</title>
+    <link href="http://example.com/2020/12/20/RabbitMQ_%E5%85%A5%E9%97%A8/"/>
+    <id>http://example.com/2020/12/20/RabbitMQ_%E5%85%A5%E9%97%A8/</id>
+    <published>2020-12-20T13:06:00.000Z</published>
+    <updated>2022-04-02T02:38:10.147Z</updated>
+    
+    
+    <summary type="html">&lt;h2 id=&quot;一、什么叫做消息队列&quot;&gt;&lt;a href=&quot;#一、什么叫做消息队列&quot; class=&quot;headerlink&quot; title=&quot;一、什么叫做消息队列&quot;&gt;&lt;/a&gt;一、什么叫做消息队列&lt;/h2&gt;&lt;p&gt;消息（Message）指在应用间传输的数据。消息包含 数字、文本、更复杂的嵌入对象等等。&lt;/p&gt;
+&lt;p&gt;消息队列（Message Queue）是一种应用间的通信方式，消息发送后可以立即返回，由消息系统来确保消息的可靠传输。消息发布者只管把消息发送到 MQ 中而不管谁来取，消费者只管从 MQ 中拿消息而不管谁发送的消息。消息的发送和接收都不知道双方的存在。&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="消息队列" scheme="http://example.com/categories/%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97/"/>
+    
+    
+    <category term="RabbitMQ" scheme="http://example.com/tags/RabbitMQ/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>牛客剑指offer(20~40题总结)</title>
+    <link href="http://example.com/2020/11/20/%E7%89%9B%E5%AE%A2%E5%89%91%E6%8C%87offer_t20~t40/"/>
+    <id>http://example.com/2020/11/20/%E7%89%9B%E5%AE%A2%E5%89%91%E6%8C%87offer_t20~t40/</id>
+    <published>2020-11-20T13:12:00.000Z</published>
+    <updated>2022-04-02T02:20:32.438Z</updated>
+    
+    
+    <summary type="html">&lt;h2 id=&quot;JZ23&quot;&gt;&lt;a href=&quot;#JZ23&quot; class=&quot;headerlink&quot; title=&quot;JZ23&quot;&gt;&lt;/a&gt;JZ23&lt;/h2&gt;&lt;img src=&quot;/passageImg/牛客offer.assets/image-20210325083059996.png&quot; alt=&quot;image-20210325083059996&quot; style=&quot;zoom:80%;&quot; /&gt;
+
+&lt;h3 id=&quot;解决方法：&quot;&gt;&lt;a href=&quot;#解决方法：&quot; class=&quot;headerlink&quot; title=&quot;解决方法：&quot;&gt;&lt;/a&gt;解决方法：&lt;/h3&gt;&lt;p&gt;二叉搜索树遍历顺序为左右根；而且左子树的所有值都小于根，根的值小于右子树的所有值。&lt;/p&gt;
+&lt;p&gt;根据大小关系找出划分点后还需要对右子树的所有值进行比较遍历，在满足二叉搜索树的大小规定后才能再次划分为左子树和右子树进行比较。&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="剑指Offer" scheme="http://example.com/categories/%E5%89%91%E6%8C%87Offer/"/>
+    
+    
+    <category term="算法题" scheme="http://example.com/tags/%E7%AE%97%E6%B3%95%E9%A2%98/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>操作系统（四）、非连续内存分配</title>
+    <link href="http://example.com/2020/11/20/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E2%80%94%E2%80%94%E7%AC%AC%E5%9B%9B%E7%AB%A0%E3%80%81%E9%9D%9E%E8%BF%9E%E7%BB%AD%E5%BC%8F%E5%86%85%E5%AD%98%E5%88%86%E9%85%8D/"/>
+    <id>http://example.com/2020/11/20/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E2%80%94%E2%80%94%E7%AC%AC%E5%9B%9B%E7%AB%A0%E3%80%81%E9%9D%9E%E8%BF%9E%E7%BB%AD%E5%BC%8F%E5%86%85%E5%AD%98%E5%88%86%E9%85%8D/</id>
+    <published>2020-11-20T13:11:00.000Z</published>
+    <updated>2022-04-02T02:21:45.366Z</updated>
+    
+    
+    <summary type="html">&lt;h1 id=&quot;非连续内存分配：&quot;&gt;&lt;a href=&quot;#非连续内存分配：&quot; class=&quot;headerlink&quot; title=&quot;非连续内存分配：&quot;&gt;&lt;/a&gt;非连续内存分配：&lt;/h1&gt;&lt;h2 id=&quot;1-1、为什么需要非连续内存分配：&quot;&gt;&lt;a href=&quot;#1-1、为什么需要非连续内存分配：&quot; class=&quot;headerlink&quot; title=&quot;1.1、为什么需要非连续内存分配：&quot;&gt;&lt;/a&gt;1.1、为什么需要非连续内存分配：&lt;/h2&gt;&lt;p&gt;&lt;img src=&quot;/passageImg/%E7%AC%AC%E5%9B%9B%E7%AB%A0%E3%80%81%E9%9D%9E%E8%BF%9E%E7%BB%AD%E5%BC%8F%E5%86%85%E5%AD%98%E5%88%86%E9%85%8D.assets/image-20200919210923975.png&quot;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/passageImg/%E7%AC%AC%E5%9B%9B%E7%AB%A0%E3%80%81%E9%9D%9E%E8%BF%9E%E7%BB%AD%E5%BC%8F%E5%86%85%E5%AD%98%E5%88%86%E9%85%8D.assets/image-20200919210949161.png&quot;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/passageImg/%E7%AC%AC%E5%9B%9B%E7%AB%A0%E3%80%81%E9%9D%9E%E8%BF%9E%E7%BB%AD%E5%BC%8F%E5%86%85%E5%AD%98%E5%88%86%E9%85%8D.assets/image-20200919211151381.png&quot;&gt;&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="操作系统" scheme="http://example.com/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/"/>
+    
+    
+    <category term="操作系统" scheme="http://example.com/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/"/>
+    
+  </entry>
+  
+</feed>

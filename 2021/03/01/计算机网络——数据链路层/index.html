@@ -1,0 +1,333 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>计网（一）、数据链路层 | iStitches</title><meta name="keywords" content="计算机网络"><meta name="author" content="XjX-zc"><meta name="copyright" content="XjX-zc"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="数据链路层一、基本概念 链路：一条无源的点到点的物理线路段，中间没有任何其它的交换节点；  数据链路：除了物理线路外，还必须有通信协议来控制这些数据的传输；把这些协议的硬件和软件加到链路上，就构成了数据链路； 最常用的方法是：适配器（网卡）来实现软件和硬件，网卡一般都包括了数据链路层和物理层这两层；  数据链路层传送的是帧。网络层将 ip数据报传入数据链路层封装成帧，数据链路层再将帧传送给物理层转">
+<meta property="og:type" content="article">
+<meta property="og:title" content="计网（一）、数据链路层">
+<meta property="og:url" content="http://example.com/2021/03/01/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E2%80%94%E2%80%94%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%E5%B1%82/index.html">
+<meta property="og:site_name" content="iStitches">
+<meta property="og:description" content="数据链路层一、基本概念 链路：一条无源的点到点的物理线路段，中间没有任何其它的交换节点；  数据链路：除了物理线路外，还必须有通信协议来控制这些数据的传输；把这些协议的硬件和软件加到链路上，就构成了数据链路； 最常用的方法是：适配器（网卡）来实现软件和硬件，网卡一般都包括了数据链路层和物理层这两层；  数据链路层传送的是帧。网络层将 ip数据报传入数据链路层封装成帧，数据链路层再将帧传送给物理层转">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/img/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C.jpg">
+<meta property="article:published_time" content="2021-03-01T11:06:00.000Z">
+<meta property="article:modified_time" content="2022-04-02T02:21:20.587Z">
+<meta property="article:author" content="XjX-zc">
+<meta property="article:tag" content="计算机网络">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/img/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://example.com/2021/03/01/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E2%80%94%E2%80%94%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%E5%B1%82/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#121212","position":"top-right"},
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery@2/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery@2/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '计网（一）、数据链路层',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2022-04-02 10:21:20'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><link rel="stylesheet" href="/css/mycss.css"><link rel="stylesheet" href="/css/mybkcss.css"><link rel="stylesheet" href="/css/myfootercss.css"><link rel="stylesheet" href="//at.alicdn.com/t/font_3294417_y9wnoregopg.css"><link rel="stylesheet" href="/css/iconfont.css"><link rel="stylesheet" href="/css/myfont.css"><link rel="stylesheet" href="/css/optimizeCss.css"><meta name="generator" content="Hexo 6.1.0"><link rel="alternate" href="/atom.xml" title="iStitches" type="application/atom+xml">
+</head><body><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/loading.gif" data-original="/img/avatar.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data is-center"><div class="data-item"><a href="/archives/"><div class="headline">文章</div><div class="length-num">48</div></a></div><div class="data-item"><a href="/tags/"><div class="headline">标签</div><div class="length-num">13</div></a></div><div class="data-item"><a href="/categories/"><div class="headline">分类</div><div class="length-num">14</div></a></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fa fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fa fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fa fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/messageboard/"><i class="fa-fw fa fa-paper-plane"></i><span> 留言板</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fa fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/timeline/"><i class="fa-fw fa fa-bell"></i><span> 日志</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fa fa-list"></i><span> 菜单</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/%E5%85%B3%E4%BA%8E"><i class="fa-fw /about/"></i><span> 0</span></a></li><li><a class="site-page child" href="/myself"><i class="fa-fw /myself/"></i><span> 1</span></a></li><li><a class="site-page child" href="/butterfly%E4%B8%BB%E9%A2%98"><i class="fa-fw https://github.com/jerryc127/hexo-theme-butterfly/"></i><span> 2</span></a></li></ul></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('/img/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">iStitches</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fa fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fa fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fa fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/messageboard/"><i class="fa-fw fa fa-paper-plane"></i><span> 留言板</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fa fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/timeline/"><i class="fa-fw fa fa-bell"></i><span> 日志</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fa fa-list"></i><span> 菜单</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/%E5%85%B3%E4%BA%8E"><i class="fa-fw /about/"></i><span> 0</span></a></li><li><a class="site-page child" href="/myself"><i class="fa-fw /myself/"></i><span> 1</span></a></li><li><a class="site-page child" href="/butterfly%E4%B8%BB%E9%A2%98"><i class="fa-fw https://github.com/jerryc127/hexo-theme-butterfly/"></i><span> 2</span></a></li></ul></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">计网（一）、数据链路层</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2021-03-01T11:06:00.000Z" title="发表于 2021-03-01 19:06:00">2021-03-01</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2022-04-02T02:21:20.587Z" title="更新于 2022-04-02 10:21:20">2022-04-02</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/">计算机网络</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="计网（一）、数据链路层"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="数据链路层"><a href="#数据链路层" class="headerlink" title="数据链路层"></a>数据链路层</h1><h2 id="一、基本概念"><a href="#一、基本概念" class="headerlink" title="一、基本概念"></a>一、基本概念</h2><ul>
+<li><p>链路：一条无源的点到点的物理线路段，中间没有任何其它的交换节点；</p>
+</li>
+<li><p>数据链路：除了物理线路外，还必须有通信协议来控制这些数据的传输；把这些协议的硬件和软件加到链路上，就构成了数据链路；</p>
+<p>最常用的方法是：适配器（网卡）来实现软件和硬件，网卡一般都包括了数据链路层和物理层这两层；</p>
+</li>
+<li><p>数据链路层传送的是帧。网络层将 ip数据报传入数据链路层封装成帧，数据链路层再将帧传送给物理层转换为比特流的形式发送给对方机器，对方机器接收后再反过来进行转换。</p>
+</li>
+</ul>
+<span id="more"></span>
+
+<h2 id="二、三个基本问题"><a href="#二、三个基本问题" class="headerlink" title="二、三个基本问题"></a>二、三个基本问题</h2><ul>
+<li>封装成帧；</li>
+<li>透明传输；</li>
+<li>差错控制；</li>
+</ul>
+<h3 id="1-封装成帧"><a href="#1-封装成帧" class="headerlink" title="(1) 封装成帧"></a>(1) 封装成帧</h3><blockquote>
+<p>在一段数据的前后分别添加首部和尾部，然后就构成了一个帧。确定帧的界限。首部和尾部的重要作用就是对帧进行定界。</p>
+</blockquote>
+<p><code>MTU</code>：Maximum Transfer Unit 最大传输单元，规定了链路层所能传输帧的数据部分的长度上限。</p>
+<p><code>SOH</code>：Start Of Header 控制字符，放在帧的最前端，表示帧的首部开始；</p>
+<p><code>EOT</code>：End Of Tail  ，表示帧的尾部结束部分。</p>
+<h3 id="2-透明传输"><a href="#2-透明传输" class="headerlink" title="(2) 透明传输"></a>(2) 透明传输</h3><blockquote>
+<p>当帧的首尾部分出现在帧的数据部分可能会造成数据的误识别，因此需要采用一些措施来使得这些问题好像没有发生过一样。</p>
+</blockquote>
+<ul>
+<li>解决办法：</li>
+</ul>
+<p>​        字节填充(byte stuffing)、字符填充(character stuffing)。</p>
+<p>​        在当数据部分出现帧的控制符时，在其前面插入一个转义字符以便接收方接收识别。</p>
+<ul>
+<li>字符填充（同步传输时使用）：</li>
+</ul>
+<img src="/img/loading.gif" data-original="/passageImg/计算机网络_数据链路层.assets/image-20210321162808891.png" alt="image-20210321162808891" style="zoom: 67%;" />
+
+<ul>
+<li>零比特传输：</li>
+</ul>
+<img src="/img/loading.gif" data-original="/passageImg/计算机网络_数据链路层.assets/image-20210321162932524.png" alt="image-20210321162932524" style="zoom:67%;" />
+
+<p>* </p>
+<h3 id="3-差错检测"><a href="#3-差错检测" class="headerlink" title="(3) 差错检测"></a>(3) 差错检测</h3><blockquote>
+<p>传送过程中可能会出现比特差错，1 变成 0 而 0 也可能变成 1</p>
+</blockquote>
+<p>循环冗余检测：</p>
+<ol>
+<li>在要发送的数M后边添加 n个0；</li>
+<li>将得到的数除以收发双方事先商定的长度为(n+1) 位的除数P，得出的商是Q而余数是R；</li>
+<li>将R拼接在M后边一起发送给接收端；</li>
+<li>接收端接收到数据后再除以P，如果余数为0则表明没有出错，否则传输过程中出现了错误。</li>
+</ol>
+<p>循环冗余检测只能用于检错不能用于纠错，数据链路层使用 CRC 检验，能够实现无比特差错传输，但是不是可靠传输。</p>
+<h2 id="三、点对点协议PPP"><a href="#三、点对点协议PPP" class="headerlink" title="三、点对点协议PPP"></a>三、点对点协议PPP</h2><blockquote>
+<p>目前数据链路层使用的最多的协议是点对点协议</p>
+</blockquote>
+<p>PPP协议应该满足的需求：</p>
+<ol>
+<li>简单—首要要求；</li>
+<li>封装成帧；</li>
+<li>透明传输；</li>
+<li>差错检测；</li>
+<li>在同一链路上支持多种网络层协议；能够在多种链路上运行(既需要满足上层又需要满足下层)；</li>
+</ol>
+<p>PPP协议不需要的功能：</p>
+<ol>
+<li>纠错；</li>
+<li>流量控制；</li>
+<li>给帧添加序号，判断帧的重复、失序、丢失；</li>
+<li>多点线路；</li>
+<li>半双工或单工链路；</li>
+</ol>
+<p>PPP协议的组成部分：</p>
+<ol>
+<li>一个将 IP 数据报封装到串行链路的方法；</li>
+<li>链路控制协议 LCP（Link Control Protocol）：用来建立、检测链路连接的协议；</li>
+<li>网络控制协议 NCP（Network Control Protocol）：用来支持多种网络层协议；</li>
+</ol>
+<p><img src="/img/loading.gif" data-original="/passageImg/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C_%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%E5%B1%82.assets/image-20210321162612678.png" alt="image-20210321162612678"></p>
+<h2 id="四、以太网"><a href="#四、以太网" class="headerlink" title="四、以太网"></a>四、以太网</h2><blockquote>
+<p>适配器：计算机与外界局域网的连接是通过通信适配器(网卡)进行的。</p>
+</blockquote>
+<h3 id="1-适配器的主要功能如下："><a href="#1-适配器的主要功能如下：" class="headerlink" title="1. 适配器的主要功能如下："></a>1. 适配器的主要功能如下：</h3><ol>
+<li>数据串行传输和并行传输的转换；    适配器和局域网之间的通信是通过双绞线或电缆进行串行传输的，适配器和计算机之间的通信则是通过主板上的IO总线的方式进行传输的。</li>
+<li>对数据进行缓存；局域网的数据传输率和计算机的数据传输率不一致，需要缓存调整；</li>
+<li>在计算机操作系统中安装设备；在主板安装适配器时必须将管理适配器的设备驱动程序安装在计算机操作系统中；</li>
+<li>实现以太网协议；</li>
+</ol>
+<p><img src="/img/loading.gif" data-original="/passageImg/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C_%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%E5%B1%82.assets/image-20210321164536629.png" alt="image-20210321164536629"></p>
+<h3 id="2-以太网-MAC网帧"><a href="#2-以太网-MAC网帧" class="headerlink" title="2. 以太网 MAC网帧"></a>2. 以太网 MAC网帧</h3><blockquote>
+<p>MAC地址：媒体接入层上使用的地址，也叫做物理地址、硬件地址或者链路地址，由网络设备制造商生产时写在硬件内部。MAC地址与网络无关，也即无论将带有这个地址的硬件设备接入到网络的何处，都有相同的MAC地址。现在一般采用 6字节(48位)的MAC地址。前24位由 IEEE 注册，后24位由厂家指定。</p>
+<p>在OSI 模型中，第三层网络层负责 IP 地址，第二层数据链路层则负责 MAC 地址。因此一个主机会有一个唯一的MAC地址，而每个网络位置会有一个唯一的IP地址。工作在数据链路层的交换机维护着 计算机MAC地址和MAC地址表，交换机根据接收到的数据帧中的 “目的MAC地址” 字段来转发数据帧。</p>
+</blockquote>
+<p>以太网 MAC帧的格式：</p>
+<p><img src="/img/loading.gif" data-original="/passageImg/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C_%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%E5%B1%82.assets/20131017004657921" alt="img"></p>
+<p>组成：</p>
+<ul>
+<li>6字节长的目的地址和源地址；</li>
+<li>2字节的类型字段；用来标志上一层使用的是什么协议，以便把接收到的MAC帧的数据上交给上一层；</li>
+<li>数据字段（46~1500字节长度），46是通过最小长度64字节减去18字节的首部和尾部；</li>
+<li>4字节的帧检验序列FCS（使用CRC冗余检验）；</li>
+</ul>
+<p>注意：</p>
+<ul>
+<li><p>当数据字段小于46字节时，会在尾部进行填充。但是这样上层协议如何知道填充字段的长度呢？</p>
+<p>当上层使用 ip 协议时，其首部会有一个总长度字段，总长度字段长度+填充字段长度&#x3D;MAC帧数据部分长度</p>
+</li>
+<li><p>在传输媒体上实际传输的要比MAC帧还多8个字节，这是因为当一个站刚开始接收MAC帧时，由于适配器的时钟没有与到达的比特流形成同步，因此MAC帧最前面的若干位就会无法接收，这个帧就会被丢弃。因此从MAC 子层向下传输到物理层时还要再帧的前面加上8个字节（7字节前同步码：使接收端的适配器在接受MAC帧时能够迅速调整其时钟频率；1字节的帧开始定界符：前6位与前同步码作用相同，后2位都是1为了提示适配器接收MAC帧）；</p>
+</li>
+<li><p>以太网帧在传输时，接收端只需要找到它的开始定界符，后续到达的比特流都属于一个MAC帧。它不使用帧结束定界符也不需要使用字节插入来保证透明传输。</p>
+</li>
+</ul>
+<h3 id="3-以太网独特的工作方式"><a href="#3-以太网独特的工作方式" class="headerlink" title="3. 以太网独特的工作方式"></a>3. 以太网独特的工作方式</h3><p>（1）较灵活的无连接工作方式—-采用广播的形式，尽最大努力交付，不可靠交付；</p>
+<p>（2）曼彻斯特编码：方便发送方、接收方进行同步，缺点是跳变太多，频带宽度比原始基带信号增加一倍；</p>
+<p>（3）CSMA&#x2F;CD  协议，载波监听多点接入&#x2F;碰撞检测：计算机边发送数据边检测信道上的信号电压大小。在发送期间进行碰撞检测，以检测冲突。使用 CSMA&#x2F;CD 协议的以太网不能进行全双工通信而只能进行双向交替通信（半双工通信）。</p>
+<h3 id="4-CSMA-x2F-CD-协议："><a href="#4-CSMA-x2F-CD-协议：" class="headerlink" title="4. CSMA&#x2F;CD 协议："></a>4. CSMA&#x2F;CD 协议：</h3><blockquote>
+<p>A 和 B分别双向发送数据，那么一定会在某一时刻两列电磁波相遇，相遇后的电磁波会被叠加，那么在两个接收端接收到的信号数据都将被废弃。</p>
+</blockquote>
+<img src="/img/loading.gif" data-original="/passageImg/计算机网络_数据链路层.assets/image-20210321193103480.png" alt="image-20210321193103480" style="zoom:67%;" />
+
+
+
+
+
+<p>解决方法： </p>
+<img src="/img/loading.gif" data-original="/passageImg/计算机网络_数据链路层.assets/image-20210321194923942.png" alt="image-20210321194923942" style="zoom: 67%;" />
+
+<p><strong>二进制指数类型退避算法：</strong></p>
+<p>发生碰撞的站在停止发送数据后，要推迟一个随机时间才能再次发送数据。</p>
+<p>基本退避时间为争用期 2t，从整数集合  [0,1,2,3,….,(2^k-1)] 中随机选择一个值 r。重传所需的时延就是 r 倍的基本退避时间；参数 k 的计算： <code>k = min[重传次数,10]</code>。当 k ≤ 10时，参数 k 等于重传次数。如果重传达到16次都不成功，向上层报告。</p>
+<p>可以发现，重传次数越多，每个站等待时间相同的几率就越小，那么就能够避开彼此正常传输了。</p>
+<blockquote>
+<p>由此得出结论，在 10 M&#x2F;s 以太网取 51.2us 为争用期的长度。对于 10M&#x2F;s 以太网，在争用期内最多可以发送 512bit 即 64字节的数据。</p>
+<p>如果这64字节的数据没有发生冲突，那么说明后续的数据就不会发生冲突。</p>
+<p>因此 64字节就变成了有效帧的最短长度，如果小于这个值说明这个帧的数据不完整，在传送过程中可能发生了冲突，因此会被丢弃。</p>
+<p>因为发送过程总可能会发生冲突，为了保证信道利用率，就必须增加帧的长度，因此最短帧长就是争用期内能够发送的数据量。</p>
+</blockquote>
+<img src="/img/loading.gif" data-original="/passageImg/计算机网络_数据链路层.assets/image-20210321200728032.png" alt="image-20210321200728032" style="zoom:80%;" />
+
+<p>总结：**先听后发 → 边听边发 → 冲突停止 → 延迟后发 **</p>
+<p>​    </p>
+<h2 id="五、集线器"><a href="#五、集线器" class="headerlink" title="五、集线器"></a>五、集线器</h2><p><img src="/img/loading.gif" data-original="/passageImg/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C_%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%E5%B1%82.assets/image-20210321201453233.png" alt="image-20210321201453233"></p>
+<p>集线器仅仅将计算机之间的连接由总线方式改变为星型结构；在逻辑上仍然是一个总线网，各工作站使用的还是 CSMA&#x2F;CD 协议，并共享逻辑上的总线。是一个物理层的设备。</p>
+<p><strong>集线器和交换机的区别：</strong></p>
+<ol>
+<li><p>工作层次：   </p>
+<p>集线器工作在物理层，采用广播的方式发送数据，因此网络性能会受到限制；</p>
+<p>交换机工作在数据链路层，通过学习后每个端口形成一张 MAC地址转发表，根据数据包的 MAC地址转发数据，而不是广播形式；</p>
+</li>
+<li><p>转发方式：</p>
+<p>集线器工作原理是广播形式，无论哪个端口收到数据之后，都要广播到所有的端口，当接入设备比较多时，网络性能就会受到影响；</p>
+<p>交换机根据 MAC地址转发数据，受到数据包之后，检查报文的目的MAC地址，找到对应的端口进行转发；</p>
+</li>
+<li><p>传输模式：</p>
+<p>集线器内部采用总线型拓扑结构，各个节点公用一条总线通信，数据包的发送和接收采用 CSMA&#x2F;CD 协议，在同一时间必须是单向的，只能维持在半双工模式下。</p>
+<p>交换机上两个端口进行通信时，它们之间的通道是相互独立的，可以进行全双工通信。</p>
+</li>
+</ol>
+<img src="/img/loading.gif" data-original="/passageImg/计算机网络_数据链路层.assets/image-20210321210839931.png" alt="image-20210321210839931" style="zoom:80%;" />
+
+
+
+
+
+<h2 id="六、交换机"><a href="#六、交换机" class="headerlink" title="六、交换机"></a>六、交换机</h2><h3 id="1-交换机使用了生成树协议"><a href="#1-交换机使用了生成树协议" class="headerlink" title="1.交换机使用了生成树协议"></a>1.交换机使用了生成树协议</h3><p>(1) 存在的问题：</p>
+<p>当增加了冗余链路时，交换机自学习的过程就可能导致以太网帧在网络的某个环路中无限制地兜圈子。这样就在网络中产生了环路；</p>
+<p>例如 主机A的数据帧的目的地址为1号端口，那么就会通过交换机一的3号端口转发给交换机二的1号端口；</p>
+<p>同时交换机二接收到数据帧后发现目的MAC地址为4号端口，那么又会通过交换机二的2号端口发送给交换机一的4号端口，这样就形成了回路。数据帧会在交换机一和交换机二之间来回不停地传输，这样就消耗掉了很多资源。</p>
+<img src="/img/loading.gif" data-original="/passageImg/计算机网络_数据链路层.assets/image-20210325180049945.png" alt="image-20210325180049945" style="zoom:67%;" />
+
+
+
+<p>(2) 解决方案：</p>
+<p>IEEE 802.1 标准制定了一个生成树协议 STP(Spanning Tree Protocol)。</p>
+<p>在不改变网络拓扑结构的前提下，在逻辑上切断某些链路，使得一台主机到其他所有主机的路径是无环路的树状结构，从而消除了兜圈子的现象。</p>
+<h3 id="2-虚拟局域网"><a href="#2-虚拟局域网" class="headerlink" title="2. 虚拟局域网"></a>2. 虚拟局域网</h3><blockquote>
+<p>当多个主机处在不同的局域网环境中，它们是不能直接进行数据交换的；但是通过连接在同一个虚拟局域网环境下，多个主机之间能够通过广播的形式交换数据。</p>
+</blockquote>
+<img src="/img/loading.gif" data-original="/passageImg/计算机网络_数据链路层.assets/image-20210325181145180.png" alt="image-20210325181145180" style="zoom:67%;" />
+
+<p>如图，A1、A2、A3、A4处于同一虚拟局域网 VLAN1中，它们虽然没有连接在同一以太网交换机上但是仍然能够交换数据信息；</p>
+<p>A1、A2、B1、C1虽然连接在同一交换机下，但是所处的虚拟局域网不同，因此不能交换数据。</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:undefined">XjX-zc</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="http://example.com/2021/03/01/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E2%80%94%E2%80%94%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%E5%B1%82/">http://example.com/2021/03/01/计算机网络——数据链路层/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://example.com" target="_blank">iStitches</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/">计算机网络</a></div><div class="post_share"><div class="social-share" data-image="/img/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2021/03/01/%E5%8A%A0%E5%AF%86%E7%AE%97%E6%B3%95/"><img class="prev-cover" src="/img/loading.gif" data-original="https://upimage.alexhchu.com/2020/10/21/f5ac68ddaaf64.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">加密算法</div></div></a></div><div class="next-post pull-right"><a href="/2021/01/10/Java%E6%BA%90%E7%A0%81_HashMap%E6%BA%90%E7%A0%81/"><img class="next-cover" src="/img/loading.gif" data-original="/img/%E6%BA%90%E7%A0%81%E8%A7%A3%E8%AF%BB.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">HashMap源码解读</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><div><a href="/2021/05/10/TCP%E4%B8%89%E6%8F%A1%E5%9B%9B%E6%8C%A5%E6%8B%93%E5%B1%95/" title="TCP三握四挥知识拓展"><img class="cover" src="/img/loading.gif" data-original="/img/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-05-10</div><div class="title">TCP三握四挥知识拓展</div></div></a></div><div><a href="/2021/03/01/%E5%8A%A0%E5%AF%86%E7%AE%97%E6%B3%95/" title="加密算法"><img class="cover" src="/img/loading.gif" data-original="https://upimage.alexhchu.com/2020/10/21/f5ac68ddaaf64.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-03-01</div><div class="title">加密算法</div></div></a></div><div><a href="/2021/03/17/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E2%80%94%E2%80%94%E4%BC%A0%E8%BE%93%E5%B1%82/" title="计网（三）、传输层"><img class="cover" src="/img/loading.gif" data-original="/img/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-03-17</div><div class="title">计网（三）、传输层</div></div></a></div><div><a href="/2021/03/20/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E2%80%94%E2%80%94%E7%BD%91%E7%BB%9C%E5%B1%82/" title="计网（二）、网络层"><img class="cover" src="/img/loading.gif" data-original="/img/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-03-20</div><div class="title">计网（二）、网络层</div></div></a></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/loading.gif" data-original="/img/avatar.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">XjX-zc</div><div class="author-info__description">生活原本沉闷,但跑起来就会有风</div></div><div class="card-info-data is-center"><div class="card-info-data-item"><a href="/archives/"><div class="headline">文章</div><div class="length-num">48</div></a></div><div class="card-info-data-item"><a href="/tags/"><div class="headline">标签</div><div class="length-num">13</div></a></div><div class="card-info-data-item"><a href="/categories/"><div class="headline">分类</div><div class="length-num">14</div></a></div></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/iStitches"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="/atom.xml" target="_blank" title="RSS链接"><i class="iconfont icon-social-rss card_icon"></i></a><a class="social-icon" href="https://github.com/iStitches" target="_blank" title="Github"><i class="iconfont icon-icon-Github card_icon"></i></a><a class="social-icon" href="https://blog.csdn.net/qq_43684985?spm=1000.2115.3001.5343" target="_blank" title="CSDN"><i class="iconfont icon-icon-csdn card_icon"></i></a><a class="social-icon" href="https://space.bilibili.com/407787894" target="_blank" title="Bilibili"><i class="iconfont icon-icon_bilibili card_icon"></i></a><a class="social-icon" href="tencent://AddContact/?fromId=45&amp;fromSubId=1&amp;subcmd=all&amp;uin=1093453695&amp;website=www.oicqzone.com" target="_blank" title="QQ"><i class="iconfont icon-icon-QQ card_icon"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">开发菜鸡,欢迎大家光临,一起学习进步！！！</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%E5%B1%82"><span class="toc-number">1.</span> <span class="toc-text">数据链路层</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5"><span class="toc-number">1.1.</span> <span class="toc-text">一、基本概念</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E4%B8%89%E4%B8%AA%E5%9F%BA%E6%9C%AC%E9%97%AE%E9%A2%98"><span class="toc-number">1.2.</span> <span class="toc-text">二、三个基本问题</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E5%B0%81%E8%A3%85%E6%88%90%E5%B8%A7"><span class="toc-number">1.2.1.</span> <span class="toc-text">(1) 封装成帧</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E9%80%8F%E6%98%8E%E4%BC%A0%E8%BE%93"><span class="toc-number">1.2.2.</span> <span class="toc-text">(2) 透明传输</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E5%B7%AE%E9%94%99%E6%A3%80%E6%B5%8B"><span class="toc-number">1.2.3.</span> <span class="toc-text">(3) 差错检测</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%89%E3%80%81%E7%82%B9%E5%AF%B9%E7%82%B9%E5%8D%8F%E8%AE%AEPPP"><span class="toc-number">1.3.</span> <span class="toc-text">三、点对点协议PPP</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9B%9B%E3%80%81%E4%BB%A5%E5%A4%AA%E7%BD%91"><span class="toc-number">1.4.</span> <span class="toc-text">四、以太网</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E9%80%82%E9%85%8D%E5%99%A8%E7%9A%84%E4%B8%BB%E8%A6%81%E5%8A%9F%E8%83%BD%E5%A6%82%E4%B8%8B%EF%BC%9A"><span class="toc-number">1.4.1.</span> <span class="toc-text">1. 适配器的主要功能如下：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E4%BB%A5%E5%A4%AA%E7%BD%91-MAC%E7%BD%91%E5%B8%A7"><span class="toc-number">1.4.2.</span> <span class="toc-text">2. 以太网 MAC网帧</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E4%BB%A5%E5%A4%AA%E7%BD%91%E7%8B%AC%E7%89%B9%E7%9A%84%E5%B7%A5%E4%BD%9C%E6%96%B9%E5%BC%8F"><span class="toc-number">1.4.3.</span> <span class="toc-text">3. 以太网独特的工作方式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-CSMA-x2F-CD-%E5%8D%8F%E8%AE%AE%EF%BC%9A"><span class="toc-number">1.4.4.</span> <span class="toc-text">4. CSMA&#x2F;CD 协议：</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%94%E3%80%81%E9%9B%86%E7%BA%BF%E5%99%A8"><span class="toc-number">1.5.</span> <span class="toc-text">五、集线器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%AD%E3%80%81%E4%BA%A4%E6%8D%A2%E6%9C%BA"><span class="toc-number">1.6.</span> <span class="toc-text">六、交换机</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E4%BA%A4%E6%8D%A2%E6%9C%BA%E4%BD%BF%E7%94%A8%E4%BA%86%E7%94%9F%E6%88%90%E6%A0%91%E5%8D%8F%E8%AE%AE"><span class="toc-number">1.6.1.</span> <span class="toc-text">1.交换机使用了生成树协议</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E8%99%9A%E6%8B%9F%E5%B1%80%E5%9F%9F%E7%BD%91"><span class="toc-number">1.6.2.</span> <span class="toc-text">2. 虚拟局域网</span></a></li></ol></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2022/03/31/hello-world/" title="Hello World"><img src="/img/loading.gif" data-original="https://i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Hello World"/></a><div class="content"><a class="title" href="/2022/03/31/hello-world/" title="Hello World">Hello World</a><time datetime="2022-03-31T09:49:07.771Z" title="发表于 2022-03-31 17:49:07">2022-03-31</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/10/26/%E8%87%AA%E9%A1%B6%E5%90%91%E4%B8%8B(1)/" title="计算机网络 自顶向下方法(应用层)"><img src="/img/loading.gif" data-original="/img/%E8%87%AA%E9%A1%B6%E5%90%91%E4%B8%8B%E6%96%B9%E6%B3%95.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="计算机网络 自顶向下方法(应用层)"/></a><div class="content"><a class="title" href="/2021/10/26/%E8%87%AA%E9%A1%B6%E5%90%91%E4%B8%8B(1)/" title="计算机网络 自顶向下方法(应用层)">计算机网络 自顶向下方法(应用层)</a><time datetime="2021-10-26T08:47:02.000Z" title="发表于 2021-10-26 16:47:02">2021-10-26</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/07/11/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3Java%E8%99%9A%E6%8B%9F%E6%9C%BA%E2%80%94%E2%80%94%E5%9E%83%E5%9C%BE%E6%94%B6%E9%9B%86%E5%99%A8%E4%B8%8E%E5%86%85%E5%AD%98%E5%88%86%E9%85%8D%E7%AD%96%E7%95%A5/" title="深入理解Java虚拟机—垃圾收集器与内存分配策略"><img src="/img/loading.gif" data-original="/img/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3Java%E8%99%9A%E6%8B%9F%E6%9C%BA.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="深入理解Java虚拟机—垃圾收集器与内存分配策略"/></a><div class="content"><a class="title" href="/2021/07/11/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3Java%E8%99%9A%E6%8B%9F%E6%9C%BA%E2%80%94%E2%80%94%E5%9E%83%E5%9C%BE%E6%94%B6%E9%9B%86%E5%99%A8%E4%B8%8E%E5%86%85%E5%AD%98%E5%88%86%E9%85%8D%E7%AD%96%E7%95%A5/" title="深入理解Java虚拟机—垃圾收集器与内存分配策略">深入理解Java虚拟机—垃圾收集器与内存分配策略</a><time datetime="2021-07-11T14:06:00.000Z" title="发表于 2021-07-11 22:06:00">2021-07-11</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/07/11/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3Java%E8%99%9A%E6%8B%9F%E6%9C%BA%E2%80%94%E2%80%94Java%E5%86%85%E5%AD%98%E5%8C%BA%E5%9F%9F/" title="深入理解Java虚拟机—Java内存区域"><img src="/img/loading.gif" data-original="/img/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3Java%E8%99%9A%E6%8B%9F%E6%9C%BA.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="深入理解Java虚拟机—Java内存区域"/></a><div class="content"><a class="title" href="/2021/07/11/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3Java%E8%99%9A%E6%8B%9F%E6%9C%BA%E2%80%94%E2%80%94Java%E5%86%85%E5%AD%98%E5%8C%BA%E5%9F%9F/" title="深入理解Java虚拟机—Java内存区域">深入理解Java虚拟机—Java内存区域</a><time datetime="2021-07-11T13:06:00.000Z" title="发表于 2021-07-11 21:06:00">2021-07-11</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/05/10/TCP%E4%B8%89%E6%8F%A1%E5%9B%9B%E6%8C%A5%E6%8B%93%E5%B1%95/" title="TCP三握四挥知识拓展"><img src="/img/loading.gif" data-original="/img/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="TCP三握四挥知识拓展"/></a><div class="content"><a class="title" href="/2021/05/10/TCP%E4%B8%89%E6%8F%A1%E5%9B%9B%E6%8C%A5%E6%8B%93%E5%B1%95/" title="TCP三握四挥知识拓展">TCP三握四挥知识拓展</a><time datetime="2021-05-10T10:12:00.000Z" title="发表于 2021-05-10 18:12:00">2021-05-10</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2022 By XjX-zc</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">本地搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.js"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><script src="/js/search/local-search.js"></script><div class="js-pjax"></div><script defer="defer" id="fluttering_ribbon" mobile="true" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/canvas-fluttering-ribbon.min.js"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div><script>
+            window.imageLazyLoadSetting = {
+                isSPA: false,
+                preloadRatio: 1,
+                processImages: null,
+            };
+        </script><script>window.addEventListener("load",function(){var t=/\.(gif|jpg|jpeg|tiff|png)$/i,r=/^data:image\/[a-z]+;base64,/;Array.prototype.slice.call(document.querySelectorAll("img[data-original]")).forEach(function(a){var e=a.parentNode;"A"===e.tagName&&(e.href.match(t)||e.href.match(r))&&(e.href=a.dataset.original)})});</script><script>!function(n){n.imageLazyLoadSetting.processImages=o;var e=n.imageLazyLoadSetting.isSPA,i=n.imageLazyLoadSetting.preloadRatio||1,r=Array.prototype.slice.call(document.querySelectorAll("img[data-original]"));function o(){e&&(r=Array.prototype.slice.call(document.querySelectorAll("img[data-original]")));for(var t,a=0;a<r.length;a++)0<=(t=(t=r[a]).getBoundingClientRect()).bottom&&0<=t.left&&t.top<=(n.innerHeight*i||document.documentElement.clientHeight*i)&&function(){var t,e,n,i,o=r[a];t=o,e=function(){r=r.filter(function(t){return o!==t})},n=new Image,i=t.getAttribute("data-original"),n.onload=function(){t.src=i,e&&e()},t.src!==i&&(n.src=i)}()}o(),n.addEventListener("scroll",function(){var t,e;t=o,e=n,clearTimeout(t.tId),t.tId=setTimeout(function(){t.call(e)},500)})}(this);</script></body></html>
