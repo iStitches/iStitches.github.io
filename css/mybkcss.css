@@ -27,3 +27,7 @@
 .layout>#archive{
     background: rgba(255,255,255,.5);
 }
+
+#web_bg {
+    background-image: linear-gradient(to top, #fff1eb 0%, #ace0f9 100%);
+}
