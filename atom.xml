@@ -44,13 +44,12 @@
     <link href="http://example.com/2021/10/26/%E8%87%AA%E9%A1%B6%E5%90%91%E4%B8%8B(1)/"/>
     <id>http://example.com/2021/10/26/%E8%87%AA%E9%A1%B6%E5%90%91%E4%B8%8B(1)/</id>
     <published>2021-10-26T08:47:02.000Z</published>
-    <updated>2022-04-06T01:47:35.820Z</updated>
+    <updated>2022-04-06T01:49:31.524Z</updated>
     
     
     <summary type="html">&lt;blockquote&gt;
 &lt;p&gt; WireShark 抓包指南：   &lt;a href=&quot;https://zhuanlan.zhihu.com/p/82498482&quot;&gt;https://zhuanlan.zhihu.com/p/82498482&lt;/a&gt;&lt;/p&gt;
 &lt;/blockquote&gt;
-&lt;p&gt;&lt;img src=&quot;/passageImg/%E8%87%AA%E9%A1%B6%E5%90%91%E4%B8%8B(1).assets/202204021422918.jpg&quot;&gt;&lt;/p&gt;
 &lt;h2 id=&quot;协议分层&quot;&gt;&lt;a href=&quot;#协议分层&quot; class=&quot;headerlink&quot; title=&quot;协议分层&quot;&gt;&lt;/a&gt;协议分层&lt;/h2&gt;&lt;p&gt;协议规定了发送者、接收者和所有中间设备为了高效通信需要遵守的规则。&lt;/p&gt;
 &lt;p&gt;协议分层允许我们将一个复杂的任务分解成几个较小的、简单的任务。&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;协议分层的好处：&lt;/strong&gt;&lt;/p&gt;
