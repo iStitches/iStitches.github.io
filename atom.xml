@@ -201,7 +201,7 @@
     <link href="http://example.com/2021/04/06/Java%E6%BA%90%E7%A0%81_concurrentHashMap%E6%BA%90%E7%A0%81/"/>
     <id>http://example.com/2021/04/06/Java%E6%BA%90%E7%A0%81_concurrentHashMap%E6%BA%90%E7%A0%81/</id>
     <published>2021-04-06T13:49:00.000Z</published>
-    <updated>2022-04-02T02:35:54.265Z</updated>
+    <updated>2022-04-29T10:40:22.982Z</updated>
     
     
     <summary type="html">&lt;h2 id=&quot;引言&quot;&gt;&lt;a href=&quot;#引言&quot; class=&quot;headerlink&quot; title=&quot;引言&quot;&gt;&lt;/a&gt;引言&lt;/h2&gt;&lt;p&gt;由于 HashMap 在多线程情况下存在线程安全的问题，因此在多线程情况下不会去选择使用这种结构，相应的我们会有几种方案去解决：&lt;/p&gt;
@@ -226,7 +226,7 @@
     <link href="http://example.com/2021/04/03/Java%E6%BA%90%E7%A0%81_ReentrantLock_AQS/"/>
     <id>http://example.com/2021/04/03/Java%E6%BA%90%E7%A0%81_ReentrantLock_AQS/</id>
     <published>2021-04-03T10:47:00.000Z</published>
-    <updated>2022-04-02T02:36:05.786Z</updated>
+    <updated>2022-04-29T10:40:37.309Z</updated>
     
     
     <summary type="html">&lt;h2 id=&quot;一、Java中的锁&quot;&gt;&lt;a href=&quot;#一、Java中的锁&quot; class=&quot;headerlink&quot; title=&quot;一、Java中的锁&quot;&gt;&lt;/a&gt;一、Java中的锁&lt;/h2&gt;&lt;h3 id=&quot;1-Java当中有哪些锁？&quot;&gt;&lt;a href=&quot;#1-Java当中有哪些锁？&quot; class=&quot;headerlink&quot; title=&quot;1. Java当中有哪些锁？&quot;&gt;&lt;/a&gt;1. Java当中有哪些锁？&lt;/h3&gt;&lt;p&gt;公平锁、非公平锁、读写锁、共享锁、互斥锁、自旋锁、偏向锁、轻量级锁、重量级锁&lt;/p&gt;</summary>
@@ -245,7 +245,7 @@
     <link href="http://example.com/2021/04/02/Java%E6%BA%90%E7%A0%81_ArrayList%E3%80%81LinkedList%E3%80%81Vector/"/>
     <id>http://example.com/2021/04/02/Java%E6%BA%90%E7%A0%81_ArrayList%E3%80%81LinkedList%E3%80%81Vector/</id>
     <published>2021-04-02T13:44:00.000Z</published>
-    <updated>2022-04-02T02:35:47.924Z</updated>
+    <updated>2022-04-29T10:40:15.528Z</updated>
     
     
     <summary type="html">&lt;h1 id=&quot;ArrayList、LinkedList、Vector-三者差异比较&quot;&gt;&lt;a href=&quot;#ArrayList、LinkedList、Vector-三者差异比较&quot; class=&quot;headerlink&quot; title=&quot;ArrayList、LinkedList、Vector 三者差异比较&quot;&gt;&lt;/a&gt;ArrayList、LinkedList、Vector 三者差异比较&lt;/h1&gt;&lt;h2 id=&quot;一、ArrayList、LinkedList、Vector的区别&quot;&gt;&lt;a href=&quot;#一、ArrayList、LinkedList、Vector的区别&quot; class=&quot;headerlink&quot; title=&quot;一、ArrayList、LinkedList、Vector的区别&quot;&gt;&lt;/a&gt;一、ArrayList、LinkedList、Vector的区别&lt;/h2&gt;&lt;h3 id=&quot;（1）底层结构&quot;&gt;&lt;a href=&quot;#（1）底层结构&quot; class=&quot;headerlink&quot; title=&quot;（1）底层结构&quot;&gt;&lt;/a&gt;（1）底层结构&lt;/h3&gt;&lt;p&gt;ArrayList 的底层是基于动态数组来实现的，LinkedList 的底层是基于拥有头尾指针的双向链表来实现的。&lt;/p&gt;</summary>
@@ -264,7 +264,7 @@
     <link href="http://example.com/2021/04/01/Java%E6%BA%90%E7%A0%81_Synchorized%E5%89%96%E6%9E%90/"/>
     <id>http://example.com/2021/04/01/Java%E6%BA%90%E7%A0%81_Synchorized%E5%89%96%E6%9E%90/</id>
     <published>2021-04-01T12:47:00.000Z</published>
-    <updated>2022-04-02T02:36:11.105Z</updated>
+    <updated>2022-04-29T10:40:43.610Z</updated>
     
     
     <summary type="html">&lt;h1 id=&quot;Synchorized&quot;&gt;&lt;a href=&quot;#Synchorized&quot; class=&quot;headerlink&quot; title=&quot;Synchorized&quot;&gt;&lt;/a&gt;Synchorized&lt;/h1&gt;&lt;h2 id=&quot;一、Synchorized-的基本使用&quot;&gt;&lt;a href=&quot;#一、Synchorized-的基本使用&quot; class=&quot;headerlink&quot; title=&quot;一、Synchorized 的基本使用&quot;&gt;&lt;/a&gt;一、Synchorized 的基本使用&lt;/h2&gt;&lt;p&gt;&lt;strong&gt;Synchorized的作用：&lt;/strong&gt;&lt;/p&gt;
@@ -446,7 +446,7 @@
     <link href="http://example.com/2021/01/10/Java%E6%BA%90%E7%A0%81_HashMap%E6%BA%90%E7%A0%81/"/>
     <id>http://example.com/2021/01/10/Java%E6%BA%90%E7%A0%81_HashMap%E6%BA%90%E7%A0%81/</id>
     <published>2021-01-10T10:47:00.000Z</published>
-    <updated>2022-04-02T02:35:59.834Z</updated>
+    <updated>2022-04-29T10:40:30.386Z</updated>
     
     
     <summary type="html">&lt;h1 id=&quot;HashMap&quot;&gt;&lt;a href=&quot;#HashMap&quot; class=&quot;headerlink&quot; title=&quot;HashMap&quot;&gt;&lt;/a&gt;HashMap&lt;/h1&gt;&lt;h2 id=&quot;一、JDK-1-7-的HashMap&quot;&gt;&lt;a href=&quot;#一、JDK-1-7-的HashMap&quot; class=&quot;headerlink&quot; title=&quot;一、JDK 1.7 的HashMap&quot;&gt;&lt;/a&gt;一、JDK 1.7 的HashMap&lt;/h2&gt;&lt;h3 id=&quot;1-数据结构&quot;&gt;&lt;a href=&quot;#1-数据结构&quot; class=&quot;headerlink&quot; title=&quot;1. 数据结构&quot;&gt;&lt;/a&gt;1. 数据结构&lt;/h3&gt;&lt;figure class=&quot;highlight java&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;title class_&quot;&gt;HashMap&lt;/span&gt;&amp;lt;K,V&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;         &lt;span class=&quot;keyword&quot;&gt;extends&lt;/span&gt; &lt;span class=&quot;title class_&quot;&gt;AbstractMap&lt;/span&gt;&amp;lt;K,V&amp;gt; &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;         &lt;span class=&quot;keyword&quot;&gt;implements&lt;/span&gt; &lt;span class=&quot;title class_&quot;&gt;Map&lt;/span&gt;&amp;lt;K,V&amp;gt;, Cloneable, Serializable&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
@@ -470,7 +470,7 @@
     <link href="http://example.com/2020/12/20/RabbitMQ_%E5%85%A5%E9%97%A8/"/>
     <id>http://example.com/2020/12/20/RabbitMQ_%E5%85%A5%E9%97%A8/</id>
     <published>2020-12-20T13:06:00.000Z</published>
-    <updated>2022-04-02T02:38:10.147Z</updated>
+    <updated>2022-04-29T10:41:45.414Z</updated>
     
     
     <summary type="html">&lt;h2 id=&quot;一、什么叫做消息队列&quot;&gt;&lt;a href=&quot;#一、什么叫做消息队列&quot; class=&quot;headerlink&quot; title=&quot;一、什么叫做消息队列&quot;&gt;&lt;/a&gt;一、什么叫做消息队列&lt;/h2&gt;&lt;p&gt;消息（Message）指在应用间传输的数据。消息包含 数字、文本、更复杂的嵌入对象等等。&lt;/p&gt;
